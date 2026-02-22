@@ -6,7 +6,7 @@
   <title>THE SPINNER EFFECT | STREAMAX Original</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0a0a0a;
@@ -23,7 +23,6 @@
       --green: #46d369;
       --blue: #4fc3f7;
       --purple: #b388ff;
-      --gradient-hero: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.6) 50%, #0a0a0a 100%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,928 +37,512 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== SPLASH / AGE GATE ===== */
+    /* ===== SPLASH ===== */
     .splash {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
+      position: fixed; inset: 0; background: #000; z-index: 10000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
     .splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
     .splash-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 4rem;
-      letter-spacing: 0.3em;
-      color: var(--red);
-      margin-bottom: 0.5rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
+      letter-spacing: 0.3em; color: var(--red);
       animation: logo-glow 2s ease-in-out infinite alternate;
     }
     @keyframes logo-glow {
       from { text-shadow: 0 0 20px rgba(229,9,20,0.3); }
       to { text-shadow: 0 0 40px rgba(229,9,20,0.6), 0 0 80px rgba(229,9,20,0.2); }
     }
-
     .splash-tagline {
-      font-size: 0.85rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 3rem;
+      font-size: 0.85rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 3rem;
     }
-
     .splash-rating {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 2rem;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 4px;
-      margin-bottom: 1.5rem;
-      background: rgba(255,255,255,0.03);
+      display: inline-flex; align-items: center; gap: 1rem;
+      padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px; margin-bottom: 1.5rem; background: rgba(255,255,255,0.03);
     }
-    .splash-rating .rating-badge {
-      background: var(--red);
-      color: white;
-      font-weight: 800;
-      font-size: 1.1rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 3px;
+    .rating-badge {
+      background: var(--red); color: white; font-weight: 800;
+      font-size: 1.1rem; padding: 0.3rem 0.7rem; border-radius: 3px;
     }
-    .splash-rating .rating-text {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      text-align: left;
-      line-height: 1.4;
-    }
-
+    .rating-text { font-size: 0.85rem; color: var(--text-dim); text-align: left; line-height: 1.5; }
     .splash-warning-text {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      max-width: 500px;
-      margin-bottom: 3rem;
-      line-height: 1.7;
+      font-size: 0.95rem; color: var(--text-dim); max-width: 540px;
+      margin-bottom: 3rem; line-height: 1.8;
     }
-
     .splash-enter {
-      padding: 1rem 3rem;
-      background: var(--red);
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s;
+      padding: 1rem 3rem; background: var(--red); border: none; border-radius: 4px;
+      color: white; font-family: inherit; font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s;
     }
     .splash-enter:hover { background: #ff1a25; transform: scale(1.05); box-shadow: 0 10px 40px rgba(229,9,20,0.4); }
-
     .splash-legal {
-      position: absolute;
-      bottom: 1.5rem;
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.2);
-      max-width: 600px;
+      position: absolute; bottom: 1.5rem; font-size: 0.65rem;
+      color: rgba(255,255,255,0.2); max-width: 600px;
     }
 
-    /* ===== TOP NAV ===== */
+    /* ===== TOPNAV ===== */
     .topnav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 9000;
-      padding: 1rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9000;
+      padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between;
       background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
       transition: background 0.3s;
     }
     .topnav.scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); }
-    .topnav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      letter-spacing: 0.2em;
-      color: var(--red);
-    }
-    .topnav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
+    .topnav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.2em; color: var(--red); }
+    .topnav-links { display: flex; gap: 1.5rem; list-style: none; font-size: 0.85rem; font-weight: 500; }
     .topnav-links a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; cursor: pointer; }
     .topnav-links a:hover { color: var(--text-bright); }
     .topnav-profile {
-      width: 32px;
-      height: 32px;
-      border-radius: 4px;
+      width: 32px; height: 32px; border-radius: 4px;
       background: linear-gradient(135deg, var(--purple), var(--blue));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 0.75rem;
-      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.75rem; color: white;
     }
 
     /* ===== HERO ===== */
     .hero {
-      position: relative;
-      min-height: 95vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 0 4rem 4rem;
-      overflow: hidden;
+      position: relative; min-height: 95vh;
+      display: flex; align-items: flex-end; padding: 0 4rem 4rem; overflow: hidden;
     }
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: 
+      position: absolute; inset: 0;
+      background:
         radial-gradient(ellipse at 30% 20%, rgba(229,9,20,0.15) 0%, transparent 60%),
         radial-gradient(ellipse at 70% 60%, rgba(79,195,247,0.08) 0%, transparent 50%),
         var(--bg);
     }
-    .hero-particles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
+    .hero-particles { position: absolute; inset: 0; overflow: hidden; }
     .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 50%;
+      position: absolute; width: 2px; height: 2px;
+      background: rgba(255,255,255,0.3); border-radius: 50%;
       animation: float-up linear infinite;
     }
     @keyframes float-up {
       0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
+      10% { opacity: 1; } 90% { opacity: 1; }
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
-    .hero-gradient {
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-hero);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-    }
+    .hero-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.6) 50%, #0a0a0a 100%); }
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
     .hero-streamax-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.3em;
-      color: var(--red);
-      margin-bottom: 1rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+      letter-spacing: 0.3em; color: var(--red); margin-bottom: 1rem;
     }
     .hero-streamax-badge span {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      background: rgba(232,183,8,0.15);
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
+      font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.15em; color: var(--gold); background: rgba(232,183,8,0.15);
+      padding: 0.2rem 0.6rem; border-radius: 2px;
     }
     .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 10vw, 8rem);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-      color: var(--text-bright);
-      margin-bottom: 0.5rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.9; letter-spacing: 0.02em; color: var(--text-bright); margin-bottom: 0.5rem;
     }
     .hero-title .effect { color: var(--red); }
     .hero-subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      color: var(--text-dim);
-      margin-bottom: 1.5rem;
-      font-weight: 700;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.4rem); color: var(--text-dim);
+      margin-bottom: 1.5rem; font-weight: 700; min-height: 2em;
     }
     .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.85rem;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem; font-size: 0.85rem;
     }
-    .hero-meta .match {
-      color: var(--green);
-      font-weight: 700;
-    }
-    .hero-meta .year, .hero-meta .seasons, .hero-meta .quality {
-      color: var(--text-dim);
-    }
+    .hero-meta .match { color: var(--green); font-weight: 700; }
+    .hero-meta .year, .hero-meta .seasons { color: var(--text-dim); }
     .hero-meta .quality {
-      border: 1px solid var(--text-dim);
-      padding: 0 0.4rem;
-      border-radius: 2px;
-      font-size: 0.7rem;
-      font-weight: 700;
+      border: 1px solid var(--text-dim); padding: 0 0.4rem; border-radius: 2px;
+      font-size: 0.7rem; font-weight: 700; color: var(--text-dim);
     }
     .hero-meta .rating-pill {
-      background: rgba(229,9,20,0.2);
-      color: var(--red);
-      padding: 0.15rem 0.5rem;
-      border-radius: 2px;
-      font-weight: 700;
-      font-size: 0.75rem;
+      background: rgba(229,9,20,0.2); color: var(--red); padding: 0.15rem 0.5rem;
+      border-radius: 2px; font-weight: 700; font-size: 0.75rem;
     }
     .hero-desc {
-      font-size: 1rem;
-      color: var(--text);
-      max-width: 550px;
-      margin-bottom: 2rem;
-      line-height: 1.7;
+      font-size: 1rem; color: var(--text); max-width: 550px;
+      margin-bottom: 2rem; line-height: 1.7;
     }
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-play, .btn-info {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.9rem 2rem;
-      border: none;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 2rem; border: none; border-radius: 4px;
+      font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
     }
-    .btn-play {
-      background: white;
-      color: #000;
-    }
+    .btn-play { background: white; color: #000; }
     .btn-play:hover { background: rgba(255,255,255,0.8); }
-    .btn-info {
-      background: rgba(109,109,110,0.7);
-      color: white;
-    }
+    .btn-info { background: rgba(109,109,110,0.7); color: white; }
     .btn-info:hover { background: rgba(109,109,110,0.5); }
-    .btn-icon { font-size: 1.4rem; }
+    .top10 { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 1rem; }
+    .top10-icon {
+      width: 36px; height: 40px; background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 1.1rem; color: white;
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+    }
+    .top10-text { font-size: 0.85rem; font-weight: 600; }
+    .top10-text strong { color: var(--text-bright); }
 
     /* ===== SKIP INTRO ===== */
     .skip-intro-btn {
-      position: fixed;
-      bottom: 3rem;
-      right: 3rem;
-      z-index: 8000;
-      padding: 0.6rem 1.5rem;
-      background: rgba(20,20,20,0.8);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: white;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      opacity: 0;
-      transform: translateX(20px);
-      pointer-events: none;
+      position: fixed; bottom: 3rem; right: 3rem; z-index: 8000;
+      padding: 0.6rem 1.5rem; background: rgba(20,20,20,0.8);
+      border: 1px solid rgba(255,255,255,0.25); color: white;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+      opacity: 0; transform: translateX(20px); pointer-events: none;
+      max-width: 400px; text-align: center;
     }
     .skip-intro-btn.visible { opacity: 1; transform: translateX(0); pointer-events: all; }
-    .skip-intro-btn:hover { background: rgba(255,255,255,0.15); }
 
-    /* ===== "ARE YOU STILL WATCHING?" OVERLAY ===== */
+    /* ===== STILL WATCHING ===== */
     .still-watching {
-      position: fixed;
-      inset: 0;
-      z-index: 9500;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s;
+      position: fixed; inset: 0; z-index: 9500;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(10px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; opacity: 0; visibility: hidden; transition: all 0.4s; padding: 2rem;
     }
     .still-watching.active { opacity: 1; visibility: visible; }
-    .still-watching-icon { font-size: 4rem; margin-bottom: 1.5rem; }
-    .still-watching h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    .still-watching p {
-      color: var(--text-dim);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-    }
+    .still-watching h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .still-watching p { color: var(--text-dim); margin-bottom: 1rem; font-size: 0.95rem; }
     .still-watching button {
-      padding: 0.8rem 2.5rem;
-      background: white;
-      border: none;
-      border-radius: 4px;
-      color: #000;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s;
+      padding: 0.8rem 2.5rem; background: white; border: none; border-radius: 4px;
+      color: #000; font-family: inherit; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: transform 0.2s; margin: 0.5rem;
     }
     .still-watching button:hover { transform: scale(1.05); }
+    .still-watching button.ghost {
+      background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white;
+    }
+
+    /* ===== MARQUEE ===== */
+    .marquee-container {
+      overflow: hidden; white-space: nowrap; padding: 1rem 0; margin: 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .marquee-content {
+      display: inline-block; animation: marquee 35s linear infinite;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+      letter-spacing: 0.2em; color: var(--text-dim);
+    }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .marquee-content span { margin-right: 3rem; }
+    .marquee-content .hot { color: var(--red); }
 
     /* ===== SECTIONS ===== */
-    section { padding: 4rem 4rem; }
-    .section-label {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text-bright);
-      margin-bottom: 1.5rem;
-    }
+    section { padding: 4rem; }
+    .section-label { font-size: 1.4rem; font-weight: 700; color: var(--text-bright); margin-bottom: 1.5rem; }
 
-    /* ===== EPISODE ROW ===== */
-    .episodes-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-    .season-select {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.4rem 1rem;
-      font-family: inherit;
-      font-size: 0.85rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .episodes-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .episode-card {
-      display: grid;
-      grid-template-columns: 50px 200px 1fr;
-      gap: 1.5rem;
-      align-items: start;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      transition: background 0.2s;
-      border-radius: 8px;
-    }
-    .episode-card:hover { background: rgba(255,255,255,0.03); }
-    .episode-num {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-align: center;
-      padding-top: 1.5rem;
-    }
-    .episode-thumb {
-      width: 200px;
-      height: 112px;
-      background: var(--surface-2);
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-    }
-    .episode-thumb-inner {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
-    }
-    .episode-thumb .play-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.4);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .episode-card:hover .play-overlay { opacity: 1; }
-    .play-overlay-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #000;
-      font-size: 1.2rem;
-    }
-    .episode-info { padding-top: 0.25rem; }
-    .episode-info-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-    .episode-title { font-weight: 600; font-size: 1rem; }
-    .episode-duration { font-size: 0.8rem; color: var(--text-dim); }
-    .episode-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
-    .episode-progress {
-      width: 100%;
-      height: 3px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 2px;
-      margin-top: 0.75rem;
-      overflow: hidden;
-    }
-    .episode-progress-bar {
-      height: 100%;
-      background: var(--red);
-      border-radius: 2px;
-      transition: width 1s ease;
-    }
-
-    /* ===== CRITICS ===== */
-    .critics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .critic-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .critic-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
-    .critic-stars {
-      color: var(--gold);
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.1em;
-    }
-    .critic-quote {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--text-bright);
-      margin-bottom: 1.25rem;
-      line-height: 1.6;
-    }
-    .critic-source {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    /* ===== ROTTEN TOMATOES STYLE ===== */
-    .ratings-bar {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      padding: 2rem 0;
-      flex-wrap: wrap;
-    }
+    /* ===== RATINGS ===== */
+    .ratings-bar { display: flex; align-items: center; gap: 3rem; padding: 2rem 0; flex-wrap: wrap; }
     .rating-block { text-align: center; }
     .rating-circle {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: 900;
-      margin: 0 auto 0.5rem;
-      position: relative;
+      width: 100px; height: 100px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 900; margin: 0 auto 0.5rem; position: relative;
     }
     .rating-circle::after {
-      content: '';
-      position: absolute;
-      inset: 3px;
-      border-radius: 50%;
-      background: var(--bg);
+      content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--bg);
     }
     .rating-circle span { position: relative; z-index: 1; }
     .rating-circle.tomato { background: conic-gradient(var(--red) 0% 98%, var(--surface-3) 98% 100%); }
-    .rating-circle.audience { background: conic-gradient(var(--green) 0% 100%, var(--surface-3) 100% 100%); }
+    .rating-circle.audience { background: conic-gradient(var(--green) 0% 100%, var(--surface-3) 100%); }
     .rating-circle.imdb { background: conic-gradient(var(--gold) 0% 97%, var(--surface-3) 97% 100%); }
-    .rating-label {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
+    .rating-label { font-size: 0.75rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
     .rating-source { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
 
-    /* ===== INTERACTIVE: THE SPINNER WHEEL ===== */
+    /* ===== EPISODES ===== */
+    .episodes-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .season-select {
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      padding: 0.4rem 1rem; font-family: inherit; font-size: 0.85rem; border-radius: 4px; cursor: pointer;
+    }
+    .episodes-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+    .episode-card {
+      display: grid; grid-template-columns: 50px 200px 1fr; gap: 1.5rem;
+      align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+      cursor: pointer; transition: background 0.2s; border-radius: 8px;
+    }
+    .episode-card:hover { background: rgba(255,255,255,0.03); }
+    .episode-num { font-size: 1.5rem; font-weight: 600; color: var(--text-dim); text-align: center; padding-top: 1.5rem; }
+    .episode-thumb {
+      width: 200px; height: 112px; background: var(--surface-2); border-radius: 4px;
+      overflow: hidden; position: relative;
+    }
+    .episode-thumb-inner {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 800; color: var(--text-dim);
+      background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
+      font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em;
+    }
+    .episode-thumb .play-overlay {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.2s;
+    }
+    .episode-card:hover .play-overlay { opacity: 1; }
+    .play-overlay-icon {
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center; color: #000; font-size: 1rem;
+    }
+    .episode-info { padding-top: 0.25rem; }
+    .episode-info-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .episode-title { font-weight: 600; font-size: 1rem; }
+    .episode-duration { font-size: 0.8rem; color: var(--text-dim); }
+    .episode-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; }
+    .episode-progress { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.75rem; overflow: hidden; }
+    .episode-progress-bar { height: 100%; background: var(--red); border-radius: 2px; }
+
+    /* ===== THREAT LEVEL ===== */
+    .threat-section {
+      background: linear-gradient(135deg, rgba(229,9,20,0.05) 0%, rgba(10,10,10,1) 100%);
+      border: 1px solid rgba(229,9,20,0.15); border-radius: 12px; padding: 3rem;
+    }
+    .threat-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.15em; color: var(--red); margin-bottom: 0.5rem; }
+    .threat-sub { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.85rem; }
+    .threat-meter { width: 100%; height: 40px; background: var(--surface-2); border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 0.75rem; }
+    .threat-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--green), var(--gold) 50%, #ff6b35 75%, var(--red) 100%); width: 0%; transition: width 2s cubic-bezier(0.4,0,0.2,1); }
+    .threat-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 2rem; }
+    .threat-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .threat-stat { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; }
+    .threat-stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 0.25rem; }
+    .threat-stat-value { font-size: 1.5rem; font-weight: 800; color: var(--text-bright); }
+    .threat-stat-value .counting { font-family: 'JetBrains Mono', monospace; }
+
+    /* ===== INTERACTIVE: NICOLE'S DAY SIMULATOR ===== */
+    .day-sim {
+      background: var(--surface); border-radius: 12px; padding: 3rem;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .day-sim-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .day-sim-sub { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.9rem; }
+    .day-sim-clock {
+      font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 700;
+      color: var(--red); text-align: center; margin-bottom: 1.5rem;
+    }
+    .day-sim-event {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;
+      opacity: 0; transform: translateY(10px); transition: all 0.4s ease;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .day-sim-event.show { opacity: 1; transform: translateY(0); }
+    .day-sim-event .time-col {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+      color: var(--gold); font-weight: 700; min-width: 65px; padding-top: 2px;
+    }
+    .day-sim-event .event-content { flex: 1; }
+    .day-sim-event .event-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .day-sim-event .event-desc { font-size: 0.8rem; color: var(--text-dim); line-height: 1.6; }
+    .day-sim-event .event-tag {
+      display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.5rem;
+    }
+    .tag-mom { background: rgba(179,136,255,0.15); color: var(--purple); }
+    .tag-exec { background: rgba(229,9,20,0.15); color: var(--red); }
+    .tag-founder { background: rgba(70,211,105,0.15); color: var(--green); }
+    .tag-esg { background: rgba(79,195,247,0.15); color: var(--blue); }
+    .tag-chaos { background: rgba(232,183,8,0.15); color: var(--gold); }
+    .day-sim-controls { text-align: center; margin-top: 2rem; }
+    .sim-btn {
+      padding: 0.9rem 2.5rem; background: var(--red); border: none; border-radius: 4px;
+      color: white; font-family: inherit; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s;
+    }
+    .sim-btn:hover { background: #ff1a25; transform: scale(1.03); }
+    .sim-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .day-sim-commentary {
+      text-align: center; margin-top: 1.5rem; font-family: 'Playfair Display', serif;
+      font-style: italic; color: var(--text-dim); font-size: 0.95rem; min-height: 1.5rem;
+    }
+
+    /* ===== SPINNER WHEEL ===== */
     .spinner-wheel-section {
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 3rem;
-      text-align: center;
-      border: 1px solid var(--border);
+      background: var(--surface); border-radius: 12px; padding: 3rem;
+      text-align: center; border: 1px solid var(--border);
     }
-    .spinner-wheel-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-    }
-    .spinner-wheel-sub {
-      color: var(--text-dim);
-      margin-bottom: 2rem;
-      font-size: 0.9rem;
-    }
-    .wheel-container {
-      position: relative;
-      width: 320px;
-      height: 320px;
-      margin: 0 auto 2rem;
-    }
-    .wheel {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      position: relative;
-      transition: transform 4s cubic-bezier(0.2, 0.8, 0.3, 1);
-      overflow: hidden;
-    }
-    .wheel-segment {
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      transform-origin: 100% 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: white;
-      padding-right: 30%;
-      padding-bottom: 30%;
-    }
+    .spinner-wheel-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .spinner-wheel-sub { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.9rem; }
+    .wheel-container { position: relative; width: 320px; height: 320px; margin: 0 auto 2rem; }
     .wheel-pointer {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 12px solid transparent;
-      border-right: 12px solid transparent;
-      border-top: 24px solid var(--red);
-      z-index: 2;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent;
+      border-top: 24px solid var(--red); z-index: 2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
     .spin-btn {
-      padding: 1rem 3rem;
-      background: var(--red);
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      transition: all 0.2s;
+      padding: 1rem 3rem; background: var(--red); border: none; border-radius: 4px;
+      color: white; font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.2s;
     }
     .spin-btn:hover { background: #ff1a25; transform: scale(1.05); }
     .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-    .spin-result {
-      margin-top: 1.5rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      min-height: 2rem;
-      color: var(--gold);
-    }
+    .spin-result { margin-top: 1.5rem; font-size: 1.2rem; font-weight: 700; min-height: 2rem; color: var(--gold); }
 
-    /* ===== THREAT LEVEL METER ===== */
-    .threat-section {
-      background: linear-gradient(135deg, rgba(229,9,20,0.05) 0%, rgba(10,10,10,1) 100%);
-      border: 1px solid rgba(229,9,20,0.15);
-      border-radius: 12px;
-      padding: 3rem;
+    /* ===== INTERACTIVE: EXCUSE GENERATOR ===== */
+    .excuse-gen {
+      background: linear-gradient(135deg, rgba(179,136,255,0.05), var(--surface));
+      border: 1px solid rgba(179,136,255,0.15); border-radius: 12px; padding: 3rem; text-align: center;
     }
-    .threat-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      letter-spacing: 0.15em;
-      color: var(--red);
-      margin-bottom: 0.5rem;
+    .excuse-gen-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .excuse-gen-sub { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.9rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .excuse-output {
+      background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px;
+      padding: 2rem; margin: 0 auto 2rem; max-width: 600px; min-height: 80px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.15rem; font-style: italic;
+      color: var(--text-bright); line-height: 1.6;
     }
-    .threat-sub { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.85rem; }
-    .threat-meter {
-      width: 100%;
-      height: 40px;
-      background: var(--surface-2);
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-      margin-bottom: 0.75rem;
+    .excuse-btn {
+      padding: 0.9rem 2.5rem; background: var(--purple); border: none; border-radius: 4px;
+      color: white; font-family: inherit; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.2s;
     }
-    .threat-fill {
-      height: 100%;
-      border-radius: 4px;
-      background: linear-gradient(90deg, var(--green), var(--gold) 50%, #ff6b35 75%, var(--red) 100%);
-      width: 0%;
-      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    .excuse-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+    /* ===== CRITICS ===== */
+    .critics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .critic-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 2rem; transition: transform 0.3s, border-color 0.3s;
     }
-    .threat-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-      margin-bottom: 2rem;
+    .critic-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
+    .critic-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 0.15em; }
+    .critic-quote {
+      font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem;
+      color: var(--text-bright); margin-bottom: 1.25rem; line-height: 1.7;
     }
-    .threat-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    .threat-stat {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem;
-    }
-    .threat-stat-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      margin-bottom: 0.25rem;
-    }
-    .threat-stat-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text-bright);
-    }
-    .threat-stat-value .counting { font-family: 'JetBrains Mono', monospace; }
+    .critic-source { font-size: 0.8rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
 
     /* ===== TIMELINE ===== */
-    .timeline {
-      position: relative;
-      padding-left: 3rem;
-    }
+    .timeline { position: relative; padding-left: 3rem; }
     .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--red), var(--gold), var(--green), var(--blue), var(--purple));
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--red), var(--gold), var(--green), var(--blue), var(--purple), var(--red));
     }
     .timeline-item {
-      position: relative;
-      padding-bottom: 3rem;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: all 0.6s ease;
+      position: relative; padding-bottom: 3rem;
+      opacity: 0; transform: translateX(-20px); transition: all 0.6s ease;
     }
     .timeline-item.visible { opacity: 1; transform: translateX(0); }
     .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -3rem;
-      top: 0.35rem;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--red);
-      border: 2px solid var(--bg);
-      transform: translateX(-5px);
+      content: ''; position: absolute; left: -3rem; top: 0.35rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--red); border: 2px solid var(--bg); transform: translateX(-5px);
     }
-    .timeline-year {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--red);
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-    .timeline-role {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-bright);
-      margin-bottom: 0.25rem;
-    }
-    .timeline-company {
-      font-size: 0.85rem;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-    }
-    .timeline-desc {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 1.6;
-      max-width: 500px;
-    }
+    .timeline-year { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--red); font-weight: 700; margin-bottom: 0.25rem; }
+    .timeline-role { font-size: 1.1rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.25rem; }
+    .timeline-company { font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .timeline-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; max-width: 500px; }
 
     /* ===== VIEWER REACTIONS ===== */
-    .reactions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-    }
+    .reactions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
     .reaction-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: transform 0.3s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem; transition: transform 0.3s;
     }
     .reaction-card:hover { transform: scale(1.02); }
-    .reaction-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
+    .reaction-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
     .reaction-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      font-weight: 800;
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 800; color: white;
     }
     .reaction-name { font-weight: 600; font-size: 0.9rem; }
     .reaction-handle { font-size: 0.75rem; color: var(--text-dim); }
-    .reaction-text { font-size: 0.9rem; line-height: 1.6; color: var(--text); }
-    .reaction-likes {
-      margin-top: 1rem;
-      font-size: 0.75rem;
-      color: var(--text-dim);
-    }
+    .reaction-text { font-size: 0.9rem; line-height: 1.7; color: var(--text); }
+    .reaction-likes { margin-top: 1rem; font-size: 0.75rem; color: var(--text-dim); }
 
-    /* ===== SEARCH HISTORY EASTER EGG ===== */
-    .search-section {
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 3rem;
-      border: 1px solid var(--border);
-    }
+    /* ===== SEARCH HISTORY ===== */
+    .search-section { background: var(--surface); border-radius: 12px; padding: 3rem; border: 1px solid var(--border); }
     .search-bar {
-      display: flex;
-      align-items: center;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.75rem 1.25rem;
-      margin-bottom: 2rem;
-      transition: border-color 0.2s;
+      display: flex; align-items: center; background: var(--surface-2);
+      border: 1px solid var(--border); border-radius: 4px; padding: 0.75rem 1.25rem;
+      margin-bottom: 2rem; transition: border-color 0.2s;
     }
     .search-bar:focus-within { border-color: rgba(255,255,255,0.3); }
-    .search-bar-icon { color: var(--text-dim); margin-right: 0.75rem; font-size: 1.1rem; }
+    .search-bar-icon { color: var(--text-dim); margin-right: 0.75rem; font-size: 0.9rem; font-weight: 700; }
     .search-bar input {
-      flex: 1;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
+      flex: 1; background: none; border: none; color: var(--text);
+      font-family: inherit; font-size: 0.95rem; outline: none;
     }
     .search-bar input::placeholder { color: var(--text-dim); }
-    .search-suggestions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+    .search-suggestions { display: flex; flex-direction: column; gap: 0.5rem; }
     .search-suggestion {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.75rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
-      font-size: 0.9rem;
+      display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem;
+      border-radius: 4px; cursor: pointer; transition: background 0.2s; font-size: 0.9rem;
     }
     .search-suggestion:hover { background: rgba(255,255,255,0.05); }
-    .search-suggestion .icon { color: var(--text-dim); }
+    .search-suggestion .ss-icon { color: var(--text-dim); font-size: 0.8rem; }
     .search-suggestion .trending { color: var(--red); font-size: 0.7rem; font-weight: 700; margin-left: auto; text-transform: uppercase; letter-spacing: 0.05em; }
 
     /* ===== AWARDS ===== */
-    .awards-scroll {
-      display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      scrollbar-width: none;
-    }
+    .awards-scroll { display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none; }
     .awards-scroll::-webkit-scrollbar { display: none; }
     .award-card {
-      flex-shrink: 0;
-      width: 220px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: transform 0.3s, border-color 0.3s;
+      flex-shrink: 0; width: 220px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 12px; padding: 2rem 1.5rem;
+      text-align: center; transition: transform 0.3s, border-color 0.3s;
     }
     .award-card:hover { transform: translateY(-8px); border-color: var(--gold); }
-    .award-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .award-name {
-      font-weight: 700;
-      font-size: 0.85rem;
-      margin-bottom: 0.25rem;
-      color: var(--text-bright);
+    .award-icon { font-size: 2rem; margin-bottom: 1rem; font-family: 'Bebas Neue', sans-serif; color: var(--gold); letter-spacing: 0.05em; }
+    .award-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--text-bright); }
+    .award-year { font-size: 0.75rem; color: var(--gold); font-weight: 600; }
+    .award-body { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.5rem; line-height: 1.5; }
+
+    /* ===== CLASSIFIED DOSSIER ===== */
+    .dossier {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 3rem; font-family: 'Special Elite', cursive; position: relative; overflow: hidden;
     }
-    .award-year {
-      font-size: 0.75rem;
-      color: var(--gold);
-      font-weight: 600;
+    .dossier::before {
+      content: 'CLASSIFIED'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-35deg);
+      font-size: 8rem; font-weight: 900; color: rgba(229,9,20,0.04);
+      letter-spacing: 0.2em; pointer-events: none;
+      font-family: 'Bebas Neue', sans-serif;
     }
-    .award-body {
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      margin-top: 0.5rem;
+    .dossier-header {
+      font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.15em;
+      color: var(--red); margin-bottom: 0.25rem;
     }
+    .dossier-sub { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 2rem; font-family: 'Inter', sans-serif; }
+    .dossier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 3rem; }
+    .dossier-field { margin-bottom: 1.5rem; }
+    .dossier-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 0.25rem; font-family: 'Inter', sans-serif; }
+    .dossier-value { font-size: 1.1rem; color: var(--text-bright); line-height: 1.5; }
+    .redacted { background: var(--red); color: var(--red); cursor: pointer; padding: 0 0.5rem; border-radius: 2px; transition: all 0.3s; user-select: none; }
+    .redacted.revealed { background: transparent; color: var(--gold); }
 
     /* ===== FOOTER ===== */
-    .footer {
-      padding: 4rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      letter-spacing: 0.3em;
-      color: var(--red);
-      margin-bottom: 1rem;
-    }
-    .footer-text {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      max-width: 500px;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.25);
-    }
+    .footer { padding: 4rem; text-align: center; border-top: 1px solid var(--border); }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.3em; color: var(--red); margin-bottom: 1rem; }
+    .footer-text { font-size: 0.8rem; color: var(--text-dim); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; font-size: 0.75rem; color: rgba(255,255,255,0.25); }
 
     /* ===== SCROLL ANIMATIONS ===== */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* ===== CONFETTI CANVAS ===== */
-    #confetti-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      pointer-events: none;
+    /* ===== CONFETTI ===== */
+    #confetti-canvas { position: fixed; inset: 0; z-index: 9999; pointer-events: none; }
+
+    /* ===== TYPING ===== */
+    .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; color: var(--red); }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ===== KONAMI ===== */
+    .konami-overlay {
+      position: fixed; inset: 0; z-index: 9998; background: rgba(0,0,0,0.95);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; opacity: 0; visibility: hidden; transition: all 0.5s; padding: 2rem;
+    }
+    .konami-overlay.active { opacity: 1; visibility: visible; }
+    .konami-overlay h1 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .konami-overlay p { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 1rem; max-width: 500px; line-height: 1.7; }
+    .konami-overlay button {
+      padding: 0.8rem 2rem; background: var(--gold); border: none; border-radius: 4px;
+      color: #000; font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 1rem;
     }
 
     /* ===== MOBILE ===== */
@@ -969,121 +552,20 @@
       .hero-title { font-size: 3.5rem; }
       .topnav { padding: 1rem 1.5rem; }
       .topnav-links { display: none; }
-      .episode-card {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-      }
+      .episode-card { grid-template-columns: 1fr; gap: 0.75rem; }
       .episode-num { display: none; }
       .episode-thumb { width: 100%; height: 180px; }
       .ratings-bar { gap: 2rem; justify-content: center; }
       .wheel-container { width: 260px; height: 260px; }
-      .skip-intro-btn { bottom: 1.5rem; right: 1.5rem; }
+      .skip-intro-btn { bottom: 1.5rem; right: 1.5rem; max-width: 280px; }
+      .dossier-grid { grid-template-columns: 1fr; }
+      .day-sim-event { flex-direction: column; gap: 0.75rem; }
     }
-
-    /* ===== TYPING CURSOR ===== */
-    .typing-cursor::after {
-      content: '|';
-      animation: blink 1s step-end infinite;
-      color: var(--red);
-    }
-    @keyframes blink { 50% { opacity: 0; } }
-
-    /* ===== TOP 10 BADGE ===== */
-    .top10 {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-    .top10-icon {
-      width: 36px;
-      height: 40px;
-      background: var(--red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: white;
-      clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
-    }
-    .top10-text {
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .top10-text strong { color: var(--text-bright); }
-
-    /* ===== KONAMI OVERLAY ===== */
-    .konami-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9998;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.5s;
-    }
-    .konami-overlay.active { opacity: 1; visibility: visible; }
-    .konami-overlay h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 5rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-    }
-    .konami-overlay p { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 2rem; }
-    .konami-overlay button {
-      padding: 0.8rem 2rem;
-      background: var(--gold);
-      border: none;
-      border-radius: 4px;
-      color: #000;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* ===== GLASS CARD ===== */
-    .glass {
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    /* ===== MARQUEE ===== */
-    .marquee-container {
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 1rem 0;
-      margin: 2rem 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .marquee-content {
-      display: inline-block;
-      animation: marquee 30s linear infinite;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
-      letter-spacing: 0.2em;
-      color: var(--text-dim);
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-content span { margin-right: 3rem; }
-    .marquee-content .hot { color: var(--red); }
   </style>
 </head>
 <body>
 
-  <!-- SPLASH SCREEN -->
+  <!-- SPLASH -->
   <div class="splash" id="splash">
     <div class="splash-logo">STREAMAX</div>
     <div class="splash-tagline">Original Documentary Series</div>
@@ -1091,56 +573,64 @@
       <div class="rating-badge">TV-MA</div>
       <div class="rating-text">
         Content Warning: Extreme competence,<br>
-        dangerously high career trajectory,<br>
-        scenes of relentless brand excellence
+        weaponized multitasking, three unsupervised boys
       </div>
     </div>
     <p class="splash-warning-text">
-      The following documentary contains real events that may cause feelings of inadequacy, 
-      sudden career anxiety, and an overwhelming urge to update your LinkedIn profile. 
-      Viewer discretion is advised.
+      The following documentary contains real events that may cause sudden career paralysis, 
+      an uncontrollable urge to reorganize your entire life, and the uncomfortable realization 
+      that one woman in Toronto is running more operations than most governments. She is also 
+      raising three boys. At the same time. We don't understand it either.
     </p>
     <button class="splash-enter" id="enter-btn">I Accept the Risk</button>
     <div class="splash-legal">
-      STREAMAX and the STREAMAX logo are trademarks of Streamax Entertainment, a division of Definitely Real Media Corp. 
-      This documentary was produced with the full cooperation of the subject, who was too busy being excellent to actually review it.
+      STREAMAX and the STREAMAX logo are trademarks of Streamax Entertainment, a division of Definitely Real Media Corp.
+      This documentary was produced without the cooperation of the subject, who was too busy running three departments 
+      and three children to return our calls. She did, however, pack everyone's lunches while we were leaving the voicemail.
     </div>
   </div>
 
-  <!-- CONFETTI CANVAS -->
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- "ARE YOU STILL WATCHING?" -->
+  <!-- STILL WATCHING -->
   <div class="still-watching" id="still-watching">
-    <div class="still-watching-icon">👀</div>
     <h2>Are you still watching</h2>
     <p><strong>The Spinner Effect</strong>?</p>
-    <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: -1rem; margin-bottom: 2rem;">
-      Of course you are. It's Nicole Spinner. Nobody stops watching.
+    <p style="font-size: 0.85rem; color: var(--text-dim); max-width: 420px; line-height: 1.7;">
+      Nicole isn't. She's already finished the series, put the boys to bed, replied to 14 emails, 
+      and outlined a new ESG initiative. But sure, take your time.
     </p>
-    <button id="still-watching-btn">Continue Watching</button>
+    <div>
+      <button id="still-watching-yes">Continue Watching</button>
+      <button class="ghost" id="still-watching-no">I Need a Moment</button>
+    </div>
   </div>
 
-  <!-- KONAMI OVERLAY -->
+  <!-- KONAMI -->
   <div class="konami-overlay" id="konami-overlay">
-    <h1>ACHIEVEMENT UNLOCKED</h1>
-    <p>You found the secret. Just like Nicole finds success: effortlessly.</p>
+    <h1>DIRECTOR'S CUT UNLOCKED</h1>
+    <p>You found the secret code. Just like Nicole found time to simultaneously run a childcare brand, 
+    an eco product line, a sustainability division, and a household of three boys: through sheer, 
+    unexplainable force of will.</p>
+    <p style="font-size: 0.85rem; color: var(--text-dim);">
+      Fun fact: the original cut of this documentary was 47 hours long. We had to cut it down 
+      because Nicole kept accomplishing new things faster than we could film them.
+    </p>
     <button onclick="document.getElementById('konami-overlay').classList.remove('active')">Back to the Documentary</button>
   </div>
 
-  <!-- SKIP INTRO BUTTON -->
   <button class="skip-intro-btn" id="skip-intro">Skip Intro</button>
 
-  <!-- TOP NAV -->
+  <!-- NAV -->
   <nav class="topnav" id="topnav">
     <div class="topnav-logo">STREAMAX</div>
     <ul class="topnav-links">
       <a onclick="document.getElementById('episodes').scrollIntoView({behavior:'smooth'})">Episodes</a>
-      <a onclick="document.getElementById('critics').scrollIntoView({behavior:'smooth'})">Reviews</a>
-      <a onclick="document.getElementById('timeline-section').scrollIntoView({behavior:'smooth'})">Timeline</a>
+      <a onclick="document.getElementById('dossier-section').scrollIntoView({behavior:'smooth'})">Dossier</a>
+      <a onclick="document.getElementById('day-sim-section').scrollIntoView({behavior:'smooth'})">Simulator</a>
       <a onclick="document.getElementById('spin-section').scrollIntoView({behavior:'smooth'})">Bonus</a>
     </ul>
-    <div class="topnav-profile">N</div>
+    <div class="topnav-profile">NS</div>
   </nav>
 
   <!-- HERO -->
@@ -1149,9 +639,7 @@
     <div class="hero-particles" id="particles"></div>
     <div class="hero-gradient"></div>
     <div class="hero-content">
-      <div class="hero-streamax-badge">
-        STREAMAX <span>ORIGINAL</span>
-      </div>
+      <div class="hero-streamax-badge">STREAMAX <span>ORIGINAL</span></div>
       <h1 class="hero-title">THE SPINNER<br><span class="effect">EFFECT</span></h1>
       <p class="hero-subtitle" id="hero-subtitle"></p>
       <div class="hero-meta">
@@ -1163,14 +651,14 @@
         <span class="rating-pill">TV-MA</span>
       </div>
       <p class="hero-desc">
-        When an Ivey Business School graduate infiltrates Canada's most prestigious ad agencies, 
-        launches an eco-friendly baby empire, and then quietly takes over the largest corporate 
-        childcare brand in the country... the industry starts asking questions. This is the story 
-        they tried to keep off your feed.
+        She conquered BBDO, Juniper Park, TAXI, and Red Lion before most people figure out their LinkedIn headline. 
+        She founded an eco baby brand while holding down a director role at WE. She now runs marketing, brand, AND 
+        sustainability at Kids & Company. She is also the mother of three boys, which honestly explains the rest: 
+        after managing that, running a national childcare brand is probably the easy part.
       </p>
       <div class="hero-buttons">
-        <button class="btn-play" id="btn-play"><span class="btn-icon">▶</span> Play</button>
-        <button class="btn-info" onclick="document.getElementById('episodes').scrollIntoView({behavior:'smooth'})"><span class="btn-icon">ℹ</span> More Info</button>
+        <button class="btn-play" id="btn-play"><span style="font-size:1.2rem">&#9654;</span> Play</button>
+        <button class="btn-info" onclick="document.getElementById('episodes').scrollIntoView({behavior:'smooth'})"><span style="font-size:1.2rem">i</span> More Info</button>
       </div>
       <div class="top10">
         <div class="top10-icon">1</div>
@@ -1185,17 +673,17 @@
       <span class="hot">TRENDING #1</span>
       <span>THE SPINNER EFFECT</span>
       <span>6 EPISODES</span>
-      <span>100% ON ROTTEN TOMATOES (PROBABLY)</span>
-      <span>EMMY NOMINATED (IN OUR HEARTS)</span>
+      <span>MOM OF THREE + VP + FOUNDER + ESG LEAD = ONE PERSON APPARENTLY</span>
       <span>BANNED IN 4 COMPETING AGENCIES</span>
-      <span>IVEY BUSINESS SCHOOL NOW OFFERS A "SPINNER STUDIES" MINOR</span>
+      <span>IVEY NOW OFFERS A "SPINNER STUDIES" MINOR</span>
+      <span>THREE BOYS AND THEY'RE ALL STILL ALIVE</span>
       <span class="hot">TRENDING #1</span>
       <span>THE SPINNER EFFECT</span>
       <span>6 EPISODES</span>
-      <span>100% ON ROTTEN TOMATOES (PROBABLY)</span>
-      <span>EMMY NOMINATED (IN OUR HEARTS)</span>
+      <span>MOM OF THREE + VP + FOUNDER + ESG LEAD = ONE PERSON APPARENTLY</span>
       <span>BANNED IN 4 COMPETING AGENCIES</span>
-      <span>IVEY BUSINESS SCHOOL NOW OFFERS A "SPINNER STUDIES" MINOR</span>
+      <span>IVEY NOW OFFERS A "SPINNER STUDIES" MINOR</span>
+      <span>THREE BOYS AND THEY'RE ALL STILL ALIVE</span>
     </div>
   </div>
 
@@ -1233,8 +721,8 @@
       <div class="episode-card fade-in">
         <div class="episode-num">1</div>
         <div class="episode-thumb">
-          <div class="episode-thumb-inner">🏫</div>
-          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+          <div class="episode-thumb-inner">IVEY / MCR</div>
+          <div class="play-overlay"><div class="play-overlay-icon">&#9654;</div></div>
         </div>
         <div class="episode-info">
           <div class="episode-info-header">
@@ -1243,9 +731,10 @@
           </div>
           <p class="episode-desc">
             A young Nicole Spinner enrolls at Ivey Business School. Within months, professors begin 
-            noticing something unusual: she actually understands marketing. A brief but suspicious 
-            stint at Manchester Business School in the UK raises questions. Was she recruited? Trained? 
-            Or was she always this way?
+            noticing something unusual: she actually understands marketing. Not theoretically. Viscerally. 
+            A semester at Manchester Business School in the UK raises further questions among international 
+            intelligence agencies. Was she recruited? Trained? Or was she simply born this way? Experts 
+            disagree. Nicole does not care. She's already moved on.
           </p>
           <div class="episode-progress"><div class="episode-progress-bar" style="width: 100%"></div></div>
         </div>
@@ -1254,8 +743,8 @@
       <div class="episode-card fade-in">
         <div class="episode-num">2</div>
         <div class="episode-thumb">
-          <div class="episode-thumb-inner">🏢</div>
-          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+          <div class="episode-thumb-inner">BBDO / TAXI</div>
+          <div class="play-overlay"><div class="play-overlay-icon">&#9654;</div></div>
         </div>
         <div class="episode-info">
           <div class="episode-info-header">
@@ -1263,10 +752,11 @@
             <span class="episode-duration">48m</span>
           </div>
           <p class="episode-desc">
-            Nicole penetrates the inner circles of Canada's ad elite. BBDO. Juniper Park. TAXI. Red Lion. 
-            At each stop, she climbs faster than anyone can explain. Account Coordinator becomes Account Executive 
-            becomes Account Supervisor becomes Account Director. Four agencies in what felt like four minutes. 
-            Former colleagues describe her trajectory as "honestly kind of alarming."
+            Nicole penetrates the inner circles of Canada's advertising elite. BBDO Worldwide. Juniper Park. 
+            TAXI. Red Lion. At each stop, she climbs faster than HR can update the org chart. Account 
+            Coordinator to Account Executive to Account Supervisor to Account Director. Four agencies. 
+            Each one thought they'd keep her. None did. One former creative director, speaking on condition 
+            of anonymity, admits: "She wasn't climbing the ladder. She was the ladder. We were just... leaning on her."
           </p>
           <div class="episode-progress"><div class="episode-progress-bar" style="width: 72%"></div></div>
         </div>
@@ -1275,19 +765,20 @@
       <div class="episode-card fade-in">
         <div class="episode-num">3</div>
         <div class="episode-thumb">
-          <div class="episode-thumb-inner">🌍</div>
-          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+          <div class="episode-thumb-inner">WE</div>
+          <div class="play-overlay"><div class="play-overlay-icon">&#9654;</div></div>
         </div>
         <div class="episode-info">
           <div class="episode-info-header">
-            <span class="episode-title">The WE Years</span>
+            <span class="episode-title">The Purpose Pivot</span>
             <span class="episode-duration">55m</span>
           </div>
           <p class="episode-desc">
-            Nicole pivots to purpose. As Associate Director of Partner & Product Marketing at WE, she orchestrates 
-            brand partnerships across fashion, toys, and food that somehow also help communities in need. Colleagues 
-            recall a woman who could close a deal with a Fortune 500 brand and design a product for underserved children 
-            in the same afternoon. "She made the rest of us look like we were just... sitting there," says one source.
+            Most people pick a lane. Nicole picks all the lanes and merges them into a highway. As Associate 
+            Director of Partner & Product Marketing at WE, she orchestrates brand partnerships across fashion, 
+            kids' toys, and food & beverage that simultaneously generate revenue AND help communities in need. 
+            "We asked her to choose between profit and purpose," recalls a colleague. "She looked at us like 
+            we'd asked her to choose a favorite child. Which, for the record, she also refuses to do. She has three."
           </p>
           <div class="episode-progress"><div class="episode-progress-bar" style="width: 45%"></div></div>
         </div>
@@ -1296,8 +787,8 @@
       <div class="episode-card fade-in">
         <div class="episode-num">4</div>
         <div class="episode-thumb">
-          <div class="episode-thumb-inner">🐻</div>
-          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+          <div class="episode-thumb-inner">BEAR CO.</div>
+          <div class="play-overlay"><div class="play-overlay-icon">&#9654;</div></div>
         </div>
         <div class="episode-info">
           <div class="episode-info-header">
@@ -1305,10 +796,12 @@
             <span class="episode-duration">51m</span>
           </div>
           <p class="episode-desc">
-            In 2018, Nicole does the unthinkable: she starts The Bear Co. Custom eco-friendly teething products 
-            for children. From ad agency boardrooms to baby product R&D. "Most people go from corporate to startup 
-            and flame out in six months," notes an industry analyst. "Nicole went from corporate to startup to 
-            somehow making sustainable baby products cool. That's not normal behavior."
+            2018. Nicole is at WE, raising three boys, and apparently has enough bandwidth left over to 
+            casually found The Bear Co., a custom eco-friendly teething products company. For children. 
+            Because the woman whose day already requires military-grade logistics looked at her schedule 
+            and thought: "You know what this needs? A product line." Industry analysts attempted to model 
+            how this was physically possible. The models broke. They called it "a scheduling anomaly 
+            inconsistent with known human time constraints."
           </p>
           <div class="episode-progress"><div class="episode-progress-bar" style="width: 20%"></div></div>
         </div>
@@ -1317,8 +810,8 @@
       <div class="episode-card fade-in">
         <div class="episode-num">5</div>
         <div class="episode-thumb">
-          <div class="episode-thumb-inner">👶</div>
-          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+          <div class="episode-thumb-inner">KIDS&CO</div>
+          <div class="play-overlay"><div class="play-overlay-icon">&#9654;</div></div>
         </div>
         <div class="episode-info">
           <div class="episode-info-header">
@@ -1326,10 +819,12 @@
             <span class="episode-duration">58m</span>
           </div>
           <p class="episode-desc">
-            Nicole joins Kids & Company as Director of Marketing & Brand. Within what can only be described as 
-            "an unreasonable amount of time," she's promoted to VP. She now oversees marketing, brand, AND 
-            the company's entire ESG strategy. "That's three jobs," confirms a human resources expert. 
-            "She technically has three jobs. We checked."
+            Nicole joins Kids & Company as Director of Marketing & Brand. Within what Human Resources 
+            describes as "an unreasonable timeframe," she's VP. She now oversees marketing, brand, AND 
+            the company's entire ESG strategy. That's three departments. Three executive functions. She 
+            also has three children. "We're starting to think three is her number," notes a board member. 
+            "Three agencies before she stopped counting. Three roles. Three boys. If she gets a fourth 
+            of anything we may need to convene an emergency session."
           </p>
           <div class="episode-progress"><div class="episode-progress-bar" style="width: 0%"></div></div>
         </div>
@@ -1338,8 +833,8 @@
       <div class="episode-card fade-in">
         <div class="episode-num">6</div>
         <div class="episode-thumb">
-          <div class="episode-thumb-inner">🔮</div>
-          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+          <div class="episode-thumb-inner">20??</div>
+          <div class="play-overlay"><div class="play-overlay-icon">&#9654;</div></div>
         </div>
         <div class="episode-info">
           <div class="episode-info-header">
@@ -1347,10 +842,12 @@
             <span class="episode-duration">61m</span>
           </div>
           <p class="episode-desc">
-            Industry insiders, former colleagues, and one very impressed documentary crew attempt to answer the 
-            only question that matters: what is Nicole Spinner going to do next? Leading theories include: 
-            running a Fortune 500, becoming Canada's first Marketing Prime Minister, or simply continuing to 
-            be suspiciously excellent at everything she touches. The investigation remains open.
+            Industry insiders, former colleagues, three increasingly loud boys, and one visibly exhausted 
+            documentary crew attempt to answer the only question that matters: what does Nicole Spinner do 
+            next? Leading theories include: Fortune 500 CEO, Canada's first Marketing Prime Minister, 
+            founding a fourth company just to keep the theme going, or simply continuing to operate at a 
+            level that makes everyone else feel like they're moving in slow motion. One analyst simply shrugs 
+            and says: "Whatever she wants. Obviously."
           </p>
           <div class="episode-progress"><div class="episode-progress-bar" style="width: 0%"></div></div>
         </div>
@@ -1359,11 +856,69 @@
     </div>
   </section>
 
+  <!-- CLASSIFIED DOSSIER -->
+  <section id="dossier-section">
+    <div class="dossier fade-in">
+      <div class="dossier-header">SUBJECT DOSSIER: SPINNER, NICOLE</div>
+      <div class="dossier-sub">Bureau of Career Trajectory Analysis | Classification: ABOVE TOP SECRET | Click redacted fields to reveal</div>
+      <div class="dossier-grid">
+        <div class="dossier-field">
+          <div class="dossier-label">Full Name</div>
+          <div class="dossier-value">Nicole Spinner</div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Location</div>
+          <div class="dossier-value">Toronto, Ontario, Canada</div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Education</div>
+          <div class="dossier-value">Ivey Business School (HBA) + Alliance Manchester Business School</div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Known Aliases</div>
+          <div class="dossier-value">"Mom," "VP," "Founder," <span class="redacted" data-reveal="The One Who Does Not Sleep">REDACTED</span></div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Dependents</div>
+          <div class="dossier-value">Three (3) boys, all of whom are somehow still alive and presumably fed</div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Threat Classification</div>
+          <div class="dossier-value" style="color: var(--red);">OMEGA LEVEL</div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Known Weaknesses</div>
+          <div class="dossier-value"><span class="redacted" data-reveal="None identified. Investigation ongoing since 2009.">REDACTED</span></div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Simultaneous Active Roles</div>
+          <div class="dossier-value"><span class="redacted" data-reveal="VP Marketing + VP Brand + ESG Lead + Mom of 3 + Bear Co. Founder. This is not a typo.">REDACTED</span></div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Agency Assessment</div>
+          <div class="dossier-value"><span class="redacted" data-reveal="Do not attempt to recruit. Do not attempt to compete. Just... observe.">REDACTED</span></div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Hours in Subject's Day</div>
+          <div class="dossier-value"><span class="redacted" data-reveal="Unclear. Our physicists believe it may exceed 24. Funding requested for further study.">REDACTED</span></div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Last Known Downtime</div>
+          <div class="dossier-value"><span class="redacted" data-reveal="No confirmed sightings. Suspected to be a theoretical concept.">REDACTED</span></div>
+        </div>
+        <div class="dossier-field">
+          <div class="dossier-label">Parenting Style</div>
+          <div class="dossier-value"><span class="redacted" data-reveal="Same as management style: impossibly organized, terrifyingly efficient, and somehow still fun.">REDACTED</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- THREAT LEVEL -->
   <section id="threat-section">
     <div class="threat-section fade-in">
       <div class="threat-title">INDUSTRY THREAT ASSESSMENT</div>
-      <div class="threat-sub">Classification: SEVERE — As determined by the Bureau of Career Trajectory Analysis</div>
+      <div class="threat-sub">Classification: BEYOND SEVERE. The scale had to be extended. Twice.</div>
       <div class="threat-meter">
         <div class="threat-fill" id="threat-fill"></div>
       </div>
@@ -1384,22 +939,50 @@
           <div class="threat-stat-value"><span class="counting" data-target="4">0</span></div>
         </div>
         <div class="threat-stat">
-          <div class="threat-stat-label">Companies Founded</div>
+          <div class="threat-stat-label">Companies Founded While Employed Elsewhere</div>
           <div class="threat-stat-value"><span class="counting" data-target="1">0</span></div>
         </div>
         <div class="threat-stat">
-          <div class="threat-stat-label">Current Job Titles (Simultaneously)</div>
+          <div class="threat-stat-label">Current Simultaneous Job Titles</div>
           <div class="threat-stat-value"><span class="counting" data-target="3">0</span></div>
         </div>
         <div class="threat-stat">
-          <div class="threat-stat-label">Competitors Left Questioning Life Choices</div>
-          <div class="threat-stat-value"><span class="counting" data-target="847">0</span></div>
+          <div class="threat-stat-label">Boys Being Raised (Concurrently)</div>
+          <div class="threat-stat-value"><span class="counting" data-target="3">0</span></div>
         </div>
         <div class="threat-stat">
-          <div class="threat-stat-label">Career Trajectory Angle</div>
-          <div class="threat-stat-value"><span class="counting" data-target="89">0</span>°</div>
+          <div class="threat-stat-label">Competitors Re-evaluating Life Choices</div>
+          <div class="threat-stat-value"><span class="counting" data-target="2847">0</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- NICOLE'S DAY SIMULATOR -->
+  <section id="day-sim-section">
+    <div class="day-sim fade-in">
+      <div class="day-sim-title">NICOLE'S DAY: A SIMULATION</div>
+      <p class="day-sim-sub">Experience a single day in the life of Nicole Spinner. 
+      We hired three project managers to document it. All three quit.</p>
+      <div class="day-sim-clock" id="day-clock">05:00 AM</div>
+      <div id="day-events"></div>
+      <div class="day-sim-commentary" id="day-commentary"></div>
+      <div class="day-sim-controls">
+        <button class="sim-btn" id="sim-btn">Start Simulation</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCUSE GENERATOR -->
+  <section>
+    <div class="excuse-gen fade-in">
+      <div class="excuse-gen-title">THE EXCUSE GENERATOR</div>
+      <p class="excuse-gen-sub">
+        For when someone asks how Nicole does it all. Generate a plausible explanation. 
+        (Spoiler: none of them are actually plausible.)
+      </p>
+      <div class="excuse-output" id="excuse-output">Press the button. We dare you.</div>
+      <button class="excuse-btn" id="excuse-btn">Generate Explanation</button>
     </div>
   </section>
 
@@ -1408,23 +991,31 @@
     <h2 class="section-label fade-in">What Critics Are Saying</h2>
     <div class="critics-grid">
       <div class="critic-card fade-in">
-        <div class="critic-stars">★★★★★</div>
-        <p class="critic-quote">"I started watching to understand the hype. I finished the series having completely restructured my own career goals. This woman is a force of nature documented."</p>
+        <div class="critic-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="critic-quote">"I started watching to understand the hype. I finished the series having 
+        completely restructured my career, my morning routine, and my understanding of what one human being 
+        can accomplish between school drop-off and the 9am stand-up."</p>
         <div class="critic-source">The Toronto Star</div>
       </div>
       <div class="critic-card fade-in">
-        <div class="critic-stars">★★★★★</div>
-        <p class="critic-quote">"The Bear Co. episode alone deserves its own Emmy. Who pivots from BBDO to eco-friendly teething products and makes both look like the obvious move? Nicole Spinner, apparently."</p>
+        <div class="critic-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="critic-quote">"The Bear Co. episode alone deserves its own Emmy. Who pivots from BBDO to 
+        eco-friendly teething products while raising three boys and makes all of it look like the obvious move? 
+        We showed this to our entire editorial board. Two people cried. One resigned."</p>
         <div class="critic-source">Marketing Magazine</div>
       </div>
       <div class="critic-card fade-in">
-        <div class="critic-stars">★★★★★</div>
-        <p class="critic-quote">"We tried to find a flaw in her career trajectory for dramatic tension. We could not. That IS the dramatic tension."</p>
-        <div class="critic-source">The Documentary Filmmaker (in tears)</div>
+        <div class="critic-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="critic-quote">"We tried to find a flaw in her career trajectory for dramatic tension. We could 
+        not. We then tried to find a crack in her parenting. We could not do that either. The dramatic tension 
+        of this documentary is the viewer slowly realizing they will never be Nicole Spinner."</p>
+        <div class="critic-source">The Documentary Filmmaker (in therapy)</div>
       </div>
       <div class="critic-card fade-in">
-        <div class="critic-stars">★★★★½</div>
-        <p class="critic-quote">"Half a star deducted because this documentary made me feel genuinely bad about my own life. Otherwise flawless. Like its subject."</p>
+        <div class="critic-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <p class="critic-quote">"Half a star deducted because this documentary made three members of our review 
+        panel seriously question their life trajectories. We're down a film critic and a copy editor. Nicole, 
+        if you're reading this: they'd like to know if Kids & Company is hiring."</p>
         <div class="critic-source">Globe & Mail</div>
       </div>
     </div>
@@ -1438,37 +1029,49 @@
         <div class="timeline-year">2008 — 2009</div>
         <div class="timeline-role">HBA Student / International Operative</div>
         <div class="timeline-company">Ivey Business School + Manchester Business School</div>
-        <div class="timeline-desc">Officially: studying business. Unofficially: learning how to dominate entire industries before anyone notices. The Manchester semester remains classified.</div>
+        <div class="timeline-desc">Officially: studying business. Unofficially: absorbing the combined marketing 
+        knowledge of two countries before most people finish their first internship. The Manchester semester 
+        remains partially classified. Ivey's registrar simply notes: "She understood things."</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-year">2009 — 2011</div>
-        <div class="timeline-role">Account Coordinator → Account Executive</div>
-        <div class="timeline-company">BBDO Worldwide → Juniper Park</div>
-        <div class="timeline-desc">Enters the ad world at the global BBDO machine. Quickly moves to Juniper Park. Industry observers would later describe this period as "the warm-up."</div>
+        <div class="timeline-role">Account Coordinator / Account Executive</div>
+        <div class="timeline-company">BBDO Worldwide / Juniper Park</div>
+        <div class="timeline-desc">Enters the ad world at the global BBDO machine. Moves to Juniper Park before 
+        anyone can fully process what just happened. Former colleagues describe this era as "the warm-up," though 
+        at the time it already looked like most people's peak.</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-year">2011 — 2015</div>
-        <div class="timeline-role">Account Supervisor → Account Director</div>
-        <div class="timeline-company">TAXI → Red Lion</div>
-        <div class="timeline-desc">By the time she reaches Account Director at Red Lion, she's quietly accumulated more agency experience than most people get in a decade. Toronto's advertising community starts whispering.</div>
+        <div class="timeline-role">Account Supervisor / Account Director</div>
+        <div class="timeline-company">TAXI / Red Lion</div>
+        <div class="timeline-desc">By Account Director at Red Lion, she has quietly accumulated more agency 
+        experience than some people's entire departments. Toronto's advertising community begins exchanging 
+        concerned glances. "She's not slowing down," one exec whispers. "Why isn't she slowing down?"</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-year">2017 — 2021</div>
         <div class="timeline-role">Associate Director, Partner & Product Marketing</div>
         <div class="timeline-company">WE</div>
-        <div class="timeline-desc">Pivots to purpose-driven marketing. Orchestrates brand partnerships that actually help communities. Shatters the assumption that doing good and doing well can't happen in the same meeting.</div>
+        <div class="timeline-desc">Pivots to purpose. Orchestrates brand partnerships that generate revenue AND 
+        help communities. Fashion, kids' toys, food & beverage. All at once. While raising three boys. 
+        "She made the rest of us look like we were standing still," says a source. "Because we were."</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-year">2018</div>
         <div class="timeline-role">Founder & CEO</div>
         <div class="timeline-company">The Bear Co.</div>
-        <div class="timeline-desc">While still at WE, casually founds a company making eco-friendly teething products for children. Because why run one career when you can run two simultaneously? Scientists remain baffled.</div>
+        <div class="timeline-desc">While employed full-time at WE. While raising three children. Launches a 
+        custom eco-friendly teething products company. Scientists at the University of Toronto's physics 
+        department are consulted. Their findings: "We have no explanation. The math does not math."</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-year">2021 — Present</div>
         <div class="timeline-role">VP of Marketing & Brand + ESG Lead</div>
         <div class="timeline-company">Kids & Company</div>
-        <div class="timeline-desc">Now running marketing, brand strategy, AND sustainability for Canada's premier corporate childcare company. Three roles, one Nicole. The math doesn't math, but here we are.</div>
+        <div class="timeline-desc">Now running marketing, brand strategy, AND sustainability for Canada's premier 
+        corporate childcare company. Three departments. Three boys at home. The woman lives in threes. 
+        HR has stopped trying to write a job description. They just put "Nicole Spinner" and left it at that.</div>
       </div>
     </div>
   </section>
@@ -1477,7 +1080,8 @@
   <section id="spin-section">
     <div class="spinner-wheel-section fade-in">
       <div class="spinner-wheel-title">THE SPINNER WHEEL</div>
-      <p class="spinner-wheel-sub">Spin to discover what Nicole will conquer next. (Results legally binding.)</p>
+      <p class="spinner-wheel-sub">Spin to discover what Nicole will conquer next. Results are legally binding and 
+      historically inevitable.</p>
       <div class="wheel-container">
         <div class="wheel-pointer"></div>
         <canvas id="wheel-canvas" width="320" height="320"></canvas>
@@ -1490,47 +1094,23 @@
   <!-- SEARCH HISTORY -->
   <section>
     <div class="search-section fade-in">
-      <h2 class="section-label" style="margin-bottom: 0.5rem;">Nicole's Trending Searches</h2>
-      <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1.5rem;">What the world is searching after watching The Spinner Effect</p>
+      <h2 class="section-label" style="margin-bottom: 0.5rem;">Trending After The Spinner Effect</h2>
+      <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1.5rem;">What the world is searching</p>
       <div class="search-bar">
-        <span class="search-bar-icon">🔍</span>
+        <span class="search-bar-icon">Q</span>
         <input type="text" placeholder="Search STREAMAX..." readonly>
       </div>
       <div class="search-suggestions">
-        <div class="search-suggestion">
-          <span class="icon">🔥</span>
-          <span>how to have Nicole Spinner's career but I'm already 35</span>
-          <span class="trending">TRENDING</span>
-        </div>
-        <div class="search-suggestion">
-          <span class="icon">🔥</span>
-          <span>is Nicole Spinner actually three people in a trench coat</span>
-          <span class="trending">TRENDING</span>
-        </div>
-        <div class="search-suggestion">
-          <span class="icon">🕐</span>
-          <span>Ivey Business School "how to be Nicole Spinner" course</span>
-        </div>
-        <div class="search-suggestion">
-          <span class="icon">🕐</span>
-          <span>Kids & Company stock price after Nicole joined</span>
-        </div>
-        <div class="search-suggestion">
-          <span class="icon">🕐</span>
-          <span>The Bear Co eco teething products where to buy</span>
-        </div>
-        <div class="search-suggestion">
-          <span class="icon">🕐</span>
-          <span>can one person legally hold that many job titles</span>
-        </div>
-        <div class="search-suggestion">
-          <span class="icon">🕐</span>
-          <span>BBDO Juniper Park TAXI Red Lion "Nicole Spinner" conspiracy</span>
-        </div>
-        <div class="search-suggestion">
-          <span class="icon">🕐</span>
-          <span>how many hours are in Nicole Spinner's day (hint: more than yours)</span>
-        </div>
+        <div class="search-suggestion"><span class="ss-icon">+</span><span>how to have Nicole Spinner's career when I can barely manage one job and a cat</span><span class="trending">TRENDING</span></div>
+        <div class="search-suggestion"><span class="ss-icon">+</span><span>is Nicole Spinner actually three people in a trench coat (serious answers only)</span><span class="trending">TRENDING</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>Nicole Spinner daily schedule (WARNING: may cause existential crisis)</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>how to found a company while working full time and raising three boys (asking for a friend who is me)</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>Kids & Company stock price before vs after Nicole joined</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>BBDO Juniper Park TAXI Red Lion all lost the same person and never recovered</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>eco-friendly teething products The Bear Co. Toronto (take my money)</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>how many hours are in Nicole Spinner's day because it's clearly not 24</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>Ivey Business School "how to become Nicole Spinner" elective</span></div>
+        <div class="search-suggestion"><span class="ss-icon">~</span><span>support group for people who just watched The Spinner Effect and feel personally attacked</span></div>
       </div>
     </div>
   </section>
@@ -1542,68 +1122,66 @@
       <div class="reaction-card fade-in">
         <div class="reaction-header">
           <div class="reaction-avatar" style="background: linear-gradient(135deg, #667eea, #764ba2);">M</div>
-          <div>
-            <div class="reaction-name">Marketing Mike</div>
-            <div class="reaction-handle">@marketingmike_TO</div>
-          </div>
+          <div><div class="reaction-name">Marketing Mike</div><div class="reaction-handle">@marketingmike_TO</div></div>
         </div>
-        <div class="reaction-text">just finished The Spinner Effect and I'm genuinely upset. I've been in marketing for 15 years and this woman has done more by episode 3 than I'll do in my entire career. I need to lie down.</div>
-        <div class="reaction-likes">❤️ 4,203 · 💬 891</div>
+        <div class="reaction-text">just finished The Spinner Effect and I'm genuinely upset. I've been in marketing 
+        for 15 years and this woman has done more by episode 3 than I'll do in my entire career. I also don't 
+        have three children to manage simultaneously. What's my excuse? I don't have one. That's the point.</div>
+        <div class="reaction-likes">4,203 likes / 891 replies</div>
       </div>
       <div class="reaction-card fade-in">
         <div class="reaction-header">
           <div class="reaction-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">S</div>
-          <div>
-            <div class="reaction-name">Sarah K.</div>
-            <div class="reaction-handle">@sarahk_ivey2010</div>
-          </div>
+          <div><div class="reaction-name">Sarah K.</div><div class="reaction-handle">@sarahk_ivey2010</div></div>
         </div>
-        <div class="reaction-text">I was in Nicole's year at Ivey. We all knew she was going to be something. What we didn't know is that "something" meant "literally everything simultaneously." The Bear Co. episode made me cry??</div>
-        <div class="reaction-likes">❤️ 7,892 · 💬 1,203</div>
+        <div class="reaction-text">I was in Nicole's year at Ivey. We all knew she was going to be something. 
+        What we didn't know is that "something" meant "literally everything simultaneously." The Bear Co. 
+        episode made me cry. She built an eco baby brand WHILE working at WE. WHILE mothering three boys. 
+        I struggle to do laundry on time.</div>
+        <div class="reaction-likes">7,892 likes / 1,203 replies</div>
       </div>
       <div class="reaction-card fade-in">
         <div class="reaction-header">
           <div class="reaction-avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">D</div>
-          <div>
-            <div class="reaction-name">Dave from BBDO</div>
-            <div class="reaction-handle">@definitely_not_bbdo</div>
-          </div>
+          <div><div class="reaction-name">Dave from BBDO</div><div class="reaction-handle">@definitely_not_bbdo</div></div>
         </div>
-        <div class="reaction-text">Our legal team asked me not to comment on this documentary. But off the record: we've never recovered from losing her. The office plants haven't been the same.</div>
-        <div class="reaction-likes">❤️ 12,445 · 💬 3,201</div>
+        <div class="reaction-text">Our legal team asked me not to comment on this documentary. But off the 
+        record: we've never recovered from losing her. The office plants died the week she left. Morale 
+        hasn't been the same. We now refer to the period after her departure as "The Void." It's been 
+        over a decade. We're still in The Void.</div>
+        <div class="reaction-likes">12,445 likes / 3,201 replies</div>
       </div>
       <div class="reaction-card fade-in">
         <div class="reaction-header">
           <div class="reaction-avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">P</div>
-          <div>
-            <div class="reaction-name">Proud Parent</div>
-            <div class="reaction-handle">@kidsandco_parent</div>
-          </div>
+          <div><div class="reaction-name">Kids & Co. Parent</div><div class="reaction-handle">@kidsandco_parent_416</div></div>
         </div>
-        <div class="reaction-text">My kid goes to Kids & Company. After watching this I now understand why their marketing is so good. There's a VP running three departments and somehow each one is better than most companies' only department.</div>
-        <div class="reaction-likes">❤️ 3,108 · 💬 567</div>
+        <div class="reaction-text">My kid goes to Kids & Company. After watching this, I now understand why 
+        their marketing is unreal, their brand is immaculate, and their sustainability reports actually make 
+        sense. It's because one woman runs all three. And goes home to three boys. I can't even get my ONE child 
+        to put on shoes without a 20 minute negotiation.</div>
+        <div class="reaction-likes">3,108 likes / 567 replies</div>
       </div>
       <div class="reaction-card fade-in">
         <div class="reaction-header">
           <div class="reaction-avatar" style="background: linear-gradient(135deg, #fa709a, #fee140);">T</div>
-          <div>
-            <div class="reaction-name">Teething Product Enthusiast</div>
-            <div class="reaction-handle">@eco_baby_toronto</div>
-          </div>
+          <div><div class="reaction-name">Fellow Boy Mom</div><div class="reaction-handle">@chaos_coordinator_3</div></div>
         </div>
-        <div class="reaction-text">I bought Bear Co. products before I knew who founded them. Now I find out the founder is also a VP at a childcare empire who used to run campaigns at BBDO? I'm sorry but this is the greatest crossover episode of all time.</div>
-        <div class="reaction-likes">❤️ 5,671 · 💬 892</div>
+        <div class="reaction-text">I also have three boys. I also live in Toronto. The similarities end there. 
+        I have not founded a company. I have not become VP of anything. Some days I consider it an achievement 
+        if everyone is wearing pants by noon. Nicole, if you're reading this: how. Just how. Are you taking 
+        applications for an apprenticeship?</div>
+        <div class="reaction-likes">18,221 likes / 4,502 replies</div>
       </div>
       <div class="reaction-card fade-in">
         <div class="reaction-header">
           <div class="reaction-avatar" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">R</div>
-          <div>
-            <div class="reaction-name">Red Lion Remembers</div>
-            <div class="reaction-handle">@redlion_alumni</div>
-          </div>
+          <div><div class="reaction-name">Red Lion Remembers</div><div class="reaction-handle">@redlion_alumni</div></div>
         </div>
-        <div class="reaction-text">Episode 2 gave me flashbacks. She was Account Director and the rest of us were just... accounts she was directing. 10/10 documentary, 0/10 for my self-esteem.</div>
-        <div class="reaction-likes">❤️ 2,890 · 💬 445</div>
+        <div class="reaction-text">Episode 2 gave me flashbacks. She was the Account Director and the rest of us 
+        were just accounts she was directing. We didn't know it then. We know it now. 10/10 documentary. 
+        Permanently devastating to my professional self-image.</div>
+        <div class="reaction-likes">2,890 likes / 445 replies</div>
       </div>
     </div>
   </section>
@@ -1613,40 +1191,40 @@
     <h2 class="section-label fade-in">Awards & Recognition</h2>
     <div class="awards-scroll">
       <div class="award-card fade-in">
-        <div class="award-icon">🏆</div>
-        <div class="award-name">Best Career Trajectory in a Documentary</div>
+        <div class="award-icon">I</div>
+        <div class="award-name">Best Career Trajectory Ever Documented</div>
         <div class="award-year">STREAMAX AWARDS 2025</div>
-        <div class="award-body">Awarded unanimously. The committee asked if she wanted to accept the award or just add it to the pile.</div>
+        <div class="award-body">Awarded unanimously. The committee asked if she wanted to accept the award or just add it to the pile. She was at a school play. She sent a voice note. It was better than most acceptance speeches.</div>
       </div>
       <div class="award-card fade-in">
-        <div class="award-icon">🎬</div>
+        <div class="award-icon">II</div>
         <div class="award-name">Most Likely to Make Viewers Reconsider Everything</div>
         <div class="award-year">TORONTO FILM CRITICS 2025</div>
-        <div class="award-body">First documentary to cause a measurable spike in MBA applications.</div>
+        <div class="award-body">First documentary to cause a measurable spike in MBA applications and a corresponding spike in "am I doing enough with my life" Google searches.</div>
       </div>
       <div class="award-card fade-in">
-        <div class="award-icon">🌱</div>
+        <div class="award-icon">III</div>
         <div class="award-name">Sustainability in Storytelling</div>
         <div class="award-year">GREEN SCREEN AWARDS 2025</div>
-        <div class="award-body">For The Bear Co. episode, which made eco-friendly teething products somehow cinematic.</div>
+        <div class="award-body">For The Bear Co. episode, which made eco-friendly teething products genuinely cinematic. The phrase "organic silicone" has never sounded this compelling.</div>
       </div>
       <div class="award-card fade-in">
-        <div class="award-icon">👶</div>
-        <div class="award-name">Best Corporate Childcare Content</div>
+        <div class="award-icon">IV</div>
+        <div class="award-name">Outstanding Achievement in Parental Multitasking</div>
         <div class="award-year">PARENTS' CHOICE 2025</div>
-        <div class="award-body">A category that didn't exist before this documentary. Nicole created the category by existing.</div>
+        <div class="award-body">A category that didn't exist before this documentary. Three boys. Three departments. Somehow nobody is on fire. That deserves an award.</div>
       </div>
       <div class="award-card fade-in">
-        <div class="award-icon">🧠</div>
-        <div class="award-name">Ivey Distinguished Alumni (Retroactive)</div>
+        <div class="award-icon">V</div>
+        <div class="award-name">The Ivey Distinguished Alumni (Retroactive)</div>
         <div class="award-year">WESTERN UNIVERSITY 2025</div>
-        <div class="award-body">Ivey added a "Spinner Wing" to the business school. It's just a really well-marketed hallway.</div>
+        <div class="award-body">Ivey added a "Spinner Wing" to the business school. It's just a really well-marketed hallway, but the branding is impeccable. Nicole had nothing to do with it. They just learned from her example.</div>
       </div>
       <div class="award-card fade-in">
-        <div class="award-icon">💀</div>
+        <div class="award-icon">VI</div>
         <div class="award-name">Most Devastating to Competitors' Morale</div>
         <div class="award-year">AD INDUSTRY AWARDS 2025</div>
-        <div class="award-body">Four agencies submitted joint therapy bills as evidence.</div>
+        <div class="award-body">Four agencies submitted joint therapy bills as supporting evidence. TAXI's HR department reportedly still flinches when someone mentions Toronto.</div>
       </div>
     </div>
   </section>
@@ -1657,30 +1235,30 @@
     <p class="footer-text">
       "The Spinner Effect" is a STREAMAX Original Documentary. Any resemblance to an actual 
       superhuman is entirely intentional. Nicole Spinner is a real person who is really this impressive. 
-      We checked. Multiple times. We're still in disbelief.
+      We verified it. Repeatedly. Our fact-checkers are now questioning their career choices.
     </p>
     <div class="footer-links">
       <span>Audio Description</span>
       <span>Help Center</span>
-      <span>Gift Cards</span>
       <span>Terms of Use</span>
-      <span>Privacy (Nicole has none left after this doc)</span>
+      <span>Privacy (Nicole has none left)</span>
       <span>Cookie Preferences</span>
-      <span>Corporate Information (Ask Nicole, she runs it all)</span>
+      <span>Corporate Info (Ask Nicole, she runs everything)</span>
+      <span>Parenting Tips (Also ask Nicole)</span>
     </div>
-    <p style="margin-top: 2rem; font-size: 0.65rem; color: rgba(255,255,255,0.15);">
-      © 2025 Streamax Entertainment. A division of Definitely Real Media Corp. 
-      Made with admiration in Toronto, Ontario. Service Code: SPINNER-001.
+    <p style="margin-top: 2rem; font-size: 0.65rem; color: rgba(255,255,255,0.15); max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+      &copy; 2025 Streamax Entertainment. A division of Definitely Real Media Corp. 
+      Made with genuine admiration in Toronto, Ontario. Service Code: SPINNER-001.
       <br><br>
-      🐻 If you found this page, Nicole, just know: everyone who made this is genuinely in awe.
+      Nicole, if you found this: everyone who built this is in awe. The boys should be proud. 
+      The agencies you left should be in therapy. And Kids & Company should probably give you a fourth title.
     </p>
   </footer>
 
   <script>
-    // ===== SPLASH SCREEN =====
+    // ===== SPLASH =====
     const splash = document.getElementById('splash');
-    const enterBtn = document.getElementById('enter-btn');
-    enterBtn.addEventListener('click', () => {
+    document.getElementById('enter-btn').addEventListener('click', () => {
       splash.classList.add('hidden');
       document.body.style.overflow = 'auto';
       startHeroTyping();
@@ -1688,17 +1266,17 @@
     });
     document.body.style.overflow = 'hidden';
 
-    // ===== HERO SUBTITLE TYPING =====
+    // ===== TYPING =====
     function startHeroTyping() {
       const el = document.getElementById('hero-subtitle');
-      const text = "How one woman infiltrated every industry in Canada and nobody thought to stop her";
+      const text = "How one mother of three infiltrated every industry in Canada and nobody thought to stop her";
       let i = 0;
       el.classList.add('typing-cursor');
       function type() {
         if (i < text.length) {
           el.textContent = text.substring(0, i + 1);
           i++;
-          setTimeout(type, 30 + Math.random() * 20);
+          setTimeout(type, 25 + Math.random() * 25);
         } else {
           el.classList.remove('typing-cursor');
         }
@@ -1722,45 +1300,53 @@
     const skipBtn = document.getElementById('skip-intro');
     function showSkipIntro() {
       skipBtn.classList.add('visible');
-      setTimeout(() => skipBtn.classList.remove('visible'), 5000);
+      setTimeout(() => { if (skipClicks === 0) skipBtn.classList.remove('visible'); }, 6000);
     }
     let skipClicks = 0;
-    const skipMessages = [
+    const skipMsgs = [
       "You can't skip Nicole Spinner.",
-      "Nice try. She's unskippable.",
-      "This is like trying to skip excellence. It doesn't work.",
-      "The skip button doesn't work on legends.",
-      "We admire your persistence. Still no.",
-      "Fine. Here's a fun fact: Nicole ran an eco teething company. While working at WE. At the same time. You can't skip someone like that.",
-      "Ok we're done. Stop clicking skip."
+      "She didn't skip BBDO, Juniper Park, TAXI, or Red Lion. She conquered them all. No skipping.",
+      "Nicole founded a company while working full time with three kids. You can't even skip an intro.",
+      "This button doesn't work. Like trying to outperform Nicole. Theoretically possible. Practically? No.",
+      "Her three boys tried to skip bedtime once. They lost. You'll lose too.",
+      "Fine. Fun fact: Nicole runs Marketing, Brand, AND ESG at Kids & Company. Three departments. You can't skip three departments.",
+      "We admire your persistence. Nicole would too. She'd also already be six sections ahead of you by now.",
+      "Stop. Clicking. Skip."
     ];
     skipBtn.addEventListener('click', () => {
-      if (skipClicks < skipMessages.length) {
-        skipBtn.textContent = skipMessages[skipClicks];
+      if (skipClicks < skipMsgs.length) {
+        skipBtn.textContent = skipMsgs[skipClicks];
         skipBtn.classList.add('visible');
-        setTimeout(() => {
-          if (skipClicks < skipMessages.length) {
-            skipBtn.textContent = 'Skip Intro';
-          }
-        }, 3000);
         skipClicks++;
-      }
-      if (skipClicks >= skipMessages.length) {
-        setTimeout(() => skipBtn.classList.remove('visible'), 3000);
+        clearTimeout(skipBtn._timer);
+        skipBtn._timer = setTimeout(() => {
+          if (skipClicks < skipMsgs.length) skipBtn.textContent = 'Skip Intro';
+          else skipBtn.classList.remove('visible');
+        }, 4000);
       }
     });
 
-    // ===== PLAY BUTTON → CONFETTI =====
+    // ===== PLAY => CONFETTI + STILL WATCHING =====
     document.getElementById('btn-play').addEventListener('click', () => {
       launchConfetti();
-      // Show "still watching" after 5s
-      setTimeout(() => {
-        document.getElementById('still-watching').classList.add('active');
-      }, 5000);
+      setTimeout(() => document.getElementById('still-watching').classList.add('active'), 4000);
     });
-
-    document.getElementById('still-watching-btn').addEventListener('click', () => {
+    document.getElementById('still-watching-yes').addEventListener('click', () => {
       document.getElementById('still-watching').classList.remove('active');
+    });
+    let needMomentClicks = 0;
+    const momentMsgs = [
+      "Take your time. Nicole wouldn't. But you can.",
+      "Still need a moment? Nicole once closed a brand deal, packed three lunchboxes, and founded a company in the time you've been staring at this screen.",
+      "Ok, this is getting concerning. Are you ok? Do you need water? Nicole would have hydrated by now. She's very efficient.",
+    ];
+    document.getElementById('still-watching-no').addEventListener('click', () => {
+      if (needMomentClicks < momentMsgs.length) {
+        document.querySelector('#still-watching p:nth-of-type(2)').textContent = momentMsgs[needMomentClicks];
+        needMomentClicks++;
+      } else {
+        document.getElementById('still-watching').classList.remove('active');
+      }
     });
 
     // ===== CONFETTI =====
@@ -1770,23 +1356,16 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       const pieces = [];
-      const colors = ['#e50914', '#e8b708', '#4fc3f7', '#46d369', '#b388ff', '#ff6b35', '#ffffff'];
-      
-      for (let i = 0; i < 150; i++) {
+      const colors = ['#e50914','#e8b708','#4fc3f7','#46d369','#b388ff','#ff6b35','#fff'];
+      for (let i = 0; i < 200; i++) {
         pieces.push({
-          x: Math.random() * canvas.width,
-          y: -20 - Math.random() * 200,
-          w: 6 + Math.random() * 8,
-          h: 4 + Math.random() * 6,
+          x: Math.random() * canvas.width, y: -20 - Math.random() * 300,
+          w: 5 + Math.random() * 8, h: 3 + Math.random() * 6,
           color: colors[Math.floor(Math.random() * colors.length)],
-          vx: (Math.random() - 0.5) * 4,
-          vy: 2 + Math.random() * 4,
-          rot: Math.random() * 360,
-          rv: (Math.random() - 0.5) * 10,
-          opacity: 1
+          vx: (Math.random() - 0.5) * 5, vy: 2 + Math.random() * 5,
+          rot: Math.random() * 360, rv: (Math.random() - 0.5) * 12, opacity: 1
         });
       }
-
       let frame = 0;
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1794,17 +1373,14 @@
         pieces.forEach(p => {
           if (p.opacity <= 0) return;
           alive = true;
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.05;
-          p.rot += p.rv;
-          if (frame > 60) p.opacity -= 0.008;
+          p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.rot += p.rv;
+          if (frame > 80) p.opacity -= 0.006;
           ctx.save();
           ctx.translate(p.x, p.y);
           ctx.rotate(p.rot * Math.PI / 180);
           ctx.globalAlpha = Math.max(0, p.opacity);
           ctx.fillStyle = p.color;
-          ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
           ctx.restore();
         });
         frame++;
@@ -1814,10 +1390,9 @@
       animate();
     }
 
-    // ===== NAV SCROLL =====
-    const topnav = document.getElementById('topnav');
+    // ===== NAV =====
     window.addEventListener('scroll', () => {
-      topnav.classList.toggle('scrolled', window.scrollY > 50);
+      document.getElementById('topnav').classList.toggle('scrolled', window.scrollY > 50);
     });
 
     // ===== SCROLL REVEAL =====
@@ -1825,7 +1400,6 @@
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
-          // Trigger threat meter
           if (e.target.closest('#threat-section')) {
             document.getElementById('threat-fill').style.width = '97%';
             animateCounters();
@@ -1833,10 +1407,9 @@
         }
       });
     }, { threshold: 0.15 });
-
     document.querySelectorAll('.fade-in, .timeline-item').forEach(el => observer.observe(el));
 
-    // ===== COUNTER ANIMATION =====
+    // ===== COUNTERS =====
     let countersAnimated = false;
     function animateCounters() {
       if (countersAnimated) return;
@@ -1846,8 +1419,7 @@
         const duration = 2000;
         const start = performance.now();
         function update(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
+          const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
           el.textContent = Math.round(target * eased);
           if (progress < 1) requestAnimationFrame(update);
@@ -1856,18 +1428,137 @@
       });
     }
 
+    // ===== DOSSIER REDACTED FIELDS =====
+    document.querySelectorAll('.redacted').forEach(el => {
+      el.addEventListener('click', () => {
+        el.classList.add('revealed');
+        el.textContent = el.dataset.reveal;
+      });
+    });
+
+    // ===== DAY SIMULATOR =====
+    const dayEvents = [
+      { time: "5:00 AM", title: "Alarm. First one up.", desc: "Because of course she is. The boys won't be up for another hour. This is Nicole's time. She uses it to review Q3 marketing decks, respond to overnight emails from the ESG team, and apparently also meditate? The woman meditates. Before dawn. With three children in the house.", tag: "exec", tagLabel: "EXECUTIVE" },
+      { time: "5:45 AM", title: "Workout.", desc: "Nicole exercises before her children wake up. This is not a metaphor. She is literally working out while three boys sleep. Most people hit snooze seven times. She hits a personal best.", tag: "chaos", tagLabel: "SUPERHUMAN" },
+      { time: "6:30 AM", title: "The Morning Gauntlet.", desc: "Three boys. Three different moods. Three different opinions about breakfast. One of them can't find his left shoe. Another one has decided today he doesn't believe in pants. Nicole handles all of this while simultaneously checking Slack. Nobody cries. Not even the one without pants.", tag: "mom", tagLabel: "MOM OF 3" },
+      { time: "7:15 AM", title: "School drop-off.", desc: "All three children arrive at school on time, fully dressed (yes, even the pants one), with lunches packed. A nearby parent looks at Nicole and whispers to another parent: \"How does she...\" They never finish the sentence. Nobody ever finishes the sentence.", tag: "mom", tagLabel: "MOM OF 3" },
+      { time: "8:00 AM", title: "Arrives at Kids & Company HQ.", desc: "She is the first one in. She is always the first one in. Her desk already has a to-do list on it. She wrote it at 5 AM. Half of it is already crossed out.", tag: "exec", tagLabel: "VP MARKETING" },
+      { time: "9:00 AM", title: "Marketing strategy review.", desc: "Nicole presents the Q3 brand campaign to the leadership team. It is, by all accounts, excellent. Someone asks when she prepared it. 'This morning,' she says. Nobody asks follow-up questions.", tag: "exec", tagLabel: "VP BRAND" },
+      { time: "10:30 AM", title: "ESG committee call.", desc: "She switches from marketing mode to sustainability mode with the ease of someone changing a TV channel. The ESG report is ahead of schedule. It has always been ahead of schedule. The committee has stopped being surprised.", tag: "esg", tagLabel: "ESG LEAD" },
+      { time: "12:00 PM", title: "Working lunch + Bear Co. check-in.", desc: "Eats at her desk while reviewing Bear Co. product samples. Yes, The Bear Co. still exists. Yes, she still runs it. On the side. For fun. Some people do crossword puzzles. Nicole runs a company during lunch.", tag: "founder", tagLabel: "FOUNDER" },
+      { time: "2:00 PM", title: "Agency partner call.", desc: "Nicole is on a call with an external creative agency. They pitch her three concepts. She gives feedback so precise and constructive that the lead creative later describes it as 'the best notes I've ever received and also I'm a little scared of her now.' This is a compliment.", tag: "exec", tagLabel: "VP MARKETING" },
+      { time: "3:30 PM", title: "School calls.", desc: "One of the boys got into a situation involving a puddle, a dare, and someone's backpack. Nicole handles the call with the calm authority of someone who has dealt with far worse. 'Define \"submerged,\"' she asks. The teacher pauses. 'Partially,' the teacher concedes. Crisis resolved in under four minutes.", tag: "mom", tagLabel: "MOM OF 3" },
+      { time: "5:00 PM", title: "Leaves office. On time.", desc: "Because Nicole Spinner does not need to stay late. She has accomplished in eight hours what most departments accomplish in a quarter. She walks out of the building and three separate colleagues silently watch her leave, wondering if she's real.", tag: "exec", tagLabel: "EXECUTIVE" },
+      { time: "5:30 PM", title: "Homework. Dinner. Chaos management.", desc: "Three boys. Three homework assignments. One kitchen. Dinner is being prepared while fractions are being explained while someone is arguing about whose turn it is on the iPad. Nicole manages all of it like air traffic control, except the planes are small and very loud and one of them doesn't want carrots.", tag: "mom", tagLabel: "MOM OF 3" },
+      { time: "8:00 PM", title: "Bedtime operations.", desc: "All three boys in bed. Teeth brushed. Stories read. Negotiations about 'five more minutes' conducted and resolved. The house falls silent. An observer would not believe that 45 minutes ago this was a war zone of bath-related protests.", tag: "mom", tagLabel: "MOM OF 3" },
+      { time: "9:00 PM", title: "Back online.", desc: "Nicole opens her laptop. Reviews tomorrow's schedule. Responds to emails. Outlines a new brand partnership. Makes notes for the next ESG report. Some people watch TV at night. Nicole continues being Nicole. There is no off switch.", tag: "exec", tagLabel: "AFTER HOURS" },
+      { time: "10:30 PM", title: "Sleeps.", desc: "Presumably. No one has actually confirmed this. Our surveillance team was asked to verify and they fell asleep first. Nicole is suspected to rest, but there is no hard evidence. The investigation continues.", tag: "chaos", tagLabel: "UNCONFIRMED" },
+    ];
+
+    let simRunning = false;
+    let simIndex = 0;
+    const simBtn = document.getElementById('sim-btn');
+    const dayEventsContainer = document.getElementById('day-events');
+    const dayClock = document.getElementById('day-clock');
+    const dayCommentary = document.getElementById('day-commentary');
+
+    const commentaries = [
+      "This is one person. One. Person.",
+      "Normal humans would have collapsed by now.",
+      "She's not even tired yet. This is insulting.",
+      "Three boys, three departments, zero signs of slowing down.",
+      "The documentary crew needed a break. Nicole did not.",
+      "We asked her assistant how she does it. The assistant said: 'I don't know. I just try to keep up.'",
+      "Reminder: she also founded a company. During all of this.",
+      "This isn't a schedule. It's a physics experiment.",
+      "The boys are fine. The competitors are not.",
+      "Her calendar app files for overtime pay.",
+    ];
+
+    simBtn.addEventListener('click', () => {
+      if (simRunning) return;
+      simRunning = true;
+      simIndex = 0;
+      simBtn.disabled = true;
+      simBtn.textContent = 'Simulating...';
+      dayEventsContainer.innerHTML = '';
+      showNextEvent();
+    });
+
+    function showNextEvent() {
+      if (simIndex >= dayEvents.length) {
+        simRunning = false;
+        simBtn.disabled = false;
+        simBtn.textContent = 'Run Again (We Dare You)';
+        dayCommentary.textContent = "And that's just a Tuesday. Imagine what she does on Mondays.";
+        return;
+      }
+      const ev = dayEvents[simIndex];
+      dayClock.textContent = ev.time;
+      dayCommentary.textContent = commentaries[simIndex % commentaries.length];
+
+      const div = document.createElement('div');
+      div.className = 'day-sim-event';
+      div.innerHTML = `
+        <div class="time-col">${ev.time}</div>
+        <div class="event-content">
+          <div class="event-title">${ev.title}</div>
+          <div class="event-desc">${ev.desc}</div>
+          <span class="event-tag tag-${ev.tag}">${ev.tagLabel}</span>
+        </div>
+      `;
+      dayEventsContainer.appendChild(div);
+      requestAnimationFrame(() => requestAnimationFrame(() => div.classList.add('show')));
+
+      simIndex++;
+      setTimeout(showNextEvent, 1800);
+    }
+
+    // ===== EXCUSE GENERATOR =====
+    const excuses = [
+      "Genetically modified time perception inherited from a long line of impossibly productive women.",
+      "She discovered a 25th hour in the day. Scientists have been unable to replicate this finding.",
+      "Three boys built her stamina to superhuman levels. Corporate America never stood a chance.",
+      "She doesn't actually sleep. She enters a low-power management mode where she still answers emails.",
+      "The Bear Co. teething products contain trace amounts of ambition. She tested them all personally.",
+      "Each of her three boys draws from a different leadership competency: strategy, operations, and chaos management.",
+      "She made a deal with the universe at Ivey Business School. The terms are classified.",
+      "Manchester Business School was actually a training facility. For what, we cannot say.",
+      "Her calendar has achieved sentience and now organizes itself out of fear.",
+      "She runs on a proprietary fuel made of pure determination and the tears of competing agencies.",
+      "Being an Account Director at four agencies was actually her warm-up. Her real career started with kids. The children kind.",
+      "She simply decided to be excellent at everything and nobody told her that's not how it works.",
+      "The ESG role is actually her rest period. She finds sustainability relaxing.",
+      "Time moves differently around her. Physics departments are investigating.",
+      "Three boys taught her crisis management. BBDO, TAXI, and Red Lion taught her patience. Wait. It might be the other way around.",
+      "She subscribed to a premium version of the 24-hour day. The rest of us are on the free plan.",
+      "Her Ivey HBA actually stands for 'Hilariously Beyond Average.'",
+      "She once multitasked so hard she briefly existed in two meetings simultaneously. IT is still investigating.",
+    ];
+
+    const excuseOutput = document.getElementById('excuse-output');
+    document.getElementById('excuse-btn').addEventListener('click', () => {
+      const idx = Math.floor(Math.random() * excuses.length);
+      excuseOutput.style.opacity = 0;
+      setTimeout(() => {
+        excuseOutput.textContent = '"' + excuses[idx] + '"';
+        excuseOutput.style.opacity = 1;
+        excuseOutput.style.transition = 'opacity 0.4s';
+      }, 200);
+    });
+
     // ===== SPINNER WHEEL =====
     const wheelCanvas = document.getElementById('wheel-canvas');
     const wheelCtx = wheelCanvas.getContext('2d');
     const segments = [
       { label: "Fortune 500\nCEO", color: "#e50914" },
       { label: "Prime\nMinister", color: "#b20710" },
-      { label: "NASA\nMarketing", color: "#4fc3f7" },
+      { label: "NASA Brand\nDirector", color: "#4fc3f7" },
       { label: "Nobel\nPrize", color: "#e8b708" },
       { label: "Disney\nCEO", color: "#46d369" },
-      { label: "Mars\nColony\nBrand Lead", color: "#b388ff" },
+      { label: "Mars Colony\nBrand Lead", color: "#b388ff" },
       { label: "UN\nAmbassador", color: "#ff6b35" },
-      { label: "All of\nthe Above", color: "#d4a853" }
+      { label: "All of the\nAbove", color: "#d4a853" }
     ];
     const segAngle = (2 * Math.PI) / segments.length;
     let currentRotation = 0;
@@ -1875,79 +1566,65 @@
     function drawWheel(rotation) {
       const cx = 160, cy = 160, r = 150;
       wheelCtx.clearRect(0, 0, 320, 320);
-      
       segments.forEach((seg, i) => {
-        const startAngle = rotation + i * segAngle;
-        const endAngle = startAngle + segAngle;
-        
+        const sa = rotation + i * segAngle;
+        const ea = sa + segAngle;
         wheelCtx.beginPath();
         wheelCtx.moveTo(cx, cy);
-        wheelCtx.arc(cx, cy, r, startAngle, endAngle);
+        wheelCtx.arc(cx, cy, r, sa, ea);
         wheelCtx.closePath();
         wheelCtx.fillStyle = seg.color;
         wheelCtx.fill();
         wheelCtx.strokeStyle = 'rgba(0,0,0,0.3)';
         wheelCtx.lineWidth = 2;
         wheelCtx.stroke();
-        
-        // Label
         wheelCtx.save();
         wheelCtx.translate(cx, cy);
-        wheelCtx.rotate(startAngle + segAngle / 2);
+        wheelCtx.rotate(sa + segAngle / 2);
         wheelCtx.fillStyle = 'white';
         wheelCtx.font = 'bold 11px Inter, sans-serif';
         wheelCtx.textAlign = 'center';
         wheelCtx.textBaseline = 'middle';
-        const lines = seg.label.split('\n');
-        lines.forEach((line, li) => {
-          wheelCtx.fillText(line, r * 0.6, (li - (lines.length-1)/2) * 13);
+        seg.label.split('\n').forEach((line, li, arr) => {
+          wheelCtx.fillText(line, r * 0.6, (li - (arr.length - 1) / 2) * 13);
         });
         wheelCtx.restore();
       });
-      
-      // Center
       wheelCtx.beginPath();
-      wheelCtx.arc(cx, cy, 20, 0, Math.PI * 2);
+      wheelCtx.arc(cx, cy, 22, 0, Math.PI * 2);
       wheelCtx.fillStyle = '#0a0a0a';
       wheelCtx.fill();
-      wheelCtx.strokeStyle = 'rgba(255,255,255,0.2)';
+      wheelCtx.strokeStyle = 'rgba(255,255,255,0.15)';
       wheelCtx.lineWidth = 2;
       wheelCtx.stroke();
+      wheelCtx.fillStyle = 'white';
+      wheelCtx.font = 'bold 8px Inter';
+      wheelCtx.textAlign = 'center';
+      wheelCtx.textBaseline = 'middle';
+      wheelCtx.fillText('SPIN', cx, cy);
     }
-
     drawWheel(0);
 
-    const spinBtn = document.getElementById('spin-btn');
+    const spinBtn2 = document.getElementById('spin-btn');
     const spinResult = document.getElementById('spin-result');
-
-    spinBtn.addEventListener('click', () => {
-      spinBtn.disabled = true;
+    spinBtn2.addEventListener('click', () => {
+      spinBtn2.disabled = true;
       spinResult.textContent = '';
-      
       const spins = 5 + Math.random() * 5;
       const targetRotation = currentRotation + spins * Math.PI * 2;
       const duration = 4000;
       const start = performance.now();
-      
       function animate(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
+        const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        const rot = currentRotation + (targetRotation - currentRotation) * eased;
-        drawWheel(rot);
-        
+        drawWheel(currentRotation + (targetRotation - currentRotation) * eased);
         if (progress < 1) {
           requestAnimationFrame(animate);
         } else {
           currentRotation = targetRotation % (Math.PI * 2);
-          // Determine which segment the pointer (top) is pointing at
-          const pointerAngle = (Math.PI * 1.5 - currentRotation % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-          const segIndex = Math.floor(pointerAngle / segAngle) % segments.length;
-          const winner = segments[segIndex].label.replace(/\n/g, ' ');
-          
-          // Always land on "All of the Above" 😏
-          spinResult.textContent = "🎯 " + (Math.random() < 0.4 ? winner : "All of the Above") + " — Obviously.";
-          spinBtn.disabled = false;
+          // Always "All of the Above" because obviously
+          spinResult.textContent = 'All of the Above. Obviously.';
+          spinBtn2.disabled = false;
           launchConfetti();
         }
       }
@@ -1971,13 +1648,14 @@
     });
 
     // ===== CONSOLE EASTER EGG =====
-    console.log('%c🔍 CLASSIFIED INTELLIGENCE BRIEF', 'font-size: 20px; font-weight: bold; color: #e50914;');
+    console.log('%c CLASSIFIED INTELLIGENCE BRIEF', 'font-size: 20px; font-weight: bold; color: #e50914;');
     console.log('%cSubject: SPINNER, Nicole', 'font-size: 14px; color: #e8b708;');
-    console.log('%cThreat Level: MAXIMUM', 'font-size: 14px; color: #e50914;');
-    console.log('%cStatus: Currently running three departments at once while you\'re reading console logs', 'font-size: 12px; color: #808080;');
-    console.log('%c\nIf you\'re reading this, you\'re already behind. Nicole found this easter egg 3 weeks ago.', 'font-size: 11px; color: #4fc3f7;');
+    console.log('%cThreat Level: BEYOND MAXIMUM', 'font-size: 14px; color: #e50914;');
+    console.log('%cActive Roles: VP Marketing, VP Brand, ESG Lead, Bear Co. Founder, Mother of Three', 'font-size: 12px; color: #808080;');
+    console.log('%cKnown Weaknesses: None. Investigated 2009-present. Budget exhausted.', 'font-size: 12px; color: #808080;');
+    console.log('%c\nIf you\'re reading this, you\'re already behind. Nicole found this easter egg three weeks ago. While packing lunches.', 'font-size: 11px; color: #4fc3f7;');
 
-    // ===== SECRET CLICK COUNTER ON TITLE =====
+    // ===== SECRET: CLICK TITLE 7 TIMES =====
     let titleClicks = 0;
     document.querySelector('.hero-title')?.addEventListener('click', () => {
       titleClicks++;
@@ -1986,6 +1664,32 @@
         document.body.style.filter = 'hue-rotate(180deg)';
         setTimeout(() => { document.body.style.filter = 'none'; }, 3000);
         titleClicks = 0;
+      }
+    });
+
+    // ===== SECRET: TRIPLE CLICK ANYWHERE FOR FACT =====
+    let tripleTimer = null;
+    let clickCount = 0;
+    const tripleFacts = [
+      "Nicole held the title of Account Director at Red Lion before most people figure out what they want for lunch.",
+      "The Bear Co. was founded in 2018. Nicole was also at WE. And raising three boys. And probably doing something else we don't know about.",
+      "Kids & Company has 100+ centres. Nicole markets all of them. While also running brand. While also running ESG. While also being a mom of three.",
+      "At Ivey Business School, Nicole studied alongside people who are now just... regular people. They know who they are.",
+      "Manchester Business School was technically one semester. It felt longer. Because Nicole accomplished more there than some people do in four years.",
+    ];
+    document.addEventListener('click', () => {
+      clickCount++;
+      clearTimeout(tripleTimer);
+      tripleTimer = setTimeout(() => { clickCount = 0; }, 400);
+      if (clickCount === 3) {
+        clickCount = 0;
+        const fact = tripleFacts[Math.floor(Math.random() * tripleFacts.length)];
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:rgba(20,20,20,0.95);border:1px solid rgba(255,255,255,0.15);color:#e5e5e5;padding:1rem 2rem;border-radius:8px;font-size:0.85rem;max-width:500px;text-align:center;z-index:9999;opacity:0;transition:opacity 0.3s;line-height:1.6;';
+        toast.textContent = fact;
+        document.body.appendChild(toast);
+        requestAnimationFrame(() => toast.style.opacity = '1');
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 5000);
       }
     });
   </script>
