@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE SPINNER EFFECT | STREAMAX Original</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1a1a1a;
+      --surface-3: #222;
+      --border: rgba(255,255,255,0.08);
+      --text: #e5e5e5;
+      --text-dim: #808080;
+      --text-bright: #ffffff;
+      --red: #e50914;
+      --red-dark: #b20710;
+      --gold: #e8b708;
+      --green: #46d369;
+      --blue: #4fc3f7;
+      --purple: #b388ff;
+      --gradient-hero: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.6) 50%, #0a0a0a 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== SPLASH / AGE GATE ===== */
+    .splash {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .splash-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      letter-spacing: 0.3em;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+      animation: logo-glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes logo-glow {
+      from { text-shadow: 0 0 20px rgba(229,9,20,0.3); }
+      to { text-shadow: 0 0 40px rgba(229,9,20,0.6), 0 0 80px rgba(229,9,20,0.2); }
+    }
+
+    .splash-tagline {
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+    }
+
+    .splash-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.03);
+    }
+    .splash-rating .rating-badge {
+      background: var(--red);
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 3px;
+    }
+    .splash-rating .rating-text {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .splash-warning-text {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .splash-enter {
+      padding: 1rem 3rem;
+      background: var(--red);
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .splash-enter:hover { background: #ff1a25; transform: scale(1.05); box-shadow: 0 10px 40px rgba(229,9,20,0.4); }
+
+    .splash-legal {
+      position: absolute;
+      bottom: 1.5rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.2);
+      max-width: 600px;
+    }
+
+    /* ===== TOP NAV ===== */
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9000;
+      padding: 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+      transition: background 0.3s;
+    }
+    .topnav.scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); }
+    .topnav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.2em;
+      color: var(--red);
+    }
+    .topnav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .topnav-links a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+    .topnav-links a:hover { color: var(--text-bright); }
+    .topnav-profile {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.75rem;
+      color: white;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 95vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 4rem 4rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 20%, rgba(229,9,20,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(79,195,247,0.08) 0%, transparent 50%),
+        var(--bg);
+    }
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      animation: float-up linear infinite;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-hero);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+    .hero-streamax-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.3em;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .hero-streamax-badge span {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      background: rgba(232,183,8,0.15);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+    }
+    .hero-title .effect { color: var(--red); }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+    }
+    .hero-meta .match {
+      color: var(--green);
+      font-weight: 700;
+    }
+    .hero-meta .year, .hero-meta .seasons, .hero-meta .quality {
+      color: var(--text-dim);
+    }
+    .hero-meta .quality {
+      border: 1px solid var(--text-dim);
+      padding: 0 0.4rem;
+      border-radius: 2px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .hero-meta .rating-pill {
+      background: rgba(229,9,20,0.2);
+      color: var(--red);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 550px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-play, .btn-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-play {
+      background: white;
+      color: #000;
+    }
+    .btn-play:hover { background: rgba(255,255,255,0.8); }
+    .btn-info {
+      background: rgba(109,109,110,0.7);
+      color: white;
+    }
+    .btn-info:hover { background: rgba(109,109,110,0.5); }
+    .btn-icon { font-size: 1.4rem; }
+
+    /* ===== SKIP INTRO ===== */
+    .skip-intro-btn {
+      position: fixed;
+      bottom: 3rem;
+      right: 3rem;
+      z-index: 8000;
+      padding: 0.6rem 1.5rem;
+      background: rgba(20,20,20,0.8);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateX(20px);
+      pointer-events: none;
+    }
+    .skip-intro-btn.visible { opacity: 1; transform: translateX(0); pointer-events: all; }
+    .skip-intro-btn:hover { background: rgba(255,255,255,0.15); }
+
+    /* ===== "ARE YOU STILL WATCHING?" OVERLAY ===== */
+    .still-watching {
+      position: fixed;
+      inset: 0;
+      z-index: 9500;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+    }
+    .still-watching.active { opacity: 1; visibility: visible; }
+    .still-watching-icon { font-size: 4rem; margin-bottom: 1.5rem; }
+    .still-watching h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .still-watching p {
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .still-watching button {
+      padding: 0.8rem 2.5rem;
+      background: white;
+      border: none;
+      border-radius: 4px;
+      color: #000;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .still-watching button:hover { transform: scale(1.05); }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 4rem 4rem; }
+    .section-label {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== EPISODE ROW ===== */
+    .episodes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .season-select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 1rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .episodes-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .episode-card {
+      display: grid;
+      grid-template-columns: 50px 200px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 8px;
+    }
+    .episode-card:hover { background: rgba(255,255,255,0.03); }
+    .episode-num {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-align: center;
+      padding-top: 1.5rem;
+    }
+    .episode-thumb {
+      width: 200px;
+      height: 112px;
+      background: var(--surface-2);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .episode-thumb-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
+    }
+    .episode-thumb .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.4);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .episode-card:hover .play-overlay { opacity: 1; }
+    .play-overlay-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.2rem;
+    }
+    .episode-info { padding-top: 0.25rem; }
+    .episode-info-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .episode-title { font-weight: 600; font-size: 1rem; }
+    .episode-duration { font-size: 0.8rem; color: var(--text-dim); }
+    .episode-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+    .episode-progress {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      margin-top: 0.75rem;
+      overflow: hidden;
+    }
+    .episode-progress-bar {
+      height: 100%;
+      background: var(--red);
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+
+    /* ===== CRITICS ===== */
+    .critics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .critic-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .critic-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
+    .critic-stars {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+    .critic-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-bright);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+    .critic-source {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== ROTTEN TOMATOES STYLE ===== */
+    .ratings-bar {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      padding: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .rating-block { text-align: center; }
+    .rating-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 0 auto 0.5rem;
+      position: relative;
+    }
+    .rating-circle::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+    .rating-circle span { position: relative; z-index: 1; }
+    .rating-circle.tomato { background: conic-gradient(var(--red) 0% 98%, var(--surface-3) 98% 100%); }
+    .rating-circle.audience { background: conic-gradient(var(--green) 0% 100%, var(--surface-3) 100% 100%); }
+    .rating-circle.imdb { background: conic-gradient(var(--gold) 0% 97%, var(--surface-3) 97% 100%); }
+    .rating-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .rating-source { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
+
+    /* ===== INTERACTIVE: THE SPINNER WHEEL ===== */
+    .spinner-wheel-section {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .spinner-wheel-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .spinner-wheel-sub {
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+    .wheel-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 0 auto 2rem;
+    }
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      position: relative;
+      transition: transform 4s cubic-bezier(0.2, 0.8, 0.3, 1);
+      overflow: hidden;
+    }
+    .wheel-segment {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      transform-origin: 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: white;
+      padding-right: 30%;
+      padding-bottom: 30%;
+    }
+    .wheel-pointer {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 24px solid var(--red);
+      z-index: 2;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    }
+    .spin-btn {
+      padding: 1rem 3rem;
+      background: var(--red);
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all 0.2s;
+    }
+    .spin-btn:hover { background: #ff1a25; transform: scale(1.05); }
+    .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .spin-result {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      min-height: 2rem;
+      color: var(--gold);
+    }
+
+    /* ===== THREAT LEVEL METER ===== */
+    .threat-section {
+      background: linear-gradient(135deg, rgba(229,9,20,0.05) 0%, rgba(10,10,10,1) 100%);
+      border: 1px solid rgba(229,9,20,0.15);
+      border-radius: 12px;
+      padding: 3rem;
+    }
+    .threat-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.15em;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+    .threat-sub { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.85rem; }
+    .threat-meter {
+      width: 100%;
+      height: 40px;
+      background: var(--surface-2);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 0.75rem;
+    }
+    .threat-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--green), var(--gold) 50%, #ff6b35 75%, var(--red) 100%);
+      width: 0%;
+      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .threat-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .threat-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .threat-stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .threat-stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.25rem;
+    }
+    .threat-stat-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-bright);
+    }
+    .threat-stat-value .counting { font-family: 'JetBrains Mono', monospace; }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--red), var(--gold), var(--green), var(--blue), var(--purple));
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -3rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--red);
+      border: 2px solid var(--bg);
+      transform: translateX(-5px);
+    }
+    .timeline-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .timeline-role {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-company {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    /* ===== VIEWER REACTIONS ===== */
+    .reactions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .reaction-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.3s;
+    }
+    .reaction-card:hover { transform: scale(1.02); }
+    .reaction-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .reaction-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+    .reaction-name { font-weight: 600; font-size: 0.9rem; }
+    .reaction-handle { font-size: 0.75rem; color: var(--text-dim); }
+    .reaction-text { font-size: 0.9rem; line-height: 1.6; color: var(--text); }
+    .reaction-likes {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* ===== SEARCH HISTORY EASTER EGG ===== */
+    .search-section {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 3rem;
+      border: 1px solid var(--border);
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 2rem;
+      transition: border-color 0.2s;
+    }
+    .search-bar:focus-within { border-color: rgba(255,255,255,0.3); }
+    .search-bar-icon { color: var(--text-dim); margin-right: 0.75rem; font-size: 1.1rem; }
+    .search-bar input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .search-bar input::placeholder { color: var(--text-dim); }
+    .search-suggestions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .search-suggestion {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+    }
+    .search-suggestion:hover { background: rgba(255,255,255,0.05); }
+    .search-suggestion .icon { color: var(--text-dim); }
+    .search-suggestion .trending { color: var(--red); font-size: 0.7rem; font-weight: 700; margin-left: auto; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* ===== AWARDS ===== */
+    .awards-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
+    }
+    .awards-scroll::-webkit-scrollbar { display: none; }
+    .award-card {
+      flex-shrink: 0;
+      width: 220px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .award-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+    .award-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .award-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-bright);
+    }
+    .award-year {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .award-body {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 4rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.3em;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .footer-text {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== CONFETTI CANVAS ===== */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      section { padding: 3rem 1.5rem; }
+      .hero { padding: 0 1.5rem 3rem; min-height: 85vh; }
+      .hero-title { font-size: 3.5rem; }
+      .topnav { padding: 1rem 1.5rem; }
+      .topnav-links { display: none; }
+      .episode-card {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .episode-num { display: none; }
+      .episode-thumb { width: 100%; height: 180px; }
+      .ratings-bar { gap: 2rem; justify-content: center; }
+      .wheel-container { width: 260px; height: 260px; }
+      .skip-intro-btn { bottom: 1.5rem; right: 1.5rem; }
+    }
+
+    /* ===== TYPING CURSOR ===== */
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: var(--red);
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ===== TOP 10 BADGE ===== */
+    .top10 {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .top10-icon {
+      width: 36px;
+      height: 40px;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: white;
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+    }
+    .top10-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .top10-text strong { color: var(--text-bright); }
+
+    /* ===== KONAMI OVERLAY ===== */
+    .konami-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s;
+    }
+    .konami-overlay.active { opacity: 1; visibility: visible; }
+    .konami-overlay h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .konami-overlay p { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 2rem; }
+    .konami-overlay button {
+      padding: 0.8rem 2rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 4px;
+      color: #000;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ===== GLASS CARD ===== */
+    .glass {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ===== MARQUEE ===== */
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 1rem 0;
+      margin: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.2em;
+      color: var(--text-dim);
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-content span { margin-right: 3rem; }
+    .marquee-content .hot { color: var(--red); }
+  </style>
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div class="splash" id="splash">
+    <div class="splash-logo">STREAMAX</div>
+    <div class="splash-tagline">Original Documentary Series</div>
+    <div class="splash-rating">
+      <div class="rating-badge">TV-MA</div>
+      <div class="rating-text">
+        Content Warning: Extreme competence,<br>
+        dangerously high career trajectory,<br>
+        scenes of relentless brand excellence
+      </div>
+    </div>
+    <p class="splash-warning-text">
+      The following documentary contains real events that may cause feelings of inadequacy, 
+      sudden career anxiety, and an overwhelming urge to update your LinkedIn profile. 
+      Viewer discretion is advised.
+    </p>
+    <button class="splash-enter" id="enter-btn">I Accept the Risk</button>
+    <div class="splash-legal">
+      STREAMAX and the STREAMAX logo are trademarks of Streamax Entertainment, a division of Definitely Real Media Corp. 
+      This documentary was produced with the full cooperation of the subject, who was too busy being excellent to actually review it.
+    </div>
+  </div>
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- "ARE YOU STILL WATCHING?" -->
+  <div class="still-watching" id="still-watching">
+    <div class="still-watching-icon">👀</div>
+    <h2>Are you still watching</h2>
+    <p><strong>The Spinner Effect</strong>?</p>
+    <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: -1rem; margin-bottom: 2rem;">
+      Of course you are. It's Nicole Spinner. Nobody stops watching.
+    </p>
+    <button id="still-watching-btn">Continue Watching</button>
+  </div>
+
+  <!-- KONAMI OVERLAY -->
+  <div class="konami-overlay" id="konami-overlay">
+    <h1>ACHIEVEMENT UNLOCKED</h1>
+    <p>You found the secret. Just like Nicole finds success: effortlessly.</p>
+    <button onclick="document.getElementById('konami-overlay').classList.remove('active')">Back to the Documentary</button>
+  </div>
+
+  <!-- SKIP INTRO BUTTON -->
+  <button class="skip-intro-btn" id="skip-intro">Skip Intro</button>
+
+  <!-- TOP NAV -->
+  <nav class="topnav" id="topnav">
+    <div class="topnav-logo">STREAMAX</div>
+    <ul class="topnav-links">
+      <a onclick="document.getElementById('episodes').scrollIntoView({behavior:'smooth'})">Episodes</a>
+      <a onclick="document.getElementById('critics').scrollIntoView({behavior:'smooth'})">Reviews</a>
+      <a onclick="document.getElementById('timeline-section').scrollIntoView({behavior:'smooth'})">Timeline</a>
+      <a onclick="document.getElementById('spin-section').scrollIntoView({behavior:'smooth'})">Bonus</a>
+    </ul>
+    <div class="topnav-profile">N</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="hero-streamax-badge">
+        STREAMAX <span>ORIGINAL</span>
+      </div>
+      <h1 class="hero-title">THE SPINNER<br><span class="effect">EFFECT</span></h1>
+      <p class="hero-subtitle" id="hero-subtitle"></p>
+      <div class="hero-meta">
+        <span class="match">98% Match</span>
+        <span class="year">2025</span>
+        <span class="seasons">Limited Series</span>
+        <span class="quality">4K</span>
+        <span class="quality">HDR</span>
+        <span class="rating-pill">TV-MA</span>
+      </div>
+      <p class="hero-desc">
+        When an Ivey Business School graduate infiltrates Canada's most prestigious ad agencies, 
+        launches an eco-friendly baby empire, and then quietly takes over the largest corporate 
+        childcare brand in the country... the industry starts asking questions. This is the story 
+        they tried to keep off your feed.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-play" id="btn-play"><span class="btn-icon">▶</span> Play</button>
+        <button class="btn-info" onclick="document.getElementById('episodes').scrollIntoView({behavior:'smooth'})"><span class="btn-icon">ℹ</span> More Info</button>
+      </div>
+      <div class="top10">
+        <div class="top10-icon">1</div>
+        <div class="top10-text"><strong>#1 in Canada</strong> Today</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <span class="hot">TRENDING #1</span>
+      <span>THE SPINNER EFFECT</span>
+      <span>6 EPISODES</span>
+      <span>100% ON ROTTEN TOMATOES (PROBABLY)</span>
+      <span>EMMY NOMINATED (IN OUR HEARTS)</span>
+      <span>BANNED IN 4 COMPETING AGENCIES</span>
+      <span>IVEY BUSINESS SCHOOL NOW OFFERS A "SPINNER STUDIES" MINOR</span>
+      <span class="hot">TRENDING #1</span>
+      <span>THE SPINNER EFFECT</span>
+      <span>6 EPISODES</span>
+      <span>100% ON ROTTEN TOMATOES (PROBABLY)</span>
+      <span>EMMY NOMINATED (IN OUR HEARTS)</span>
+      <span>BANNED IN 4 COMPETING AGENCIES</span>
+      <span>IVEY BUSINESS SCHOOL NOW OFFERS A "SPINNER STUDIES" MINOR</span>
+    </div>
+  </div>
+
+  <!-- RATINGS -->
+  <section class="fade-in">
+    <div class="ratings-bar">
+      <div class="rating-block">
+        <div class="rating-circle tomato"><span>98%</span></div>
+        <div class="rating-label">Critics Score</div>
+        <div class="rating-source">Rotten Tomatoes</div>
+      </div>
+      <div class="rating-block">
+        <div class="rating-circle audience"><span>100%</span></div>
+        <div class="rating-label">Audience Score</div>
+        <div class="rating-source">Kids & Co. Parents</div>
+      </div>
+      <div class="rating-block">
+        <div class="rating-circle imdb"><span>9.7</span></div>
+        <div class="rating-label">IMDb Rating</div>
+        <div class="rating-source">42,000 reviews</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPISODES -->
+  <section id="episodes">
+    <div class="episodes-header">
+      <h2 class="section-label">Episodes</h2>
+      <select class="season-select">
+        <option>Season 1: The Complete Career Infiltration</option>
+      </select>
+    </div>
+    <div class="episodes-grid">
+
+      <div class="episode-card fade-in">
+        <div class="episode-num">1</div>
+        <div class="episode-thumb">
+          <div class="episode-thumb-inner">🏫</div>
+          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+        </div>
+        <div class="episode-info">
+          <div class="episode-info-header">
+            <span class="episode-title">The Origin Protocol</span>
+            <span class="episode-duration">52m</span>
+          </div>
+          <p class="episode-desc">
+            A young Nicole Spinner enrolls at Ivey Business School. Within months, professors begin 
+            noticing something unusual: she actually understands marketing. A brief but suspicious 
+            stint at Manchester Business School in the UK raises questions. Was she recruited? Trained? 
+            Or was she always this way?
+          </p>
+          <div class="episode-progress"><div class="episode-progress-bar" style="width: 100%"></div></div>
+        </div>
+      </div>
+
+      <div class="episode-card fade-in">
+        <div class="episode-num">2</div>
+        <div class="episode-thumb">
+          <div class="episode-thumb-inner">🏢</div>
+          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+        </div>
+        <div class="episode-info">
+          <div class="episode-info-header">
+            <span class="episode-title">Inside the Machine</span>
+            <span class="episode-duration">48m</span>
+          </div>
+          <p class="episode-desc">
+            Nicole penetrates the inner circles of Canada's ad elite. BBDO. Juniper Park. TAXI. Red Lion. 
+            At each stop, she climbs faster than anyone can explain. Account Coordinator becomes Account Executive 
+            becomes Account Supervisor becomes Account Director. Four agencies in what felt like four minutes. 
+            Former colleagues describe her trajectory as "honestly kind of alarming."
+          </p>
+          <div class="episode-progress"><div class="episode-progress-bar" style="width: 72%"></div></div>
+        </div>
+      </div>
+
+      <div class="episode-card fade-in">
+        <div class="episode-num">3</div>
+        <div class="episode-thumb">
+          <div class="episode-thumb-inner">🌍</div>
+          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+        </div>
+        <div class="episode-info">
+          <div class="episode-info-header">
+            <span class="episode-title">The WE Years</span>
+            <span class="episode-duration">55m</span>
+          </div>
+          <p class="episode-desc">
+            Nicole pivots to purpose. As Associate Director of Partner & Product Marketing at WE, she orchestrates 
+            brand partnerships across fashion, toys, and food that somehow also help communities in need. Colleagues 
+            recall a woman who could close a deal with a Fortune 500 brand and design a product for underserved children 
+            in the same afternoon. "She made the rest of us look like we were just... sitting there," says one source.
+          </p>
+          <div class="episode-progress"><div class="episode-progress-bar" style="width: 45%"></div></div>
+        </div>
+      </div>
+
+      <div class="episode-card fade-in">
+        <div class="episode-num">4</div>
+        <div class="episode-thumb">
+          <div class="episode-thumb-inner">🐻</div>
+          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+        </div>
+        <div class="episode-info">
+          <div class="episode-info-header">
+            <span class="episode-title">Bear Market</span>
+            <span class="episode-duration">51m</span>
+          </div>
+          <p class="episode-desc">
+            In 2018, Nicole does the unthinkable: she starts The Bear Co. Custom eco-friendly teething products 
+            for children. From ad agency boardrooms to baby product R&D. "Most people go from corporate to startup 
+            and flame out in six months," notes an industry analyst. "Nicole went from corporate to startup to 
+            somehow making sustainable baby products cool. That's not normal behavior."
+          </p>
+          <div class="episode-progress"><div class="episode-progress-bar" style="width: 20%"></div></div>
+        </div>
+      </div>
+
+      <div class="episode-card fade-in">
+        <div class="episode-num">5</div>
+        <div class="episode-thumb">
+          <div class="episode-thumb-inner">👶</div>
+          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+        </div>
+        <div class="episode-info">
+          <div class="episode-info-header">
+            <span class="episode-title">The Corporate Childcare Coup</span>
+            <span class="episode-duration">58m</span>
+          </div>
+          <p class="episode-desc">
+            Nicole joins Kids & Company as Director of Marketing & Brand. Within what can only be described as 
+            "an unreasonable amount of time," she's promoted to VP. She now oversees marketing, brand, AND 
+            the company's entire ESG strategy. "That's three jobs," confirms a human resources expert. 
+            "She technically has three jobs. We checked."
+          </p>
+          <div class="episode-progress"><div class="episode-progress-bar" style="width: 0%"></div></div>
+        </div>
+      </div>
+
+      <div class="episode-card fade-in">
+        <div class="episode-num">6</div>
+        <div class="episode-thumb">
+          <div class="episode-thumb-inner">🔮</div>
+          <div class="play-overlay"><div class="play-overlay-icon">▶</div></div>
+        </div>
+        <div class="episode-info">
+          <div class="episode-info-header">
+            <span class="episode-title">What Comes Next</span>
+            <span class="episode-duration">61m</span>
+          </div>
+          <p class="episode-desc">
+            Industry insiders, former colleagues, and one very impressed documentary crew attempt to answer the 
+            only question that matters: what is Nicole Spinner going to do next? Leading theories include: 
+            running a Fortune 500, becoming Canada's first Marketing Prime Minister, or simply continuing to 
+            be suspiciously excellent at everything she touches. The investigation remains open.
+          </p>
+          <div class="episode-progress"><div class="episode-progress-bar" style="width: 0%"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THREAT LEVEL -->
+  <section id="threat-section">
+    <div class="threat-section fade-in">
+      <div class="threat-title">INDUSTRY THREAT ASSESSMENT</div>
+      <div class="threat-sub">Classification: SEVERE — As determined by the Bureau of Career Trajectory Analysis</div>
+      <div class="threat-meter">
+        <div class="threat-fill" id="threat-fill"></div>
+      </div>
+      <div class="threat-labels">
+        <span>Harmless Intern</span>
+        <span>Mild Concern</span>
+        <span>Elevated</span>
+        <span>Severe</span>
+        <span>Nicole Spinner</span>
+      </div>
+      <div class="threat-stats">
+        <div class="threat-stat">
+          <div class="threat-stat-label">Industries Infiltrated</div>
+          <div class="threat-stat-value"><span class="counting" data-target="6">0</span></div>
+        </div>
+        <div class="threat-stat">
+          <div class="threat-stat-label">Ad Agencies Conquered</div>
+          <div class="threat-stat-value"><span class="counting" data-target="4">0</span></div>
+        </div>
+        <div class="threat-stat">
+          <div class="threat-stat-label">Companies Founded</div>
+          <div class="threat-stat-value"><span class="counting" data-target="1">0</span></div>
+        </div>
+        <div class="threat-stat">
+          <div class="threat-stat-label">Current Job Titles (Simultaneously)</div>
+          <div class="threat-stat-value"><span class="counting" data-target="3">0</span></div>
+        </div>
+        <div class="threat-stat">
+          <div class="threat-stat-label">Competitors Left Questioning Life Choices</div>
+          <div class="threat-stat-value"><span class="counting" data-target="847">0</span></div>
+        </div>
+        <div class="threat-stat">
+          <div class="threat-stat-label">Career Trajectory Angle</div>
+          <div class="threat-stat-value"><span class="counting" data-target="89">0</span>°</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRITICS -->
+  <section id="critics">
+    <h2 class="section-label fade-in">What Critics Are Saying</h2>
+    <div class="critics-grid">
+      <div class="critic-card fade-in">
+        <div class="critic-stars">★★★★★</div>
+        <p class="critic-quote">"I started watching to understand the hype. I finished the series having completely restructured my own career goals. This woman is a force of nature documented."</p>
+        <div class="critic-source">The Toronto Star</div>
+      </div>
+      <div class="critic-card fade-in">
+        <div class="critic-stars">★★★★★</div>
+        <p class="critic-quote">"The Bear Co. episode alone deserves its own Emmy. Who pivots from BBDO to eco-friendly teething products and makes both look like the obvious move? Nicole Spinner, apparently."</p>
+        <div class="critic-source">Marketing Magazine</div>
+      </div>
+      <div class="critic-card fade-in">
+        <div class="critic-stars">★★★★★</div>
+        <p class="critic-quote">"We tried to find a flaw in her career trajectory for dramatic tension. We could not. That IS the dramatic tension."</p>
+        <div class="critic-source">The Documentary Filmmaker (in tears)</div>
+      </div>
+      <div class="critic-card fade-in">
+        <div class="critic-stars">★★★★½</div>
+        <p class="critic-quote">"Half a star deducted because this documentary made me feel genuinely bad about my own life. Otherwise flawless. Like its subject."</p>
+        <div class="critic-source">Globe & Mail</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline-section">
+    <h2 class="section-label fade-in">The Career: An Incident Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2008 — 2009</div>
+        <div class="timeline-role">HBA Student / International Operative</div>
+        <div class="timeline-company">Ivey Business School + Manchester Business School</div>
+        <div class="timeline-desc">Officially: studying business. Unofficially: learning how to dominate entire industries before anyone notices. The Manchester semester remains classified.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2009 — 2011</div>
+        <div class="timeline-role">Account Coordinator → Account Executive</div>
+        <div class="timeline-company">BBDO Worldwide → Juniper Park</div>
+        <div class="timeline-desc">Enters the ad world at the global BBDO machine. Quickly moves to Juniper Park. Industry observers would later describe this period as "the warm-up."</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2011 — 2015</div>
+        <div class="timeline-role">Account Supervisor → Account Director</div>
+        <div class="timeline-company">TAXI → Red Lion</div>
+        <div class="timeline-desc">By the time she reaches Account Director at Red Lion, she's quietly accumulated more agency experience than most people get in a decade. Toronto's advertising community starts whispering.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2017 — 2021</div>
+        <div class="timeline-role">Associate Director, Partner & Product Marketing</div>
+        <div class="timeline-company">WE</div>
+        <div class="timeline-desc">Pivots to purpose-driven marketing. Orchestrates brand partnerships that actually help communities. Shatters the assumption that doing good and doing well can't happen in the same meeting.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-role">Founder & CEO</div>
+        <div class="timeline-company">The Bear Co.</div>
+        <div class="timeline-desc">While still at WE, casually founds a company making eco-friendly teething products for children. Because why run one career when you can run two simultaneously? Scientists remain baffled.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2021 — Present</div>
+        <div class="timeline-role">VP of Marketing & Brand + ESG Lead</div>
+        <div class="timeline-company">Kids & Company</div>
+        <div class="timeline-desc">Now running marketing, brand strategy, AND sustainability for Canada's premier corporate childcare company. Three roles, one Nicole. The math doesn't math, but here we are.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPINNER WHEEL -->
+  <section id="spin-section">
+    <div class="spinner-wheel-section fade-in">
+      <div class="spinner-wheel-title">THE SPINNER WHEEL</div>
+      <p class="spinner-wheel-sub">Spin to discover what Nicole will conquer next. (Results legally binding.)</p>
+      <div class="wheel-container">
+        <div class="wheel-pointer"></div>
+        <canvas id="wheel-canvas" width="320" height="320"></canvas>
+      </div>
+      <button class="spin-btn" id="spin-btn">Spin the Wheel</button>
+      <div class="spin-result" id="spin-result"></div>
+    </div>
+  </section>
+
+  <!-- SEARCH HISTORY -->
+  <section>
+    <div class="search-section fade-in">
+      <h2 class="section-label" style="margin-bottom: 0.5rem;">Nicole's Trending Searches</h2>
+      <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1.5rem;">What the world is searching after watching The Spinner Effect</p>
+      <div class="search-bar">
+        <span class="search-bar-icon">🔍</span>
+        <input type="text" placeholder="Search STREAMAX..." readonly>
+      </div>
+      <div class="search-suggestions">
+        <div class="search-suggestion">
+          <span class="icon">🔥</span>
+          <span>how to have Nicole Spinner's career but I'm already 35</span>
+          <span class="trending">TRENDING</span>
+        </div>
+        <div class="search-suggestion">
+          <span class="icon">🔥</span>
+          <span>is Nicole Spinner actually three people in a trench coat</span>
+          <span class="trending">TRENDING</span>
+        </div>
+        <div class="search-suggestion">
+          <span class="icon">🕐</span>
+          <span>Ivey Business School "how to be Nicole Spinner" course</span>
+        </div>
+        <div class="search-suggestion">
+          <span class="icon">🕐</span>
+          <span>Kids & Company stock price after Nicole joined</span>
+        </div>
+        <div class="search-suggestion">
+          <span class="icon">🕐</span>
+          <span>The Bear Co eco teething products where to buy</span>
+        </div>
+        <div class="search-suggestion">
+          <span class="icon">🕐</span>
+          <span>can one person legally hold that many job titles</span>
+        </div>
+        <div class="search-suggestion">
+          <span class="icon">🕐</span>
+          <span>BBDO Juniper Park TAXI Red Lion "Nicole Spinner" conspiracy</span>
+        </div>
+        <div class="search-suggestion">
+          <span class="icon">🕐</span>
+          <span>how many hours are in Nicole Spinner's day (hint: more than yours)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEWER REACTIONS -->
+  <section>
+    <h2 class="section-label fade-in">Viewer Reactions</h2>
+    <div class="reactions-grid">
+      <div class="reaction-card fade-in">
+        <div class="reaction-header">
+          <div class="reaction-avatar" style="background: linear-gradient(135deg, #667eea, #764ba2);">M</div>
+          <div>
+            <div class="reaction-name">Marketing Mike</div>
+            <div class="reaction-handle">@marketingmike_TO</div>
+          </div>
+        </div>
+        <div class="reaction-text">just finished The Spinner Effect and I'm genuinely upset. I've been in marketing for 15 years and this woman has done more by episode 3 than I'll do in my entire career. I need to lie down.</div>
+        <div class="reaction-likes">❤️ 4,203 · 💬 891</div>
+      </div>
+      <div class="reaction-card fade-in">
+        <div class="reaction-header">
+          <div class="reaction-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">S</div>
+          <div>
+            <div class="reaction-name">Sarah K.</div>
+            <div class="reaction-handle">@sarahk_ivey2010</div>
+          </div>
+        </div>
+        <div class="reaction-text">I was in Nicole's year at Ivey. We all knew she was going to be something. What we didn't know is that "something" meant "literally everything simultaneously." The Bear Co. episode made me cry??</div>
+        <div class="reaction-likes">❤️ 7,892 · 💬 1,203</div>
+      </div>
+      <div class="reaction-card fade-in">
+        <div class="reaction-header">
+          <div class="reaction-avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">D</div>
+          <div>
+            <div class="reaction-name">Dave from BBDO</div>
+            <div class="reaction-handle">@definitely_not_bbdo</div>
+          </div>
+        </div>
+        <div class="reaction-text">Our legal team asked me not to comment on this documentary. But off the record: we've never recovered from losing her. The office plants haven't been the same.</div>
+        <div class="reaction-likes">❤️ 12,445 · 💬 3,201</div>
+      </div>
+      <div class="reaction-card fade-in">
+        <div class="reaction-header">
+          <div class="reaction-avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">P</div>
+          <div>
+            <div class="reaction-name">Proud Parent</div>
+            <div class="reaction-handle">@kidsandco_parent</div>
+          </div>
+        </div>
+        <div class="reaction-text">My kid goes to Kids & Company. After watching this I now understand why their marketing is so good. There's a VP running three departments and somehow each one is better than most companies' only department.</div>
+        <div class="reaction-likes">❤️ 3,108 · 💬 567</div>
+      </div>
+      <div class="reaction-card fade-in">
+        <div class="reaction-header">
+          <div class="reaction-avatar" style="background: linear-gradient(135deg, #fa709a, #fee140);">T</div>
+          <div>
+            <div class="reaction-name">Teething Product Enthusiast</div>
+            <div class="reaction-handle">@eco_baby_toronto</div>
+          </div>
+        </div>
+        <div class="reaction-text">I bought Bear Co. products before I knew who founded them. Now I find out the founder is also a VP at a childcare empire who used to run campaigns at BBDO? I'm sorry but this is the greatest crossover episode of all time.</div>
+        <div class="reaction-likes">❤️ 5,671 · 💬 892</div>
+      </div>
+      <div class="reaction-card fade-in">
+        <div class="reaction-header">
+          <div class="reaction-avatar" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">R</div>
+          <div>
+            <div class="reaction-name">Red Lion Remembers</div>
+            <div class="reaction-handle">@redlion_alumni</div>
+          </div>
+        </div>
+        <div class="reaction-text">Episode 2 gave me flashbacks. She was Account Director and the rest of us were just... accounts she was directing. 10/10 documentary, 0/10 for my self-esteem.</div>
+        <div class="reaction-likes">❤️ 2,890 · 💬 445</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section>
+    <h2 class="section-label fade-in">Awards & Recognition</h2>
+    <div class="awards-scroll">
+      <div class="award-card fade-in">
+        <div class="award-icon">🏆</div>
+        <div class="award-name">Best Career Trajectory in a Documentary</div>
+        <div class="award-year">STREAMAX AWARDS 2025</div>
+        <div class="award-body">Awarded unanimously. The committee asked if she wanted to accept the award or just add it to the pile.</div>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">🎬</div>
+        <div class="award-name">Most Likely to Make Viewers Reconsider Everything</div>
+        <div class="award-year">TORONTO FILM CRITICS 2025</div>
+        <div class="award-body">First documentary to cause a measurable spike in MBA applications.</div>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">🌱</div>
+        <div class="award-name">Sustainability in Storytelling</div>
+        <div class="award-year">GREEN SCREEN AWARDS 2025</div>
+        <div class="award-body">For The Bear Co. episode, which made eco-friendly teething products somehow cinematic.</div>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">👶</div>
+        <div class="award-name">Best Corporate Childcare Content</div>
+        <div class="award-year">PARENTS' CHOICE 2025</div>
+        <div class="award-body">A category that didn't exist before this documentary. Nicole created the category by existing.</div>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">🧠</div>
+        <div class="award-name">Ivey Distinguished Alumni (Retroactive)</div>
+        <div class="award-year">WESTERN UNIVERSITY 2025</div>
+        <div class="award-body">Ivey added a "Spinner Wing" to the business school. It's just a really well-marketed hallway.</div>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">💀</div>
+        <div class="award-name">Most Devastating to Competitors' Morale</div>
+        <div class="award-year">AD INDUSTRY AWARDS 2025</div>
+        <div class="award-body">Four agencies submitted joint therapy bills as evidence.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">STREAMAX</div>
+    <p class="footer-text">
+      "The Spinner Effect" is a STREAMAX Original Documentary. Any resemblance to an actual 
+      superhuman is entirely intentional. Nicole Spinner is a real person who is really this impressive. 
+      We checked. Multiple times. We're still in disbelief.
+    </p>
+    <div class="footer-links">
+      <span>Audio Description</span>
+      <span>Help Center</span>
+      <span>Gift Cards</span>
+      <span>Terms of Use</span>
+      <span>Privacy (Nicole has none left after this doc)</span>
+      <span>Cookie Preferences</span>
+      <span>Corporate Information (Ask Nicole, she runs it all)</span>
+    </div>
+    <p style="margin-top: 2rem; font-size: 0.65rem; color: rgba(255,255,255,0.15);">
+      © 2025 Streamax Entertainment. A division of Definitely Real Media Corp. 
+      Made with admiration in Toronto, Ontario. Service Code: SPINNER-001.
+      <br><br>
+      🐻 If you found this page, Nicole, just know: everyone who made this is genuinely in awe.
+    </p>
+  </footer>
+
+  <script>
+    // ===== SPLASH SCREEN =====
+    const splash = document.getElementById('splash');
+    const enterBtn = document.getElementById('enter-btn');
+    enterBtn.addEventListener('click', () => {
+      splash.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      startHeroTyping();
+      setTimeout(showSkipIntro, 3000);
+    });
+    document.body.style.overflow = 'hidden';
+
+    // ===== HERO SUBTITLE TYPING =====
+    function startHeroTyping() {
+      const el = document.getElementById('hero-subtitle');
+      const text = "How one woman infiltrated every industry in Canada and nobody thought to stop her";
+      let i = 0;
+      el.classList.add('typing-cursor');
+      function type() {
+        if (i < text.length) {
+          el.textContent = text.substring(0, i + 1);
+          i++;
+          setTimeout(type, 30 + Math.random() * 20);
+        } else {
+          el.classList.remove('typing-cursor');
+        }
+      }
+      setTimeout(type, 500);
+    }
+
+    // ===== PARTICLES =====
+    const particlesEl = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (8 + Math.random() * 12) + 's';
+      p.style.animationDelay = Math.random() * 10 + 's';
+      p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+      particlesEl.appendChild(p);
+    }
+
+    // ===== SKIP INTRO =====
+    const skipBtn = document.getElementById('skip-intro');
+    function showSkipIntro() {
+      skipBtn.classList.add('visible');
+      setTimeout(() => skipBtn.classList.remove('visible'), 5000);
+    }
+    let skipClicks = 0;
+    const skipMessages = [
+      "You can't skip Nicole Spinner.",
+      "Nice try. She's unskippable.",
+      "This is like trying to skip excellence. It doesn't work.",
+      "The skip button doesn't work on legends.",
+      "We admire your persistence. Still no.",
+      "Fine. Here's a fun fact: Nicole ran an eco teething company. While working at WE. At the same time. You can't skip someone like that.",
+      "Ok we're done. Stop clicking skip."
+    ];
+    skipBtn.addEventListener('click', () => {
+      if (skipClicks < skipMessages.length) {
+        skipBtn.textContent = skipMessages[skipClicks];
+        skipBtn.classList.add('visible');
+        setTimeout(() => {
+          if (skipClicks < skipMessages.length) {
+            skipBtn.textContent = 'Skip Intro';
+          }
+        }, 3000);
+        skipClicks++;
+      }
+      if (skipClicks >= skipMessages.length) {
+        setTimeout(() => skipBtn.classList.remove('visible'), 3000);
+      }
+    });
+
+    // ===== PLAY BUTTON → CONFETTI =====
+    document.getElementById('btn-play').addEventListener('click', () => {
+      launchConfetti();
+      // Show "still watching" after 5s
+      setTimeout(() => {
+        document.getElementById('still-watching').classList.add('active');
+      }, 5000);
+    });
+
+    document.getElementById('still-watching-btn').addEventListener('click', () => {
+      document.getElementById('still-watching').classList.remove('active');
+    });
+
+    // ===== CONFETTI =====
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const pieces = [];
+      const colors = ['#e50914', '#e8b708', '#4fc3f7', '#46d369', '#b388ff', '#ff6b35', '#ffffff'];
+      
+      for (let i = 0; i < 150; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * 200,
+          w: 6 + Math.random() * 8,
+          h: 4 + Math.random() * 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 4,
+          vy: 2 + Math.random() * 4,
+          rot: Math.random() * 360,
+          rv: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+
+      let frame = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        pieces.forEach(p => {
+          if (p.opacity <= 0) return;
+          alive = true;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.05;
+          p.rot += p.rv;
+          if (frame > 60) p.opacity -= 0.008;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+          ctx.restore();
+        });
+        frame++;
+        if (alive) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      animate();
+    }
+
+    // ===== NAV SCROLL =====
+    const topnav = document.getElementById('topnav');
+    window.addEventListener('scroll', () => {
+      topnav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // Trigger threat meter
+          if (e.target.closest('#threat-section')) {
+            document.getElementById('threat-fill').style.width = '97%';
+            animateCounters();
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in, .timeline-item').forEach(el => observer.observe(el));
+
+    // ===== COUNTER ANIMATION =====
+    let countersAnimated = false;
+    function animateCounters() {
+      if (countersAnimated) return;
+      countersAnimated = true;
+      document.querySelectorAll('.counting').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased);
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    // ===== SPINNER WHEEL =====
+    const wheelCanvas = document.getElementById('wheel-canvas');
+    const wheelCtx = wheelCanvas.getContext('2d');
+    const segments = [
+      { label: "Fortune 500\nCEO", color: "#e50914" },
+      { label: "Prime\nMinister", color: "#b20710" },
+      { label: "NASA\nMarketing", color: "#4fc3f7" },
+      { label: "Nobel\nPrize", color: "#e8b708" },
+      { label: "Disney\nCEO", color: "#46d369" },
+      { label: "Mars\nColony\nBrand Lead", color: "#b388ff" },
+      { label: "UN\nAmbassador", color: "#ff6b35" },
+      { label: "All of\nthe Above", color: "#d4a853" }
+    ];
+    const segAngle = (2 * Math.PI) / segments.length;
+    let currentRotation = 0;
+
+    function drawWheel(rotation) {
+      const cx = 160, cy = 160, r = 150;
+      wheelCtx.clearRect(0, 0, 320, 320);
+      
+      segments.forEach((seg, i) => {
+        const startAngle = rotation + i * segAngle;
+        const endAngle = startAngle + segAngle;
+        
+        wheelCtx.beginPath();
+        wheelCtx.moveTo(cx, cy);
+        wheelCtx.arc(cx, cy, r, startAngle, endAngle);
+        wheelCtx.closePath();
+        wheelCtx.fillStyle = seg.color;
+        wheelCtx.fill();
+        wheelCtx.strokeStyle = 'rgba(0,0,0,0.3)';
+        wheelCtx.lineWidth = 2;
+        wheelCtx.stroke();
+        
+        // Label
+        wheelCtx.save();
+        wheelCtx.translate(cx, cy);
+        wheelCtx.rotate(startAngle + segAngle / 2);
+        wheelCtx.fillStyle = 'white';
+        wheelCtx.font = 'bold 11px Inter, sans-serif';
+        wheelCtx.textAlign = 'center';
+        wheelCtx.textBaseline = 'middle';
+        const lines = seg.label.split('\n');
+        lines.forEach((line, li) => {
+          wheelCtx.fillText(line, r * 0.6, (li - (lines.length-1)/2) * 13);
+        });
+        wheelCtx.restore();
+      });
+      
+      // Center
+      wheelCtx.beginPath();
+      wheelCtx.arc(cx, cy, 20, 0, Math.PI * 2);
+      wheelCtx.fillStyle = '#0a0a0a';
+      wheelCtx.fill();
+      wheelCtx.strokeStyle = 'rgba(255,255,255,0.2)';
+      wheelCtx.lineWidth = 2;
+      wheelCtx.stroke();
+    }
+
+    drawWheel(0);
+
+    const spinBtn = document.getElementById('spin-btn');
+    const spinResult = document.getElementById('spin-result');
+
+    spinBtn.addEventListener('click', () => {
+      spinBtn.disabled = true;
+      spinResult.textContent = '';
+      
+      const spins = 5 + Math.random() * 5;
+      const targetRotation = currentRotation + spins * Math.PI * 2;
+      const duration = 4000;
+      const start = performance.now();
+      
+      function animate(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const rot = currentRotation + (targetRotation - currentRotation) * eased;
+        drawWheel(rot);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          currentRotation = targetRotation % (Math.PI * 2);
+          // Determine which segment the pointer (top) is pointing at
+          const pointerAngle = (Math.PI * 1.5 - currentRotation % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+          const segIndex = Math.floor(pointerAngle / segAngle) % segments.length;
+          const winner = segments[segIndex].label.replace(/\n/g, ' ');
+          
+          // Always land on "All of the Above" 😏
+          spinResult.textContent = "🎯 " + (Math.random() < 0.4 ? winner : "All of the Above") + " — Obviously.";
+          spinBtn.disabled = false;
+          launchConfetti();
+        }
+      }
+      requestAnimationFrame(animate);
+    });
+
+    // ===== KONAMI CODE =====
+    const konamiCode = [38,38,40,40,37,39,37,39,66,65];
+    let konamiIndex = 0;
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          document.getElementById('konami-overlay').classList.add('active');
+          launchConfetti();
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    // ===== CONSOLE EASTER EGG =====
+    console.log('%c🔍 CLASSIFIED INTELLIGENCE BRIEF', 'font-size: 20px; font-weight: bold; color: #e50914;');
+    console.log('%cSubject: SPINNER, Nicole', 'font-size: 14px; color: #e8b708;');
+    console.log('%cThreat Level: MAXIMUM', 'font-size: 14px; color: #e50914;');
+    console.log('%cStatus: Currently running three departments at once while you\'re reading console logs', 'font-size: 12px; color: #808080;');
+    console.log('%c\nIf you\'re reading this, you\'re already behind. Nicole found this easter egg 3 weeks ago.', 'font-size: 11px; color: #4fc3f7;');
+
+    // ===== SECRET CLICK COUNTER ON TITLE =====
+    let titleClicks = 0;
+    document.querySelector('.hero-title')?.addEventListener('click', () => {
+      titleClicks++;
+      if (titleClicks === 7) {
+        document.body.style.transition = 'filter 0.5s';
+        document.body.style.filter = 'hue-rotate(180deg)';
+        setTimeout(() => { document.body.style.filter = 'none'; }, 3000);
+        titleClicks = 0;
+      }
+    });
+  </script>
+</body>
+</html>
