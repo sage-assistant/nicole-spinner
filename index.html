@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Marketing Suite | Nicole Spinner | Kids &amp; Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#FF6B6B;--primary-dark:#E85555;--primary-light:#FFE8E8;
+  --secondary:#4ECDC4;--secondary-dark:#3CB5AD;
+  --accent:#FFD93D;--accent-warm:#FF8C42;
+  --bg:#FFFDF7;--bg-alt:#FFF8F0;--surface:#FFFFFF;
+  --text:#2D3436;--text-muted:#636E72;--border:#F0E6DA;
+  --gradient-hero:linear-gradient(135deg,#FF6B6B 0%,#FF8C42 50%,#FFD93D 100%);
+  --gradient-cool:linear-gradient(135deg,#4ECDC4 0%,#44B4D9 100%);
+  --gradient-warm:linear-gradient(135deg,#FF6B6B 0%,#FF8C42 100%);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 32px rgba(0,0,0,.1);--shadow-xl:0 24px 48px rgba(0,0,0,.12);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;--radius-full:9999px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif;line-height:1.15}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background:var(--gradient-hero);background-size:300% 300%;animation:heroShift 12s ease infinite;padding:2rem}
+@keyframes heroShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;opacity:.12;pointer-events:none}
+.hero::before{width:500px;height:500px;background:#fff;top:-120px;right:-100px;animation:floatA 8s ease-in-out infinite}
+.hero::after{width:350px;height:350px;background:#fff;bottom:-80px;left:-60px;animation:floatB 10s ease-in-out infinite}
+@keyframes floatA{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,40px)}}
+@keyframes floatB{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}}
+.hero-shape{position:absolute;border-radius:var(--radius-xl);opacity:.08;background:#fff;pointer-events:none}
+.hero-shape.s1{width:120px;height:120px;top:20%;left:8%;animation:floatA 7s ease-in-out infinite;border-radius:30% 70% 70% 30%/30% 30% 70% 70%}
+.hero-shape.s2{width:80px;height:80px;top:60%;right:12%;animation:floatB 9s ease-in-out infinite;border-radius:50%}
+.hero-shape.s3{width:60px;height:60px;bottom:25%;left:20%;animation:floatA 11s ease-in-out infinite;border-radius:50% 30%}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;color:#fff;margin-bottom:.5rem;letter-spacing:-.03em;opacity:0;animation:fadeUp .8s ease forwards .3s}
+.hero .subtitle{font-size:clamp(1.1rem,2.5vw,1.4rem);color:rgba(255,255,255,.92);margin-bottom:.5rem;font-weight:600;opacity:0;animation:fadeUp .8s ease forwards .5s}
+.hero .subtext{font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s ease forwards .7s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero .scroll-hint{opacity:0;animation:fadeUp .8s ease forwards 1s}
+.scroll-hint span{display:block;width:28px;height:28px;margin:0 auto;border-right:2px solid rgba(255,255,255,.6);border-bottom:2px solid rgba(255,255,255,.6);transform:rotate(45deg);animation:scrollBounce 2s ease infinite}
+@keyframes scrollBounce{0%,100%{transform:rotate(45deg) translate(0,0)}50%{transform:rotate(45deg) translate(6px,6px)}}
+
+/* Stats bar */
+.stats-bar{background:var(--surface);padding:2rem 0;border-bottom:1px solid var(--border)}
+.stats-bar .container{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;text-align:center}
+.stat-item .stat-num{font-family:'Poppins',sans-serif;font-size:2rem;font-weight:800;color:var(--primary);letter-spacing:-.02em}
+.stat-item .stat-label{font-size:.85rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+
+/* ===== TOOL NAV ===== */
+.tool-nav{position:sticky;top:0;z-index:100;background:rgba(255,253,247,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transform:translateY(-100%);transition:transform .4s ease;padding:.5rem 0}
+.tool-nav.visible{transform:translateY(0)}
+.tool-nav .container{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.tool-nav .container::-webkit-scrollbar{display:none}
+.tool-tab{font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600;padding:.65rem 1.2rem;border:none;background:transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;border-radius:var(--radius-full);transition:all .25s ease;position:relative}
+.tool-tab:hover{color:var(--text);background:var(--primary-light)}
+.tool-tab.active{color:var(--primary);background:var(--primary-light)}
+
+/* ===== TOOL SECTIONS ===== */
+.tool-section{padding:96px 0;opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
+.tool-section.revealed{opacity:1;transform:translateY(0)}
+.tool-section:nth-child(even){background:var(--bg-alt)}
+.tool-header{text-align:center;margin-bottom:3rem}
+.tool-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:.35rem 1rem;border-radius:var(--radius-full);margin-bottom:.75rem;letter-spacing:.05em}
+.tool-header h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:.5rem}
+.tool-header p{font-size:1.05rem;color:var(--text-muted);max-width:540px;margin:0 auto}
+
+/* Shared UI */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-sm);transition:box-shadow .3s ease,transform .3s ease}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.btn{font-family:'Poppins',sans-serif;font-weight:600;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:all .25s ease;display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--primary);color:#fff;padding:.75rem 1.75rem;font-size:.95rem}
+.btn-primary:hover{background:var(--primary-dark);box-shadow:0 6px 20px rgba(255,107,107,.3)}
+.btn-secondary{background:var(--secondary);color:#fff;padding:.75rem 1.75rem;font-size:.95rem}
+.btn-secondary:hover{background:var(--secondary-dark)}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:.6rem 1.2rem;font-size:.85rem}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.btn-outline.active{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
+.pill-group{display:flex;flex-wrap:wrap;gap:.5rem}
+.pill{font-family:'Poppins',sans-serif;font-size:.8rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--radius-full);border:1.5px solid var(--border);background:var(--surface);color:var(--text-muted);cursor:pointer;transition:all .2s ease}
+.pill:hover{border-color:var(--primary);color:var(--primary)}
+.pill.active{background:var(--primary);border-color:var(--primary);color:#fff}
+input[type="text"],input[type="number"],input[type="date"],textarea,select{font-family:'Nunito',sans-serif;font-size:.95rem;padding:.7rem 1rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);transition:border-color .25s ease,box-shadow .25s ease;width:100%}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,107,107,.12)}
+textarea{resize:vertical;min-height:120px}
+label{font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600;color:var(--text);display:block;margin-bottom:.35rem}
+
+/* ===== TOOL 1: SOCIAL CONTENT STUDIO ===== */
+.social-studio .config-panel{display:grid;gap:1.5rem;margin-bottom:2rem}
+.social-studio .output-area{min-height:200px}
+.generated-post{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;position:relative;overflow:hidden}
+.generated-post .post-text{font-size:1.05rem;line-height:1.75;margin-bottom:1.25rem;white-space:pre-wrap}
+.generated-post .hashtags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.generated-post .hashtag{font-size:.8rem;color:var(--secondary-dark);font-weight:600;background:rgba(78,205,196,.1);padding:.25rem .65rem;border-radius:var(--radius-full)}
+.post-meta{display:flex;flex-wrap:wrap;gap:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.post-meta-item{font-size:.82rem;color:var(--text-muted);display:flex;align-items:center;gap:.35rem}
+.post-meta-item strong{color:var(--text)}
+.typewriter{overflow:hidden;border-right:2px solid var(--primary);animation:blink .7s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+
+/* ===== TOOL 2: BRAND VOICE ANALYZER ===== */
+.analyzer .analysis-grid{display:grid;grid-template-columns:280px 1fr;gap:2rem;align-items:start}
+@media(max-width:768px){.analyzer .analysis-grid{grid-template-columns:1fr}}
+.score-ring{width:160px;height:160px;margin:0 auto 1.5rem;position:relative}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .score-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-ring .score-num{font-family:'Poppins',sans-serif;font-size:2.5rem;font-weight:800}
+.score-ring .score-label{font-size:.75rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.metric-bar{margin-bottom:1.25rem}
+.metric-bar .bar-header{display:flex;justify-content:space-between;margin-bottom:.35rem}
+.metric-bar .bar-name{font-size:.85rem;font-weight:600}
+.metric-bar .bar-val{font-size:.85rem;font-weight:700;color:var(--primary)}
+.metric-bar .bar-track{height:8px;background:var(--border);border-radius:var(--radius-full);overflow:hidden}
+.metric-bar .bar-fill{height:100%;border-radius:var(--radius-full);transition:width 1s ease;width:0}
+.suggestions-list{list-style:none;padding:0}
+.suggestions-list li{padding:.65rem 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:.5rem}
+.suggestions-list li::before{content:'\25CF';color:var(--accent-warm);font-size:.6rem;margin-top:.4rem;flex-shrink:0}
+.example-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+
+/* ===== TOOL 3: CAMPAIGN COMMAND CENTER ===== */
+.campaign .campaign-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:768px){.campaign .campaign-grid{grid-template-columns:1fr}}
+.campaign .config-col{display:flex;flex-direction:column;gap:1.25rem}
+.region-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.region-toggle{font-family:'Poppins',sans-serif;font-size:.8rem;font-weight:600;padding:.65rem .5rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);cursor:pointer;text-align:center;transition:all .2s ease}
+.region-toggle:hover{border-color:var(--secondary)}
+.region-toggle.active{background:var(--secondary);border-color:var(--secondary);color:#fff}
+.region-toggle .count{display:block;font-size:.7rem;font-weight:400;opacity:.8}
+.channel-slider{margin-bottom:.75rem}
+.channel-slider .slider-header{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.3rem}
+.channel-slider .slider-header span:first-child{font-weight:600}
+.channel-slider input[type="range"]{width:100%;accent-color:var(--primary);height:6px;cursor:pointer}
+.dashboard-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+.dashboard-card .dash-num{font-family:'Poppins',sans-serif;font-size:1.8rem;font-weight:800;color:var(--primary)}
+.dashboard-card .dash-label{font-size:.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:1.5rem}
+.donut-container{width:180px;height:180px;margin:0 auto 1rem;position:relative}
+.donut-container svg{transform:rotate(-90deg)}
+.donut-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:var(--text)}
+.location-dots{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:1rem}
+.location-dot{width:10px;height:10px;border-radius:50%;transition:background .3s ease}
+.location-dot.targeted{background:var(--secondary)}
+.location-dot.inactive{background:var(--border)}
+
+/* ===== TOOL 4: NEWSLETTER BUILDER ===== */
+.newsletter .newsletter-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:768px){.newsletter .newsletter-grid{grid-template-columns:1fr}}
+.template-cards{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.25rem}
+.template-card{padding:1rem;border:1.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;text-align:center;transition:all .25s ease;background:var(--surface)}
+.template-card:hover{border-color:var(--secondary);transform:translateY(-2px)}
+.template-card.active{border-color:var(--secondary);background:rgba(78,205,196,.08)}
+.template-card .t-icon{font-size:1.5rem;margin-bottom:.35rem}
+.template-card .t-name{font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600}
+.email-preview{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.email-header{background:var(--gradient-warm);padding:1.5rem;text-align:center;color:#fff}
+.email-header h3{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.25rem}
+.email-header p{font-size:.8rem;opacity:.9}
+.email-body{padding:1.5rem;font-size:.9rem;line-height:1.7}
+.email-body .greeting{font-weight:700;margin-bottom:.75rem}
+.email-body .content-block{margin-bottom:1rem}
+.email-cta{display:block;width:fit-content;margin:1.25rem auto;padding:.65rem 2rem;background:var(--primary);color:#fff;border-radius:var(--radius-full);font-family:'Poppins',sans-serif;font-weight:600;font-size:.85rem;text-decoration:none;text-align:center}
+.email-footer{padding:1rem 1.5rem;background:var(--bg-alt);font-size:.75rem;color:var(--text-muted);text-align:center;border-top:1px solid var(--border)}
+
+/* ===== TOOL 5: ENROLLMENT FUNNEL ===== */
+.funnel .period-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem}
+.funnel .metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+@media(max-width:768px){.funnel .metrics-row{grid-template-columns:repeat(2,1fr)}}
+.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem;text-align:center;transition:transform .3s ease}
+.metric-card:hover{transform:translateY(-3px)}
+.metric-card .m-value{font-family:'Poppins',sans-serif;font-size:1.8rem;font-weight:800;color:var(--primary)}
+.metric-card .m-label{font-size:.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.metric-card .m-trend{font-size:.8rem;font-weight:700;margin-top:.25rem}
+.m-trend.up{color:#059669}
+.m-trend.down{color:#DC2626}
+.funnel-visual{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2.5rem}
+.funnel-step{display:flex;align-items:center;gap:1rem}
+.funnel-step .step-label{min-width:130px;font-size:.85rem;font-weight:600;text-align:right}
+.funnel-step .step-bar-track{flex:1;height:40px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;position:relative}
+.funnel-step .step-bar-fill{height:100%;border-radius:var(--radius-sm);transition:width 1.2s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:.75rem;font-family:'Poppins',sans-serif;font-size:.8rem;font-weight:700;color:#fff}
+.funnel-step:nth-child(1) .step-bar-fill{background:var(--primary)}
+.funnel-step:nth-child(2) .step-bar-fill{background:var(--accent-warm)}
+.funnel-step:nth-child(3) .step-bar-fill{background:var(--accent)}
+.funnel-step:nth-child(4) .step-bar-fill{background:var(--secondary)}
+.funnel-step:nth-child(5) .step-bar-fill{background:var(--secondary-dark)}
+.funnel-step .step-conv{min-width:60px;font-size:.78rem;color:var(--text-muted);font-weight:600}
+.channels-section{margin-bottom:2.5rem}
+.channels-section h3{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem}
+.channel-bar{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
+.channel-bar .ch-name{min-width:110px;font-size:.85rem;font-weight:600}
+.channel-bar .ch-track{flex:1;height:24px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.channel-bar .ch-fill{height:100%;border-radius:var(--radius-sm);transition:width 1s ease;display:flex;align-items:center;padding-left:.5rem;font-size:.75rem;font-weight:700;color:#fff}
+.channel-bar .ch-pct{min-width:40px;font-size:.85rem;font-weight:700;color:var(--text)}
+.locations-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.locations-table th{font-family:'Poppins',sans-serif;font-weight:600;text-align:left;padding:.75rem;border-bottom:2px solid var(--border);cursor:pointer;user-select:none;transition:color .2s}
+.locations-table th:hover{color:var(--primary)}
+.locations-table td{padding:.75rem;border-bottom:1px solid var(--border)}
+.locations-table tr:hover td{background:var(--primary-light)}
+.sort-arrow{font-size:.7rem;margin-left:.25rem;opacity:.5}
+
+/* ===== CTA ===== */
+.cta-section{padding:96px 24px;text-align:center;background:var(--gradient-hero);background-size:300% 300%;animation:heroShift 12s ease infinite;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.05)}
+.cta-section h2{font-size:clamp(1.8rem,4vw,2.75rem);font-weight:800;color:#fff;margin-bottom:.75rem;position:relative}
+.cta-section p{font-size:1.1rem;color:rgba(255,255,255,.9);max-width:500px;margin:0 auto 2rem;position:relative}
+.cta-section .btn{position:relative;background:#fff;color:var(--primary);padding:1rem 2.5rem;font-size:1.05rem;font-weight:700;border-radius:var(--radius-sm)}
+.cta-section .btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.2)}
+
+/* ===== FOOTER ===== */
+.site-footer{padding:2rem;text-align:center;font-size:.85rem;color:var(--text-muted);border-top:1px solid var(--border)}
+.site-footer .sage-mark{color:var(--primary);font-weight:700}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .tool-section{padding:64px 0}
+  .stats-bar .container{gap:1.5rem}
+  .stat-item .stat-num{font-size:1.5rem}
+  .template-cards{grid-template-columns:1fr}
+  .region-grid{grid-template-columns:repeat(2,1fr)}
+  .funnel-step .step-label{min-width:80px;font-size:.75rem}
+  .funnel-step .step-bar-fill{font-size:.7rem;padding-right:.4rem}
+  .campaign .campaign-grid{grid-template-columns:1fr}
+}
+
+/* Loading shimmer for generate */
+.shimmer{background:linear-gradient(90deg,var(--border) 25%,var(--bg-alt) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius-sm);height:1rem;margin-bottom:.5rem}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-shape s1"></div>
+  <div class="hero-shape s2"></div>
+  <div class="hero-shape s3"></div>
+  <div class="hero-content">
+    <h1>Hey Nicole 👋</h1>
+    <p class="subtitle">5 AI powered tools built for your role at Kids &amp; Company</p>
+    <p class="subtext">Because managing marketing across 150+ locations deserves smarter tools.</p>
+    <div class="scroll-hint"><span></span></div>
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stat-item"><div class="stat-num" data-count="150">0</div><div class="stat-label">Locations</div></div>
+    <div class="stat-item"><div class="stat-num" data-count="20">0</div><div class="stat-label">Years Strong</div></div>
+    <div class="stat-item"><div class="stat-num" data-count="5">0</div><div class="stat-label">AI Tools</div></div>
+    <div class="stat-item"><div class="stat-num">&infin;</div><div class="stat-label">Possibilities</div></div>
+  </div>
+</div>
+
+<!-- ===== TOOL NAV ===== -->
+<nav class="tool-nav" id="toolNav">
+  <div class="container">
+    <button class="tool-tab active" data-target="tool1">Social Content Studio</button>
+    <button class="tool-tab" data-target="tool2">Brand Voice Analyzer</button>
+    <button class="tool-tab" data-target="tool3">Campaign Command Center</button>
+    <button class="tool-tab" data-target="tool4">Newsletter Builder</button>
+    <button class="tool-tab" data-target="tool5">Enrollment Funnel</button>
+  </div>
+</nav>
+
+<!-- ===== TOOL 1: SOCIAL CONTENT STUDIO ===== -->
+<section class="tool-section social-studio" id="tool1">
+  <div class="container">
+    <div class="tool-header">
+      <div class="tool-badge">01</div>
+      <h2>Social Content Studio</h2>
+      <p>Generate platform ready social media content tailored to Kids &amp; Company's brand voice.</p>
+    </div>
+    <div class="config-panel">
+      <div>
+        <label>Platform</label>
+        <div class="pill-group" id="platformPills">
+          <button class="pill active" data-val="instagram">Instagram</button>
+          <button class="pill" data-val="facebook">Facebook</button>
+          <button class="pill" data-val="linkedin">LinkedIn</button>
+          <button class="pill" data-val="twitter">X (Twitter)</button>
+        </div>
+      </div>
+      <div>
+        <label>Theme</label>
+        <div class="pill-group" id="themePills">
+          <button class="pill active" data-val="enrollment">Enrollment Drive</button>
+          <button class="pill" data-val="seasonal">Seasonal Fun</button>
+          <button class="pill" data-val="tips">Parent Tips</button>
+          <button class="pill" data-val="staff">Staff Spotlight</button>
+          <button class="pill" data-val="milestone">Milestone Moment</button>
+          <button class="pill" data-val="bts">Behind the Scenes</button>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+        <label style="margin:0">Tone</label>
+        <span style="font-size:.82rem;color:var(--text-muted);font-weight:600">Playful</span>
+        <input type="range" id="toneSlider" min="0" max="100" value="50" style="width:200px;flex-shrink:0">
+        <span style="font-size:.82rem;color:var(--text-muted);font-weight:600">Professional</span>
+      </div>
+      <button class="btn btn-primary" id="generateBtn">Generate Content</button>
+    </div>
+    <div class="output-area" id="socialOutput"></div>
+  </div>
+</section>
+
+<!-- ===== TOOL 2: BRAND VOICE ANALYZER ===== -->
+<section class="tool-section analyzer" id="tool2">
+  <div class="container">
+    <div class="tool-header">
+      <div class="tool-badge">02</div>
+      <h2>Brand Voice Analyzer</h2>
+      <p>Paste any copy and get instant brand alignment scoring against Kids &amp; Company's voice.</p>
+    </div>
+    <div>
+      <textarea id="analyzerInput" placeholder="Paste your email, social post, or press release here..."></textarea>
+      <div class="example-btns">
+        <button class="btn btn-outline" data-example="good">Try a Parent Email</button>
+        <button class="btn btn-outline" data-example="mid">Try a Job Posting</button>
+        <button class="btn btn-outline" data-example="bad">Try a Social Post</button>
+      </div>
+      <div style="margin-top:1rem">
+        <button class="btn btn-primary" id="analyzeBtn">Analyze Brand Voice</button>
+      </div>
+    </div>
+    <div id="analysisResults" class="hidden" style="margin-top:2rem">
+      <div class="analysis-grid">
+        <div class="card" style="text-align:center">
+          <div class="score-ring">
+            <svg viewBox="0 0 160 160" width="160" height="160">
+              <circle cx="80" cy="80" r="68" fill="none" stroke="#F0E6DA" stroke-width="12"/>
+              <circle id="scoreCircle" cx="80" cy="80" r="68" fill="none" stroke="var(--primary)" stroke-width="12" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427"/>
+            </svg>
+            <div class="score-text">
+              <div class="score-num" id="overallScore">0</div>
+              <div class="score-label">Brand Score</div>
+            </div>
+          </div>
+          <div id="scoreVerdict" style="font-weight:700;font-size:.9rem"></div>
+        </div>
+        <div>
+          <div id="metricBars"></div>
+          <h4 style="margin:1.5rem 0 .75rem;font-size:1rem">Suggestions</h4>
+          <ul class="suggestions-list" id="suggestionsList"></ul>
+          <div style="margin-top:1.25rem">
+            <button class="btn btn-secondary" id="showRewriteBtn">See AI Improved Version</button>
+            <div id="rewriteArea" class="hidden" style="margin-top:1rem;padding:1.25rem;background:rgba(78,205,196,.06);border-radius:var(--radius-md);border:1px solid rgba(78,205,196,.2);font-size:.92rem;line-height:1.7"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOOL 3: CAMPAIGN COMMAND CENTER ===== -->
+<section class="tool-section campaign" id="tool3">
+  <div class="container">
+    <div class="tool-header">
+      <div class="tool-badge">03</div>
+      <h2>Campaign Command Center</h2>
+      <p>Plan and visualize multi location campaigns across all 150+ centers in real time.</p>
+    </div>
+    <div class="campaign-grid">
+      <div class="config-col">
+        <div><label>Campaign Name</label><input type="text" id="campName" value="Spring Enrollment Push 2026" placeholder="Campaign name"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+          <div><label>Start Date</label><input type="date" id="campStart" value="2026-04-01"></div>
+          <div><label>End Date</label><input type="date" id="campEnd" value="2026-05-15"></div>
+        </div>
+        <div><label>Total Budget ($)</label><input type="number" id="campBudget" value="50000" min="1000" step="1000"></div>
+        <div>
+          <label>Target Regions</label>
+          <div class="region-grid" id="regionGrid">
+            <button class="region-toggle active" data-region="ontario" data-centers="62">Ontario<span class="count">62 centers</span></button>
+            <button class="region-toggle active" data-region="quebec" data-centers="18">Quebec<span class="count">18 centers</span></button>
+            <button class="region-toggle" data-region="bc" data-centers="22">BC<span class="count">22 centers</span></button>
+            <button class="region-toggle" data-region="alberta" data-centers="24">Alberta<span class="count">24 centers</span></button>
+            <button class="region-toggle" data-region="atlantic" data-centers="12">Atlantic<span class="count">12 centers</span></button>
+            <button class="region-toggle" data-region="us" data-centers="14">US<span class="count">14 centers</span></button>
+          </div>
+        </div>
+        <div>
+          <label>Channel Allocation</label>
+          <div id="channelSliders">
+            <div class="channel-slider"><div class="slider-header"><span>Social Media</span><span id="chSocial">35%</span></div><input type="range" min="0" max="100" value="35" data-channel="social"></div>
+            <div class="channel-slider"><div class="slider-header"><span>Email</span><span id="chEmail">20%</span></div><input type="range" min="0" max="100" value="20" data-channel="email"></div>
+            <div class="channel-slider"><div class="slider-header"><span>Google Ads</span><span id="chGoogle">25%</span></div><input type="range" min="0" max="100" value="25" data-channel="google"></div>
+            <div class="channel-slider"><div class="slider-header"><span>Print</span><span id="chPrint">10%</span></div><input type="range" min="0" max="100" value="10" data-channel="print"></div>
+            <div class="channel-slider"><div class="slider-header"><span>Community Events</span><span id="chCommunity">10%</span></div><input type="range" min="0" max="100" value="10" data-channel="community"></div>
+          </div>
+          <div style="font-size:.78rem;color:var(--text-muted);font-weight:600;margin-top:.25rem">Total: <span id="channelTotal">100</span>%</div>
+        </div>
+      </div>
+      <div>
+        <div class="dash-grid" id="campDash">
+          <div class="dashboard-card"><div class="dash-num" id="dashBudget">$50,000</div><div class="dash-label">Total Budget</div></div>
+          <div class="dashboard-card"><div class="dash-num" id="dashCenters">80</div><div class="dash-label">Centers Targeted</div></div>
+          <div class="dashboard-card"><div class="dash-num" id="dashReach">125,000</div><div class="dash-label">Projected Reach</div></div>
+          <div class="dashboard-card"><div class="dash-num" id="dashCPL">$18</div><div class="dash-label">Est. Cost per Lead</div></div>
+        </div>
+        <div style="text-align:center;margin-bottom:1rem">
+          <div class="donut-container">
+            <svg viewBox="0 0 180 180" width="180" height="180" id="donutChart"></svg>
+            <div class="donut-center">Budget Split</div>
+          </div>
+        </div>
+        <div>
+          <label style="text-align:center;display:block;margin-bottom:.5rem">Location Coverage</label>
+          <div class="location-dots" id="locationDots"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOOL 4: NEWSLETTER BUILDER ===== -->
+<section class="tool-section newsletter" id="tool4">
+  <div class="container">
+    <div class="tool-header">
+      <div class="tool-badge">04</div>
+      <h2>Parent Newsletter Builder</h2>
+      <p>Generate beautifully formatted parent communications in seconds.</p>
+    </div>
+    <div class="newsletter-grid">
+      <div>
+        <label>Choose Template</label>
+        <div class="template-cards" id="templateCards">
+          <div class="template-card active" data-template="monthly"><div class="t-icon">&#9783;</div><div class="t-name">Monthly Update</div></div>
+          <div class="template-card" data-template="event"><div class="t-icon">&#9733;</div><div class="t-name">Event Invitation</div></div>
+          <div class="template-card" data-template="policy"><div class="t-icon">&#9888;</div><div class="t-name">Policy Update</div></div>
+          <div class="template-card" data-template="seasonal"><div class="t-icon">&#10052;</div><div class="t-name">Seasonal Celebration</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          <div><label>Location</label>
+            <select id="nlLocation">
+              <option>Liberty Village, Toronto</option>
+              <option>Bloor Street, Toronto</option>
+              <option>Wellington, Toronto</option>
+              <option>North Vancouver</option>
+              <option>Downtown Calgary</option>
+              <option>Old Montreal</option>
+              <option>Kanata, Ottawa</option>
+              <option>Mississauga</option>
+            </select>
+          </div>
+          <div><label>Subject Line</label><input type="text" id="nlSubject" value="Your March Update from Kids &amp; Company"></div>
+          <div><label>Key Message</label><textarea id="nlMessage" rows="3" placeholder="What's the main thing you want parents to know?">We're excited to share what your little ones have been up to this month, plus some important dates for your calendar.</textarea></div>
+          <div>
+            <label>Tone</label>
+            <div class="pill-group" id="nlTonePills">
+              <button class="pill" data-val="formal">Formal</button>
+              <button class="pill active" data-val="friendly">Friendly</button>
+              <button class="pill" data-val="celebratory">Celebratory</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label>Live Preview</label>
+        <div class="email-preview" id="emailPreview">
+          <div class="email-header">
+            <h3>Kids &amp; Company</h3>
+            <p id="previewLocation">Liberty Village, Toronto</p>
+          </div>
+          <div class="email-body" id="emailBody"></div>
+          <div class="email-footer">Kids &amp; Company | Growing the Kidco Way<br>You're receiving this because your child is enrolled at our center.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOOL 5: ENROLLMENT FUNNEL ===== -->
+<section class="tool-section funnel" id="tool5">
+  <div class="container">
+    <div class="tool-header">
+      <div class="tool-badge">05</div>
+      <h2>Enrollment Funnel Tracker</h2>
+      <p>Interactive analytics dashboard for the complete enrollment journey.</p>
+    </div>
+    <div class="period-tabs" id="periodTabs">
+      <button class="pill active" data-period="week">This Week</button>
+      <button class="pill" data-period="month">This Month</button>
+      <button class="pill" data-period="quarter">This Quarter</button>
+      <button class="pill" data-period="ytd">YTD</button>
+    </div>
+    <div class="metrics-row" id="funnelMetrics"></div>
+    <h3 style="font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem">Enrollment Funnel</h3>
+    <div class="funnel-visual" id="funnelBars"></div>
+    <div class="channels-section">
+      <h3>Leads by Channel</h3>
+      <div id="channelBars"></div>
+    </div>
+    <h3 style="font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem">Top Performing Locations</h3>
+    <div style="overflow-x:auto">
+      <table class="locations-table" id="locationsTable">
+        <thead><tr>
+          <th data-sort="name">Location <span class="sort-arrow"></span></th>
+          <th data-sort="leads">Leads <span class="sort-arrow"></span></th>
+          <th data-sort="tours">Tours <span class="sort-arrow"></span></th>
+          <th data-sort="enrolled">Enrolled <span class="sort-arrow"></span></th>
+          <th data-sort="rate">Conv. Rate <span class="sort-arrow"></span></th>
+          <th data-sort="trend">Trend <span class="sort-arrow"></span></th>
+        </tr></thead>
+        <tbody id="locationsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <h2>Ready to transform Kids &amp; Company's marketing?</h2>
+  <p>These tools are just a preview of what AI can do for your team, Nicole.</p>
+  <button class="btn" onclick="window.open('mailto:aaronlibfeld@gmail.com','_blank')">Let's Talk</button>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <p>Built with care by <span class="sage-mark">Sage</span></p>
+  <p style="margin-top:.25rem;font-size:.78rem">Powered by AI, personalized for Nicole</p>
+</footer>
+
+<script>
+/* ===== DATA ===== */
+const socialContent = {
+  instagram: {
+    enrollment: [
+      "Tiny hands, big futures. Our classrooms are where curiosity meets care, and every child finds their spark. Limited spots for fall enrollment, because the best starts don't wait.\n\nLink in bio to book your tour.",
+      "There's a seat in our circle waiting for your little one. At Kids & Company, flexible scheduling meets world class early learning. Enrollment is open and spots are filling fast.\n\nTap the link in bio to get started.",
+      "What if your child's favorite place was also their best learning environment? That's what we build every day across 150+ centers. Spring enrollment is now open.\n\nBook a tour through the link in bio."
+    ],
+    seasonal: [
+      "Spring has sprung at Kids & Company! From puddle jumping to planting seeds, our little explorers are embracing every moment of the season.\n\nWhat spring adventures is your family enjoying?",
+      "Sun is out, imaginations are running wild, and our outdoor classrooms are buzzing with energy. Summer at Kidco is pure magic.\n\nSwipe to see what our little ones have been up to!",
+      "Pumpkins, paint, and so much laughter. Fall at Kids & Company means sensory tables, nature walks, and learning through every leaf crunch."
+    ],
+    tips: [
+      "Packing lunches that little ones will actually eat? We asked our educators for their top 5 tips.\n\n1. Let them help choose\n2. Keep it colorful\n3. Small portions, big variety\n4. Make it fun with shapes\n5. Include one familiar favorite\n\nSave this for later!",
+      "Mornings with toddlers can feel like a marathon. Here are 3 routines our educators swear by to make drop offs smoother.\n\nConsistency is the secret ingredient.",
+      "Screen time boundaries don't have to mean screen time battles. Our early learning team shares their favorite alternatives that kids genuinely prefer."
+    ],
+    staff: [
+      "Meet the heart of Kids & Company. Our educators don't just show up. They show up with intention, creativity, and a deep commitment to every child in their care.\n\nThank you to our incredible team across 150+ locations.",
+      "Behind every confident toddler is an educator who believed in them first. Today we celebrate the people who make Kidco magic happen, every single day.",
+      "She started as a part time educator. Today she leads an entire center. Career growth at Kids & Company means growing alongside the children you inspire."
+    ],
+    milestone: [
+      "First steps. First words. First friendships. At Kids & Company, we don't just witness milestones. We create the environments where they happen naturally.",
+      "365 days of growth, giggles, and discovery. Happy anniversary to this incredible group of Kidco kids who started their journey with us one year ago.",
+      "From crawling to running, from babbling to storytelling. The transformation we see every day reminds us why early childhood education matters."
+    ],
+    bts: [
+      "Ever wonder what a day at Kids & Company actually looks like? Peek behind the curtain at our Liberty Village center.\n\nSpoiler: there's a lot of laughter involved.",
+      "Our kitchens are buzzing! Every meal at Kids & Company is prepared fresh by our in house chefs. Today's menu: mini veggie frittatas with a side of curiosity.",
+      "Setting up for tomorrow's exploration stations. Our educators spend hours crafting experiences that feel like play but build skills that last a lifetime."
+    ]
+  },
+  facebook: {
+    enrollment: [
+      "Looking for flexible, high quality childcare that grows with your family? Kids & Company offers full time, part time, and backup care across 150+ locations.\n\nNo late fees. No compromises. Just exceptional care for children aged 6 weeks to 12 years.\n\nBook your tour today and see the Kidco difference firsthand.",
+      "Two working mothers founded Kids & Company because they couldn't find childcare that matched their standards AND their schedules. Twenty years later, that mission hasn't changed.\n\nEnrollment is open for fall. Flexible options available.\n\nLearn more at kidsandcompany.com",
+      "Parents ask us all the time: what makes Kids & Company different? The answer is everything. Our emergent curriculum, our flexibility, our educators, and our belief that every child deserves to be seen and heard.\n\nSpots are limited. Book a tour to experience it yourself."
+    ],
+    seasonal: [
+      "Spring has sprung at Kids & Company! From puddle jumping to planting seeds, our little explorers are embracing every moment of the season.\n\nWhat spring adventures is your family enjoying? Tell us in the comments!",
+      "Summer camp registration is officially open! This year's themes include Ocean Explorers, Junior Scientists, and Art Around the World.\n\nLimited spots available across all locations. Register today!",
+      "The holidays are here and our centers are full of festive joy! From gingerbread decorating to winter wonderland sensory bins, our Kidco kids are making memories."
+    ],
+    tips: [
+      "Starting daycare is a big transition for the whole family. Here are 5 tips from our early childhood educators to make the first week smoother:\n\n1. Visit the center together beforehand\n2. Keep goodbyes short and positive\n3. Bring a comfort item from home\n4. Establish a consistent routine\n5. Trust the process (tears are normal!)\n\nWhat was your family's experience? Share below!",
+      "Rainy day activities that actually work (tested by our educators across 150+ centers):\n\nIndoor obstacle courses, sensory bins with rice and pasta, storytime with puppets, and dance parties. Always dance parties.\n\nWhat are your go to rainy day activities?",
+      "Nutrition matters, especially in the early years. Our in house chefs prepare balanced, delicious meals daily. Here's a peek at this week's menu and why we chose each ingredient."
+    ],
+    staff: [
+      "Our educators are our greatest asset. They bring kindness, innovation, diversity, courage, and optimism to everything they do.\n\nToday we celebrate the incredible humans behind Kids & Company. Share some love for your child's favorite educator in the comments!",
+      "From coast to coast, our team of educators speaks dozens of languages and reflects the beautiful diversity of the communities we serve. This is what inclusive early learning looks like.",
+      "We're hiring! If you're passionate about early childhood education and want to join a team that values growth, flexibility, and making a real difference, we'd love to meet you."
+    ],
+    milestone: [
+      "Another group of Kidco graduates ready to take on kindergarten! These little learners have grown so much and we couldn't be prouder.\n\nCongratulations to our graduating class!",
+      "20+ years of nurturing young minds. Over 150 locations. Thousands of families who trust us with their most precious people.\n\nThank you for being part of the Kidco family.",
+      "First day vs. last day. The confidence, the friendships, the independence. This is what quality early learning looks like in action."
+    ],
+    bts: [
+      "Our new Montessori inspired learning space is ready! Peek behind the scenes at how our team designs environments that spark curiosity and independence.\n\nEvery detail is intentional, from the shelf height to the natural materials.",
+      "A day in the life of a Kids & Company educator is never boring. From morning circle to afternoon adventures, here's what it really looks like.",
+      "Fresh from our kitchen: today our little chefs helped make their own whole wheat pizza. Cooking isn't just fun at Kidco, it's learning in disguise."
+    ]
+  },
+  linkedin: {
+    enrollment: [
+      "At Kids & Company, we believe flexible childcare is a workplace issue. When parents have reliable, high quality care for their children, everyone thrives.\n\nThat's why we've spent 20+ years building a model that puts families first: flexible scheduling, no late fees, and early learning that sets children up for success.\n\nIf your organization is exploring childcare partnerships, we'd love to connect.",
+      "The ROI of employer supported childcare is clear: reduced absenteeism, higher retention, and a workforce that can focus on what they do best.\n\nKids & Company partners with leading organizations across North America to provide flexible, high quality childcare solutions. Let's talk about what a partnership could look like for your team.",
+      "Finding quality childcare shouldn't feel like a second job. At Kids & Company, we've built systems that make enrollment, scheduling, and communication seamless for busy families.\n\n150+ locations. 20+ years of experience. One mission: exceptional care that works for modern families."
+    ],
+    seasonal: [
+      "As summer approaches, working parents face the annual childcare puzzle. Kids & Company's summer programming bridges the gap with engaging, educational experiences designed for children aged 6 weeks to 12 years.\n\nFlexible scheduling options available across 150+ locations.",
+      "Spring renewal extends to our classrooms too. This quarter, our curriculum team has introduced new STEAM exploration modules that connect seasonal changes to early scientific inquiry.\n\nInnovation in early childhood education starts with intentional design.",
+      "The back to school transition impacts the whole family. Our educators are trained in evidence based approaches to help children (and parents) navigate change with confidence."
+    ],
+    tips: [
+      "Three things every employer should know about supporting working parents:\n\n1. Childcare disruptions cost the economy billions annually\n2. Backup care programs reduce unplanned absences by up to 30%\n3. Childcare benefits are among the top 5 most valued workplace perks\n\nAt Kids & Company, we help organizations build childcare solutions that work.",
+      "The science of early childhood development is clear: quality early learning environments create lasting positive outcomes.\n\nAt Kids & Company, our emergent curriculum is designed by early childhood experts and delivered by passionate educators. The result? Children who are confident, curious, and ready to learn.",
+      "Work life integration (not balance) is the new standard. And it starts with childcare you can count on.\n\nHere's how Kids & Company supports modern families across 150+ locations in Canada and the US."
+    ],
+    staff: [
+      "Behind every thriving child is an extraordinary educator. At Kids & Company, our team doesn't just supervise. They inspire, nurture, and shape futures across 150+ locations.\n\nToday we celebrate the educators who make Kidco magic happen every single day.",
+      "Career development in early childhood education matters. At Kids & Company, we invest in our team through continuous learning, leadership pathways, and a culture that recognizes the incredible skill this profession demands.",
+      "What does it mean to build a truly inclusive workplace? At Kids & Company, our educators come from all walks of life, speak dozens of languages, and reflect the diverse communities we serve.\n\nDiversity isn't a program. It's who we are."
+    ],
+    milestone: [
+      "Two decades of innovation in early childhood education. From our first center to 150+ locations across North America, Kids & Company has grown by staying true to one principle: quality care should never require compromise.\n\nHere's to the next 20 years.",
+      "1 million+ children have grown through Kids & Company programs. Each one reminds us that early childhood education is one of the most impactful investments a society can make.",
+      "When we opened our doors in 2002, we set out to solve a problem every working parent knows too well. Today, our model of flexible, high quality care serves families from coast to coast."
+    ],
+    bts: [
+      "Curriculum design at Kids & Company starts with a simple question: what are the children curious about today?\n\nOur emergent learning approach means educators follow children's interests, creating experiences that are as unique as the learners themselves.",
+      "A look inside our educator training program. From child development theory to practical classroom strategies, our team undergoes rigorous, ongoing professional development.\n\nGreat care starts with great preparation.",
+      "The operational complexity of running 150+ childcare centers is significant. Behind the scenes, our team uses data driven decision making to optimize everything from staffing to nutrition planning.\n\nScale with intention."
+    ]
+  },
+  twitter: {
+    enrollment: [
+      "Looking for childcare that actually fits your schedule? Kids & Company offers flexible full time, part time, and backup care across 150+ locations.\n\nNo late fees. No waitlist stress. Just great care.\n\nkidsandcompany.com",
+      "Your child's first classroom matters. At Kids & Company, we combine evidence based early learning with the flexibility modern families need.\n\nEnrollment is open. Tours available now.",
+      "150+ locations. 20+ years. One mission: exceptional early learning that works for real families.\n\nBook a tour at Kids & Company today."
+    ],
+    seasonal: [
+      "Summer camp spots are going fast! Kids & Company summer programming keeps little minds active and curious all season long.\n\nRegistration now open.",
+      "Spring cleaning your schedule? Our flexible childcare options mean you can adjust care days as your needs change. No penalties, no hassle.\n\nThat's the Kidco way.",
+      "Fall enrollment is officially open at Kids & Company. Warm classrooms, passionate educators, and a curriculum that sparks joy and growth."
+    ],
+    tips: [
+      "Pro tip from our educators: the key to smooth daycare drop offs? A consistent, brief goodbye routine.\n\nKids thrive on predictability. Even when the tears say otherwise, trust the process.",
+      "3 questions to ask when touring a daycare:\n\n1. What's your approach to learning?\n2. How do you communicate with parents?\n3. What does a typical day look like?\n\nWe love these questions at Kids & Company.",
+      "Snack hack from our Kidco chefs: freeze yogurt in ice cube trays with berries for a healthy, mess free treat kids love."
+    ],
+    staff: [
+      "Our educators are the heart of everything we do. Today and every day, we celebrate the people who make Kids & Company extraordinary.",
+      "Hiring passionate educators across Canada and the US! If you believe every child deserves exceptional care, let's talk.\n\nCareers at kidsandcompany.com",
+      "What makes a great early childhood educator? Patience, creativity, empathy, and a genuine belief in every child's potential. Our team has all of this and more."
+    ],
+    milestone: [
+      "20+ years of growing with families across North America. Thank you for trusting Kids & Company with your little ones.",
+      "Another graduating class ready for kindergarten! Watching these kids grow has been our greatest reward.",
+      "150 locations and counting. Every new center means more families have access to flexible, quality early learning."
+    ],
+    bts: [
+      "Peek behind the curtain: our curriculum team is designing next month's exploration stations. Spoiler: magnifying glasses and mud are involved.",
+      "Fresh from the Kidco kitchen today: homemade veggie mac and cheese with a secret spinach boost. The kids never suspect a thing.",
+      "Our classroom setup process is part science, part art. Every material placement is intentional, designed to invite curiosity and spark independent exploration."
+    ]
+  }
+};
+
+const socialHashtags = {
+  instagram: {enrollment:["#KidsAndCompany","#EarlyLearning","#TorontoParents","#ChildcareCanada","#GrowTheKidcoWay","#FlexibleChildcare"],seasonal:["#KidcoKids","#SeasonalFun","#EarlyLearning","#PlayBasedLearning","#KidsAndCompany"],tips:["#ParentingTips","#KidcoWisdom","#EarlyChildhood","#KidsAndCompany","#TorontoFamilies"],staff:["#KidcoTeam","#ECE","#EarlyChildhoodEducation","#KidsAndCompany","#EducatorsOfInstagram"],milestone:["#KidcoMilestones","#GrowingUp","#EarlyLearning","#KidsAndCompany","#ProudMoments"],bts:["#BehindTheScenes","#KidcoLife","#DaycareLife","#KidsAndCompany","#EarlyLearning"]},
+  facebook: {enrollment:["#KidsAndCompany","#Childcare","#EarlyLearning","#WorkingParents"],seasonal:["#KidcoKids","#FamilyFun","#KidsAndCompany"],tips:["#ParentingTips","#KidsAndCompany","#EarlyChildhood"],staff:["#KidcoTeam","#WeAreHiring","#ECE"],milestone:["#KidcoFamily","#Milestone","#EarlyLearning"],bts:["#BehindTheScenes","#KidcoLife","#DaycareLife"]},
+  linkedin: {enrollment:["#EarlyChildhoodEducation","#WorkplaceWellness","#EmployerBenefits","#Childcare"],seasonal:["#EarlyLearning","#STEAM","#ChildDevelopment"],tips:["#WorkingParents","#EmployeeBenefits","#Childcare","#HR"],staff:["#Leadership","#Diversity","#ECE","#CareerGrowth"],milestone:["#Education","#Growth","#ChildcareIndustry"],bts:["#Innovation","#CurriculumDesign","#EarlyLearning"]},
+  twitter: {enrollment:["#KidsAndCompany","#Childcare","#EarlyLearning"],seasonal:["#KidcoKids","#Childcare"],tips:["#ParentingTips","#Childcare"],staff:["#ECE","#Hiring","#Education"],milestone:["#KidsAndCompany","#EarlyLearning"],bts:["#DaycareLife","#EarlyLearning"]}
+};
+
+const postTimes = {instagram:"Tuesday or Thursday, 11 AM ET",facebook:"Wednesday, 1 PM ET",linkedin:"Tuesday or Wednesday, 9 AM ET",twitter:"Weekdays, 12 PM ET"};
+const platformTips = {instagram:"Add a carousel for 2x engagement. Use story polls to boost interaction.",facebook:"Pin your best performing posts. Ask a question to drive comments.",linkedin:"Tag relevant organizations and leaders. Keep paragraphs short for mobile.",twitter:"Quote tweet your own post with a fresh angle for extended reach."};
+
+/* Brand Analyzer examples */
+const analyzerExamples = {
+  good: "Dear Families,\n\nWe're thrilled to share that our Liberty Village center is launching a brand new music exploration program this April! Your little ones will have the opportunity to discover rhythm, melody, and movement through hands on experiences designed by our early childhood music specialists.\n\nAt Kids & Company, we believe every child has a natural sense of rhythm waiting to be nurtured. This program builds on our emergent curriculum approach, following each child's unique interests and developmental stage.\n\nPlease join us for our open house on April 12th to see the new music room and meet our specialists. We can't wait to share this exciting addition with your family.\n\nWarm regards,\nThe Liberty Village Team",
+  mid: "ATTENTION PARENTS: Enrollment for the 2026-2027 school year is now open. Please be advised that registration must be completed by April 30th. Failure to register by the deadline may result in loss of your child's spot. All registration forms must be submitted in person or via our online portal. Contact the administration office for further details regarding fees, schedules, and program availability. We look forward to serving your family's childcare needs in the coming year.",
+  bad: "Need daycare? We've got spots! Our facility offers care for kids of all ages. Competitive rates, convenient hours. Sign up now before it's too late! We're the best choice for busy parents who need somewhere safe for their children during work hours. Call today for pricing information and availability."
+};
+
+const analyzerRewrites = {
+  good: "Dear Families,\n\nExciting news from our Liberty Village center! This April, we're introducing a music exploration program that your little ones are going to love. Imagine tiny hands on drums, voices discovering melody, and whole bodies moving to rhythm, all guided by our early childhood music specialists.\n\nThis program grows naturally from our emergent curriculum, meaning we'll follow each child's curiosity and developmental stage to create truly personalized musical experiences.\n\nCome see the magic in person! Join us at our open house on April 12th to explore the new music room and connect with our specialists.\n\nWe can't wait to make music with your family.\n\nWarm regards,\nThe Liberty Village Team",
+  mid: "Dear Families,\n\nWonderful news! Enrollment for the 2026/2027 year is now open, and we'd love to welcome your family back for another year of growth and discovery.\n\nTo secure your child's spot, we kindly ask that you complete registration by April 30th. You can register online through our portal or visit our team in person; whichever works best for your schedule.\n\nHave questions about fees, programs, or scheduling? Our team is here to help and happy to chat.\n\nWe're so excited to continue this journey together.\n\nWarmly,\nThe Kids & Company Team",
+  bad: "Every child deserves a space where they feel seen, heard, and inspired. At Kids & Company, that's exactly what we create.\n\nOur centers offer flexible care for children from 6 weeks to 12 years, with a curriculum designed by early childhood experts and delivered by educators who genuinely love what they do.\n\nWe'd love to show you the Kidco difference. Book a tour at a center near you and experience firsthand why thousands of families trust us with their most precious people.\n\nLearn more at kidsandcompany.com"
+};
+
+/* Funnel data by period */
+const funnelData = {
+  week:{metrics:[{v:"847",l:"Total Leads",t:"+12%",d:"up"},{v:"$22",l:"Avg Cost/Lead",t:"-8%",d:"up"},{v:"18.4%",l:"Conv. Rate",t:"+2.1%",d:"up"},{v:"+3.2%",l:"Weekly Trend",t:"",d:"up"}],
+    funnel:[{n:"Website Visits",v:8470,p:100},{n:"Tour Bookings",v:1694,p:20},{n:"Tours Attended",v:1271,p:15},{n:"Applications",v:847,p:10},{n:"Enrolled",v:423,p:5}],
+    channels:[{n:"Google",p:35,c:"var(--primary)"},{n:"Social Media",p:25,c:"var(--secondary)"},{n:"Referral",p:20,c:"var(--accent)"},{n:"Email",p:12,c:"var(--accent-warm)"},{n:"Walk in",p:8,c:"var(--text-muted)"}],
+    locations:[{name:"Liberty Village",leads:112,tours:48,enrolled:22,rate:"19.6%",trend:"up"},{name:"Bloor Street",leads:98,tours:42,enrolled:19,rate:"19.4%",trend:"up"},{name:"North Vancouver",leads:87,tours:35,enrolled:16,rate:"18.4%",trend:"up"},{name:"Downtown Calgary",leads:82,tours:31,enrolled:14,rate:"17.1%",trend:"down"},{name:"Old Montreal",leads:79,tours:33,enrolled:15,rate:"19.0%",trend:"up"},{name:"Wellington",leads:75,tours:28,enrolled:12,rate:"16.0%",trend:"down"},{name:"Mississauga",leads:71,tours:30,enrolled:14,rate:"19.7%",trend:"up"},{name:"Kanata",leads:65,tours:25,enrolled:11,rate:"16.9%",trend:"up"}]},
+  month:{metrics:[{v:"3,412",l:"Total Leads",t:"+18%",d:"up"},{v:"$19",l:"Avg Cost/Lead",t:"-12%",d:"up"},{v:"21.2%",l:"Conv. Rate",t:"+3.8%",d:"up"},{v:"+8.5%",l:"Monthly Trend",t:"",d:"up"}],
+    funnel:[{n:"Website Visits",v:34120,p:100},{n:"Tour Bookings",v:7540,p:22},{n:"Tours Attended",v:5480,p:16},{n:"Applications",v:3412,p:10},{n:"Enrolled",v:1820,p:5.3}],
+    channels:[{n:"Google",p:33,c:"var(--primary)"},{n:"Social Media",p:28,c:"var(--secondary)"},{n:"Referral",p:19,c:"var(--accent)"},{n:"Email",p:13,c:"var(--accent-warm)"},{n:"Walk in",p:7,c:"var(--text-muted)"}],
+    locations:[{name:"Liberty Village",leads:445,tours:198,enrolled:96,rate:"21.6%",trend:"up"},{name:"Bloor Street",leads:412,tours:175,enrolled:82,rate:"19.9%",trend:"up"},{name:"North Vancouver",leads:378,tours:158,enrolled:78,rate:"20.6%",trend:"up"},{name:"Downtown Calgary",leads:352,tours:140,enrolled:65,rate:"18.5%",trend:"down"},{name:"Old Montreal",leads:335,tours:148,enrolled:72,rate:"21.5%",trend:"up"},{name:"Wellington",leads:310,tours:125,enrolled:58,rate:"18.7%",trend:"up"},{name:"Mississauga",leads:298,tours:132,enrolled:64,rate:"21.5%",trend:"up"},{name:"Kanata",leads:275,tours:110,enrolled:50,rate:"18.2%",trend:"down"}]},
+  quarter:{metrics:[{v:"10,845",l:"Total Leads",t:"+22%",d:"up"},{v:"$17",l:"Avg Cost/Lead",t:"-15%",d:"up"},{v:"22.8%",l:"Conv. Rate",t:"+4.2%",d:"up"},{v:"+15.3%",l:"Quarterly Trend",t:"",d:"up"}],
+    funnel:[{n:"Website Visits",v:108450,p:100},{n:"Tour Bookings",v:25200,p:23},{n:"Tours Attended",v:18400,p:17},{n:"Applications",v:10845,p:10},{n:"Enrolled",v:5800,p:5.3}],
+    channels:[{n:"Google",p:32,c:"var(--primary)"},{n:"Social Media",p:30,c:"var(--secondary)"},{n:"Referral",p:18,c:"var(--accent)"},{n:"Email",p:14,c:"var(--accent-warm)"},{n:"Walk in",p:6,c:"var(--text-muted)"}],
+    locations:[{name:"Liberty Village",leads:1420,tours:632,enrolled:310,rate:"21.8%",trend:"up"},{name:"Bloor Street",leads:1310,tours:558,enrolled:262,rate:"20.0%",trend:"up"},{name:"North Vancouver",leads:1205,tours:504,enrolled:248,rate:"20.6%",trend:"up"},{name:"Downtown Calgary",leads:1120,tours:448,enrolled:208,rate:"18.6%",trend:"up"},{name:"Old Montreal",leads:1068,tours:472,enrolled:230,rate:"21.5%",trend:"up"},{name:"Wellington",leads:988,tours:398,enrolled:184,rate:"18.6%",trend:"down"},{name:"Mississauga",leads:950,tours:420,enrolled:204,rate:"21.5%",trend:"up"},{name:"Kanata",leads:878,tours:352,enrolled:162,rate:"18.5%",trend:"down"}]},
+  ytd:{metrics:[{v:"28,340",l:"Total Leads",t:"+28%",d:"up"},{v:"$16",l:"Avg Cost/Lead",t:"-20%",d:"up"},{v:"23.5%",l:"Conv. Rate",t:"+5.1%",d:"up"},{v:"+22.8%",l:"YTD Growth",t:"",d:"up"}],
+    funnel:[{n:"Website Visits",v:283400,p:100},{n:"Tour Bookings",v:68000,p:24},{n:"Tours Attended",v:51000,p:18},{n:"Applications",v:28340,p:10},{n:"Enrolled",v:15200,p:5.4}],
+    channels:[{n:"Google",p:31,c:"var(--primary)"},{n:"Social Media",p:31,c:"var(--secondary)"},{n:"Referral",p:17,c:"var(--accent)"},{n:"Email",p:15,c:"var(--accent-warm)"},{n:"Walk in",p:6,c:"var(--text-muted)"}],
+    locations:[{name:"Liberty Village",leads:3720,tours:1654,enrolled:812,rate:"21.8%",trend:"up"},{name:"Bloor Street",leads:3430,tours:1462,enrolled:686,rate:"20.0%",trend:"up"},{name:"North Vancouver",leads:3155,tours:1320,enrolled:650,rate:"20.6%",trend:"up"},{name:"Downtown Calgary",leads:2935,tours:1174,enrolled:545,rate:"18.6%",trend:"up"},{name:"Old Montreal",leads:2798,tours:1236,enrolled:602,rate:"21.5%",trend:"up"},{name:"Wellington",leads:2588,tours:1042,enrolled:482,rate:"18.6%",trend:"down"},{name:"Mississauga",leads:2489,tours:1100,enrolled:535,rate:"21.5%",trend:"up"},{name:"Kanata",leads:2300,tours:922,enrolled:424,rate:"18.4%",trend:"up"}]}
+};
+
+/* Newsletter content */
+const newsletterContent = {
+  monthly:{
+    friendly:{
+      subject:"Your [MONTH] Update from Kids & Company [LOCATION]",
+      greeting:"Hi there, Kidco Families!",
+      body:"What a wonderful month it's been at [LOCATION]! Your little ones have been exploring, creating, and growing in ways that make us smile every single day.\n\n[MESSAGE]\n\nHere are a few highlights from this month:\n\n\u25CF Our sensory exploration stations were a huge hit\n\u25CF The outdoor garden project is officially growing\n\u25CF Friendship skills are blooming across all age groups\n\nComing up next month: a special visit from a local author and our annual family picnic. Mark your calendars!\n\nAs always, we're grateful to be part of your child's journey.",
+      cta:"View Photo Gallery"
+    },
+    formal:{
+      subject:"Monthly Report: [MONTH] at Kids & Company [LOCATION]",
+      greeting:"Dear Families,",
+      body:"We are pleased to share our monthly update from [LOCATION]. This month has brought meaningful progress across all developmental areas for our learners.\n\n[MESSAGE]\n\nKey developments this month:\n\n\u25CF Curriculum focus: sensory exploration and fine motor development\n\u25CF Outdoor programming expanded with our garden initiative\n\u25CF Social emotional learning milestones achieved across age groups\n\nPlease note the following upcoming dates: author visit on the 15th and our annual family gathering on the 22nd.\n\nWe appreciate your continued partnership in your child's education.",
+      cta:"View Monthly Report"
+    },
+    celebratory:{
+      subject:"What a Month! Celebrating [MONTH] at Kids & Company [LOCATION]",
+      greeting:"Hello, Amazing Families!",
+      body:"WOW, what a month! The energy at [LOCATION] has been absolutely incredible, and we just have to share the highlights with you!\n\n[MESSAGE]\n\nThings we're celebrating:\n\n\u25CF Our sensory stations? LOVED by every age group\n\u25CF The garden is GROWING (just like our kids!)\n\u25CF Friendships blossoming everywhere we look\n\nGet ready for next month because it's going to be even more exciting: a special author visit AND our annual family picnic!\n\nThank you for sharing your incredible kids with us!",
+      cta:"See the Fun!"
+    }
+  },
+  event:{
+    friendly:{
+      subject:"You're Invited! Special Event at Kids & Company [LOCATION]",
+      greeting:"Hi Kidco Families!",
+      body:"We have something exciting to share, and we'd love for your family to be part of it!\n\n[MESSAGE]\n\nThis is a wonderful chance to connect with other families, meet our educators, and see your child's learning environment in action.\n\nLight refreshments will be provided, and activities will be set up for children of all ages. The whole family is welcome!\n\nPlease let us know if you can make it so we can plan accordingly.",
+      cta:"RSVP Now"
+    },
+    formal:{
+      subject:"Event Invitation: Kids & Company [LOCATION]",
+      greeting:"Dear Families,",
+      body:"We are pleased to invite you to an upcoming event at our [LOCATION] center.\n\n[MESSAGE]\n\nThis event provides an opportunity to engage with our educational team, observe your child's learning environment, and connect with fellow families.\n\nRefreshments will be available, and age appropriate activities will be provided for all children. Family members are welcome to attend.\n\nKindly confirm your attendance at your earliest convenience.",
+      cta:"Confirm Attendance"
+    },
+    celebratory:{
+      subject:"Party Time! You're Invited to Kids & Company [LOCATION]",
+      greeting:"Hey there, Kidco families!",
+      body:"Get excited because we're throwing a celebration and your family is on the guest list!\n\n[MESSAGE]\n\nExpect great company, fun activities for the little ones, and delicious treats for everyone. Bring the whole crew!\n\nLet us know you're coming so we can make sure there's enough fun to go around!",
+      cta:"Count Me In!"
+    }
+  },
+  policy:{
+    friendly:{
+      subject:"Important Update from Kids & Company [LOCATION]",
+      greeting:"Hi Families,",
+      body:"We want to keep you informed about some updates at [LOCATION]. We know your time is valuable, so here's what you need to know.\n\n[MESSAGE]\n\nThese changes are designed to improve the experience for every family in our community. If you have any questions, our team is always happy to chat. Just reach out to your center director or drop us a note.\n\nThank you for your understanding and continued trust.",
+      cta:"Learn More"
+    },
+    formal:{
+      subject:"Policy Update: Kids & Company [LOCATION]",
+      greeting:"Dear Families,",
+      body:"We are writing to inform you of important updates to our policies at [LOCATION].\n\n[MESSAGE]\n\nThese changes will take effect in the coming weeks and are intended to enhance the quality of care and experience for all families. Detailed documentation is available upon request.\n\nShould you have questions, please contact your center director directly.\n\nThank you for your attention to this matter.",
+      cta:"View Full Policy"
+    },
+    celebratory:{
+      subject:"Good News and Updates from Kids & Company [LOCATION]",
+      greeting:"Hello Wonderful Families!",
+      body:"Change can be exciting, and we're thrilled to share some updates that we think you're going to appreciate!\n\n[MESSAGE]\n\nAll of these changes come from listening to you and striving to make the Kidco experience even better. Because your family deserves the absolute best!\n\nQuestions? Reach out anytime. We love hearing from you!",
+      cta:"See What's New"
+    }
+  },
+  seasonal:{
+    friendly:{
+      subject:"Celebrating the Season at Kids & Company [LOCATION]",
+      greeting:"Hi Kidco Families!",
+      body:"The season is bringing so much joy to our classrooms at [LOCATION], and we wanted to share the magic with you!\n\n[MESSAGE]\n\nOur educators have created wonderful seasonal activities that spark curiosity and creativity in every age group. From art projects to nature exploration, your children are experiencing the best of the season.\n\nWe hope your family is enjoying this special time of year as much as we are!",
+      cta:"See Seasonal Activities"
+    },
+    formal:{
+      subject:"Seasonal Programming Update: Kids & Company [LOCATION]",
+      greeting:"Dear Families,",
+      body:"As we move into a new season, we are pleased to share our updated programming at [LOCATION].\n\n[MESSAGE]\n\nOur curriculum has been adapted to incorporate seasonal themes, providing meaningful learning opportunities connected to the natural world. Detailed activity plans are available from your child's educator.\n\nWe wish your family a wonderful season ahead.",
+      cta:"View Seasonal Calendar"
+    },
+    celebratory:{
+      subject:"Seasonal Magic at Kids & Company [LOCATION]!",
+      greeting:"Hello, Fabulous Families!",
+      body:"The season is HERE and the excitement at [LOCATION] is off the charts!\n\n[MESSAGE]\n\nOur classrooms are bursting with seasonal crafts, themed sensory stations, and so much laughter. Your kids are having the time of their lives, and honestly, so are we!\n\nFrom our Kidco family to yours: enjoy every moment of this beautiful season!",
+      cta:"Check Out the Fun!"
+    }
+  }
+};
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  initScrollReveal();
+  initToolNav();
+  initStatCounters();
+  initSocialStudio();
+  initBrandAnalyzer();
+  initCampaign();
+  initNewsletter();
+  initFunnel();
+});
+
+/* Scroll reveal */
+function initScrollReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }});
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.tool-section').forEach(s => obs.observe(s));
+}
+
+/* Tool nav scroll spy + sticky */
+function initToolNav() {
+  const nav = document.getElementById('toolNav');
+  const tabs = document.querySelectorAll('.tool-tab');
+  const sections = document.querySelectorAll('.tool-section');
+  const hero = document.getElementById('hero');
+
+  window.addEventListener('scroll', () => {
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    nav.classList.toggle('visible', heroBottom < 0);
+
+    let current = '';
+    sections.forEach(s => {
+      if (s.getBoundingClientRect().top < 200) current = s.id;
+    });
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.target === current));
+  });
+
+  tabs.forEach(t => t.addEventListener('click', () => {
+    document.getElementById(t.dataset.target).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+}
+
+/* Stat counters */
+function initStatCounters() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.dataset.count);
+        if (!target) return;
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 40));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current + '+';
+        }, 30);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => obs.observe(el));
+}
+
+/* ===== TOOL 1: SOCIAL STUDIO ===== */
+function initSocialStudio() {
+  let platform = 'instagram', theme = 'enrollment';
+
+  document.querySelectorAll('#platformPills .pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#platformPills .pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      platform = p.dataset.val;
+    });
+  });
+  document.querySelectorAll('#themePills .pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#themePills .pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      theme = p.dataset.val;
+    });
+  });
+
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    const output = document.getElementById('socialOutput');
+    output.innerHTML = '<div class="shimmer" style="height:1.2rem;width:80%"></div><div class="shimmer" style="height:1.2rem;width:60%"></div><div class="shimmer" style="height:1.2rem;width:70%"></div><div class="shimmer" style="height:1.2rem;width:40%"></div>';
+
+    setTimeout(() => {
+      const posts = socialContent[platform]?.[theme] || socialContent.instagram.enrollment;
+      const post = posts[Math.floor(Math.random() * posts.length)];
+      const tags = socialHashtags[platform]?.[theme] || [];
+      const time = postTimes[platform];
+      const tip = platformTips[platform];
+
+      output.innerHTML = `
+        <div class="generated-post">
+          <div class="post-text" id="typewriterTarget"></div>
+          <div class="hashtags">${tags.map(t => `<span class="hashtag">${t}</span>`).join('')}</div>
+          <div class="post-meta">
+            <div class="post-meta-item"><strong>Best time:</strong> ${time}</div>
+            <div class="post-meta-item"><strong>Pro tip:</strong> ${tip}</div>
+          </div>
+        </div>`;
+
+      typewrite(document.getElementById('typewriterTarget'), post, 12);
+    }, 1200);
+  });
+}
+
+function typewrite(el, text, speed) {
+  let i = 0;
+  el.classList.add('typewriter');
+  function type() {
+    if (i < text.length) {
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      el.classList.remove('typewriter');
+    }
+  }
+  type();
+}
+
+/* ===== TOOL 2: BRAND ANALYZER ===== */
+function initBrandAnalyzer() {
+  document.querySelectorAll('[data-example]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('analyzerInput').value = analyzerExamples[btn.dataset.example];
+    });
+  });
+
+  document.getElementById('analyzeBtn').addEventListener('click', () => {
+    const text = document.getElementById('analyzerInput').value.trim();
+    if (!text) return;
+    analyzeText(text);
+  });
+
+  document.getElementById('showRewriteBtn').addEventListener('click', () => {
+    const area = document.getElementById('rewriteArea');
+    area.classList.toggle('hidden');
+  });
+}
+
+function analyzeText(text) {
+  const results = document.getElementById('analysisResults');
+  results.classList.remove('hidden');
+
+  // Real scoring logic
+  const words = text.split(/\s+/);
+  const wordCount = words.length;
+  const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+  const avgSentenceLen = wordCount / Math.max(sentences.length, 1);
+
+  // Warmth indicators
+  const warmWords = ['love','wonderful','excited','thrilled','amazing','joy','warm','happy','nurture','nurturing','care','caring','family','families','welcome','heart','grow','growing','incredible','beautiful','magic','special','celebrate','celebrating','together','community','inspire','inspiring','dear','friend'];
+  const warmCount = words.filter(w => warmWords.includes(w.toLowerCase().replace(/[^a-z]/g, ''))).length;
+  const warmthScore = Math.min(100, Math.round((warmCount / wordCount) * 800 + 20));
+
+  // Professional authority
+  const proWords = ['program','curriculum','education','development','quality','professional','experience','learning','approach','evidence','designed','specialists','initiative','committed','dedicated','excellence'];
+  const proCount = words.filter(w => proWords.includes(w.toLowerCase().replace(/[^a-z]/g, ''))).length;
+  const proScore = Math.min(100, Math.round((proCount / wordCount) * 600 + 30));
+
+  // Brand keywords
+  const brandWords = ['kids','company','kidco','early','learning','childcare','child','children','educators','emergent','flexible','nurturing','curiosity','independence','confidence','discovery','play'];
+  const brandCount = words.filter(w => brandWords.includes(w.toLowerCase().replace(/[^a-z]/g, ''))).length;
+  const brandScore = Math.min(100, Math.round((brandCount / wordCount) * 500 + 15));
+
+  // Readability (lower avg sentence length = more readable)
+  const readScore = avgSentenceLen < 12 ? 95 : avgSentenceLen < 18 ? 85 : avgSentenceLen < 25 ? 65 : avgSentenceLen < 35 ? 45 : 30;
+
+  const overall = Math.round(warmthScore * 0.3 + proScore * 0.25 + brandScore * 0.25 + readScore * 0.2);
+
+  // Animate score ring
+  const circle = document.getElementById('scoreCircle');
+  const circumference = 2 * Math.PI * 68;
+  const offset = circumference - (overall / 100) * circumference;
+
+  const color = overall >= 80 ? '#059669' : overall >= 60 ? '#F59E0B' : '#DC2626';
+  circle.style.stroke = color;
+  circle.style.transition = 'stroke-dashoffset 1.5s ease';
+  setTimeout(() => { circle.style.strokeDashoffset = offset; }, 50);
+
+  const scoreEl = document.getElementById('overallScore');
+  animateNumber(scoreEl, 0, overall, 1200);
+
+  const verdict = document.getElementById('scoreVerdict');
+  verdict.style.color = color;
+  verdict.textContent = overall >= 80 ? 'Excellent Brand Alignment' : overall >= 60 ? 'Good, With Room to Improve' : 'Needs Significant Work';
+
+  // Metric bars
+  const metrics = [
+    { name: 'Warmth & Approachability', val: warmthScore, color: 'var(--primary)' },
+    { name: 'Professional Authority', val: proScore, color: 'var(--secondary)' },
+    { name: 'Brand Keyword Usage', val: brandScore, color: 'var(--accent-warm)' },
+    { name: 'Readability Score', val: readScore, color: 'var(--accent)' }
+  ];
+
+  document.getElementById('metricBars').innerHTML = metrics.map(m => `
+    <div class="metric-bar">
+      <div class="bar-header"><span class="bar-name">${m.name}</span><span class="bar-val">${m.val}/100</span></div>
+      <div class="bar-track"><div class="bar-fill" style="background:${m.color}" data-width="${m.val}%"></div></div>
+    </div>`).join('');
+
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill').forEach(b => { b.style.width = b.dataset.width; });
+  }, 100);
+
+  // Suggestions
+  const suggestions = [];
+  if (warmthScore < 60) suggestions.push('Add warmer, more personal language. Use words like "family," "together," "caring," and "nurturing" to connect with parents emotionally.');
+  if (warmthScore < 80) suggestions.push('Consider opening with a personal greeting and closing with a warm sign off to strengthen the parent connection.');
+  if (proScore < 60) suggestions.push('Include more references to your educational approach, curriculum design, or child development expertise.');
+  if (brandScore < 50) suggestions.push('Incorporate Kids & Company brand language: "Kidco," "emergent learning," "early childhood," "flexible care," and "discovery."');
+  if (brandScore < 70) suggestions.push('Reference specific Kidco values: Kindness, Innovation, Diversity, Courage, and Optimism.');
+  if (readScore < 60) suggestions.push('Break up longer sentences for easier reading. Aim for an average of 15 to 20 words per sentence.');
+  if (text.length < 100) suggestions.push('The content feels brief. Adding more detail about the specific benefit to families would strengthen the message.');
+  if (!text.includes('?')) suggestions.push('Consider adding a question to invite engagement and make the communication feel more conversational.');
+  if (suggestions.length === 0) suggestions.push('This content is well aligned with the Kids & Company brand voice. Strong use of warmth, professionalism, and brand language.');
+
+  document.getElementById('suggestionsList').innerHTML = suggestions.map(s => `<li>${s}</li>`).join('');
+
+  // Rewrite
+  const rewriteArea = document.getElementById('rewriteArea');
+  rewriteArea.classList.add('hidden');
+  let key = null;
+  if (text === analyzerExamples.good) key = 'good';
+  else if (text === analyzerExamples.mid) key = 'mid';
+  else if (text === analyzerExamples.bad) key = 'bad';
+
+  if (key) {
+    rewriteArea.textContent = analyzerRewrites[key];
+  } else {
+    rewriteArea.textContent = 'AI rewrite is available for the pre loaded examples. In a production version, this would generate a brand aligned rewrite of any input text.';
+  }
+}
+
+function animateNumber(el, start, end, duration) {
+  const startTime = performance.now();
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(start + (end - start) * eased);
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+/* ===== TOOL 3: CAMPAIGN ===== */
+function initCampaign() {
+  // Region toggles
+  document.querySelectorAll('.region-toggle').forEach(r => {
+    r.addEventListener('click', () => { r.classList.toggle('active'); updateCampaignDash(); });
+  });
+
+  // Channel sliders
+  const sliders = document.querySelectorAll('#channelSliders input[type="range"]');
+  sliders.forEach(s => {
+    s.addEventListener('input', () => {
+      updateChannelDisplay();
+      updateCampaignDash();
+    });
+  });
+
+  // Budget/date changes
+  ['campBudget', 'campStart', 'campEnd'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateCampaignDash);
+  });
+
+  // Init dots
+  const dotsContainer = document.getElementById('locationDots');
+  for (let i = 0; i < 152; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'location-dot inactive';
+    dotsContainer.appendChild(dot);
+  }
+
+  updateChannelDisplay();
+  updateCampaignDash();
+}
+
+function updateChannelDisplay() {
+  const sliders = document.querySelectorAll('#channelSliders input[type="range"]');
+  const labels = { social: 'chSocial', email: 'chEmail', google: 'chGoogle', print: 'chPrint', community: 'chCommunity' };
+  let total = 0;
+  sliders.forEach(s => {
+    const val = parseInt(s.value);
+    total += val;
+    document.getElementById(labels[s.dataset.channel]).textContent = val + '%';
+  });
+  const totalEl = document.getElementById('channelTotal');
+  totalEl.textContent = total;
+  totalEl.style.color = total === 100 ? 'var(--secondary-dark)' : 'var(--primary)';
+}
+
+function updateCampaignDash() {
+  const budget = parseInt(document.getElementById('campBudget').value) || 0;
+  let centers = 0;
+  document.querySelectorAll('.region-toggle.active').forEach(r => { centers += parseInt(r.dataset.centers); });
+
+  const reachMultiplier = { social: 45, email: 20, google: 35, print: 8, community: 15 };
+  const sliders = document.querySelectorAll('#channelSliders input[type="range"]');
+  let totalReach = 0;
+  const channelData = [];
+  sliders.forEach(s => {
+    const pct = parseInt(s.value) / 100;
+    const spend = budget * pct;
+    totalReach += spend * (reachMultiplier[s.dataset.channel] || 10) / 100;
+    if (pct > 0) channelData.push({ name: s.dataset.channel, pct: parseInt(s.value) });
+  });
+
+  const cpl = totalReach > 0 ? Math.round(budget / (totalReach / 8)) : 0;
+
+  document.getElementById('dashBudget').textContent = '$' + budget.toLocaleString();
+  document.getElementById('dashCenters').textContent = centers;
+  document.getElementById('dashReach').textContent = Math.round(totalReach).toLocaleString();
+  document.getElementById('dashCPL').textContent = '$' + cpl;
+
+  // Donut chart
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#FF8C42', '#636E72'];
+  const total = channelData.reduce((a, c) => a + c.pct, 0) || 1;
+  let cumulative = 0;
+  const svg = document.getElementById('donutChart');
+  svg.innerHTML = '<circle cx="90" cy="90" r="60" fill="none" stroke="#F0E6DA" stroke-width="20"/>';
+  const circumference = 2 * Math.PI * 60;
+
+  channelData.forEach((ch, i) => {
+    const pct = ch.pct / total;
+    const dashLen = pct * circumference;
+    const offset = cumulative * circumference;
+    svg.innerHTML += `<circle cx="90" cy="90" r="60" fill="none" stroke="${colors[i % colors.length]}" stroke-width="20" stroke-dasharray="${dashLen} ${circumference - dashLen}" stroke-dashoffset="${-offset}" style="transition:all .5s ease"/>`;
+    cumulative += pct;
+  });
+
+  // Location dots
+  const dots = document.querySelectorAll('.location-dot');
+  let targeted = 0;
+  dots.forEach((d, i) => {
+    if (i < centers) { d.className = 'location-dot targeted'; targeted++; }
+    else { d.className = 'location-dot inactive'; }
+  });
+}
+
+/* ===== TOOL 4: NEWSLETTER ===== */
+function initNewsletter() {
+  let template = 'monthly', tone = 'friendly';
+
+  document.querySelectorAll('.template-card').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('.template-card').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      template = c.dataset.template;
+      updateNewsletter(template, tone);
+    });
+  });
+
+  document.querySelectorAll('#nlTonePills .pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#nlTonePills .pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      tone = p.dataset.val;
+      updateNewsletter(template, tone);
+    });
+  });
+
+  ['nlLocation', 'nlSubject', 'nlMessage'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => updateNewsletter(template, tone));
+  });
+
+  updateNewsletter(template, tone);
+}
+
+function updateNewsletter(template, tone) {
+  const location = document.getElementById('nlLocation').value;
+  const message = document.getElementById('nlMessage').value;
+  const content = newsletterContent[template]?.[tone] || newsletterContent.monthly.friendly;
+
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const month = months[new Date().getMonth()];
+
+  const subject = content.subject.replace('[LOCATION]', location).replace('[MONTH]', month);
+  document.getElementById('nlSubject').placeholder = subject;
+  document.getElementById('previewLocation').textContent = location;
+
+  let body = content.body.replace(/\[LOCATION\]/g, location).replace(/\[MONTH\]/g, month).replace('[MESSAGE]', message || '');
+
+  const bodyEl = document.getElementById('emailBody');
+  bodyEl.innerHTML = `
+    <div class="greeting">${content.greeting}</div>
+    <div class="content-block">${body.split('\n').map(l => l.trim() ? `<p style="margin-bottom:.5rem">${l}</p>` : '').join('')}</div>
+    <a href="#" class="email-cta" onclick="return false">${content.cta}</a>`;
+}
+
+/* ===== TOOL 5: FUNNEL ===== */
+function initFunnel() {
+  document.querySelectorAll('#periodTabs .pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#periodTabs .pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      renderFunnel(p.dataset.period);
+    });
+  });
+
+  // Table sorting
+  document.querySelectorAll('.locations-table th').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.sort;
+      const activePeriod = document.querySelector('#periodTabs .pill.active').dataset.period;
+      sortAndRenderTable(activePeriod, key);
+    });
+  });
+
+  renderFunnel('week');
+}
+
+let currentSortKey = null;
+let currentSortDir = 'desc';
+
+function renderFunnel(period) {
+  const data = funnelData[period];
+
+  // Metrics
+  document.getElementById('funnelMetrics').innerHTML = data.metrics.map(m => `
+    <div class="metric-card">
+      <div class="m-value">${m.v}</div>
+      <div class="m-label">${m.l}</div>
+      ${m.t ? `<div class="m-trend ${m.d}">${m.d === 'up' ? '\u25B2' : '\u25BC'} ${m.t}</div>` : ''}
+    </div>`).join('');
+
+  // Funnel bars
+  const maxV = data.funnel[0].v;
+  document.getElementById('funnelBars').innerHTML = data.funnel.map((f, i) => {
+    const w = (f.v / maxV) * 100;
+    const conv = i > 0 ? Math.round((f.v / data.funnel[i-1].v) * 100) + '%' : '';
+    return `<div class="funnel-step">
+      <div class="step-label">${f.n}</div>
+      <div class="step-bar-track"><div class="step-bar-fill" data-width="${w}%">${f.v.toLocaleString()}</div></div>
+      <div class="step-conv">${conv}</div>
+    </div>`;
+  }).join('');
+
+  setTimeout(() => {
+    document.querySelectorAll('.step-bar-fill').forEach(b => { b.style.width = b.dataset.width; });
+  }, 100);
+
+  // Channel bars
+  document.getElementById('channelBars').innerHTML = data.channels.map(c => `
+    <div class="channel-bar">
+      <div class="ch-name">${c.n}</div>
+      <div class="ch-track"><div class="ch-fill" style="background:${c.c}" data-width="${c.p}%"></div></div>
+      <div class="ch-pct">${c.p}%</div>
+    </div>`).join('');
+
+  setTimeout(() => {
+    document.querySelectorAll('.ch-fill').forEach(b => { b.style.width = b.dataset.width; });
+  }, 200);
+
+  // Table
+  currentSortKey = null;
+  renderTable(data.locations);
+}
+
+function renderTable(locations) {
+  document.getElementById('locationsBody').innerHTML = locations.map(l => `
+    <tr>
+      <td>${l.name}</td>
+      <td>${l.leads.toLocaleString()}</td>
+      <td>${l.tours.toLocaleString()}</td>
+      <td>${l.enrolled.toLocaleString()}</td>
+      <td>${l.rate}</td>
+      <td style="color:${l.trend === 'up' ? '#059669' : '#DC2626'};font-weight:700">${l.trend === 'up' ? '\u25B2' : '\u25BC'}</td>
+    </tr>`).join('');
+}
+
+function sortAndRenderTable(period, key) {
+  if (currentSortKey === key) currentSortDir = currentSortDir === 'desc' ? 'asc' : 'desc';
+  else { currentSortKey = key; currentSortDir = 'desc'; }
+
+  const data = [...funnelData[period].locations];
+  data.sort((a, b) => {
+    let va = a[key], vb = b[key];
+    if (key === 'rate') { va = parseFloat(va); vb = parseFloat(vb); }
+    if (typeof va === 'string') return currentSortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+    return currentSortDir === 'asc' ? va - vb : vb - va;
+  });
+  renderTable(data);
+}
+</script>
+</body>
+</html>
